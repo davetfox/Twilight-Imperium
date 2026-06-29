@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twilight Imperium Helper</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <a class="brand" href="#">Twilight Imperium Helper</a>
+    <nav aria-label="Primary navigation">
+      <a href="#features">Features</a>
+      <a href="#cards">Cards</a>
+      <a href="#phases">Phases</a>
+      <a href="#flows">Flows</a>
+      <a href="#status">Status</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="eyebrow">Command sheet companion</p>
+        <h1 id="hero-title">Track the table without losing the story.</h1>
+        <p class="hero-copy">
+          A lightweight helper for Twilight Imperium sessions, starting with the basics:
+          card timing, turn flow, player notes, objectives, and quick reference tools.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#cards">Choose Cards</a>
+          <a class="button secondary" href="#status">Current Status</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-heading">
+        <p class="eyebrow">Early roadmap</p>
+        <h2>What this helper will cover</h2>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Timing Flows</h3>
+          <p>Check which generic action cards, technologies, and unit upgrades modify each step.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Round Tracker</h3>
+          <p>Follow strategy cards, active players, passed players, and the current round.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Objectives</h3>
+          <p>Keep public objectives, secret objectives, and scoring reminders close at hand.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section checklist-section" id="cards">
+      <div class="section-heading">
+        <p class="eyebrow">Active modifiers</p>
+        <h2>Card checklist</h2>
+        <p>
+          Tick the cards in play. The phase flows below will show the card text at the
+          step it modifies.
+        </p>
+      </div>
+
+      <div class="checklist-actions">
+        <button class="utility-button" type="button" id="clearCards">Clear All</button>
+      </div>
+
+      <div class="checklist-grid" id="cardChecklist"></div>
+    </section>
+
+    <section class="section phase-section" id="phases">
+      <div class="section-heading">
+        <p class="eyebrow">Live table flow</p>
+        <h2>Game phase flows</h2>
+        <p>
+          These start as the clean table sequence. Checked cards are inserted beneath the
+          matching step with their text and timing impact.
+        </p>
+      </div>
+
+      <div class="phase-flow-list" id="phaseFlowList"></div>
+    </section>
+
+    <section class="section flow-section" id="flows">
+      <div class="section-heading">
+        <p class="eyebrow">Research doc draft</p>
+        <h2>Card timing flows</h2>
+        <p>
+          Generic action cards, standard technologies, and non-faction unit upgrades only.
+          Faction-specific cards and faction-specific unit upgrades are left out for now.
+        </p>
+      </div>
+
+      <div class="flow-tools" aria-label="Flow filters">
+        <button class="filter-button active" type="button" data-filter="all">All</button>
+        <button class="filter-button" type="button" data-filter="action">Action</button>
+        <button class="filter-button" type="button" data-filter="strategy">Strategy</button>
+        <button class="filter-button" type="button" data-filter="tactical">Tactical</button>
+        <button class="filter-button" type="button" data-filter="combat">Combat</button>
+        <button class="filter-button" type="button" data-filter="invasion">Invasion</button>
+        <button class="filter-button" type="button" data-filter="production">Production</button>
+        <button class="filter-button" type="button" data-filter="research">Research</button>
+        <button class="filter-button" type="button" data-filter="status">Status</button>
+        <button class="filter-button" type="button" data-filter="agenda">Agenda</button>
+      </div>
+
+      <div class="flow-list" id="flowList"></div>
+    </section>
+
+    <section class="status-band" id="status">
+      <div>
+        <p class="eyebrow">Project status</p>
+        <h2>Interactive timing map added</h2>
+      </div>
+      <p>
+        Source: the local research document in <strong>Research/Research.txt.txt</strong>.
+        Tick cards in the checklist to insert their timing text into the matching phase step.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>Built for long games, sharp notes, and cleaner turns.</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
