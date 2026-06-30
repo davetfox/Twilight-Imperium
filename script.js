@@ -89,6 +89,112 @@ const factionLeaderEntries = [
   { faction: "The Council Keleres", name: "Suffi An Keleres", type: "Commander leader", source: "codex", requiresPok: true, phaseId: "action", stepId: "end-your-turn", stepName: "End of your turn", text: "Keleres commander. After you perform a component action, you may perform an additional action." }
 ];
 
+const factionUnitTechEntries = [
+  { faction: "The Arborec", name: "Letani Warrior II", type: "Faction unit upgrade", source: "base", phaseId: "combat", stepId: "units-destroyed", stepName: "After units are destroyed", text: "Arborec faction infantry upgrade. After this unit is destroyed, it can return later like Infantry II and keeps the Arborec production identity." },
+  { faction: "The Arborec", name: "Letani Behemoth", type: "Mech unit", source: "pok", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Arborec mech. Deploys from Mitosis and brings Sustain Damage, Production 2, and Planetary Shield." },
+  { faction: "The Arborec", name: "Duha Menaimon", type: "Flagship unit", source: "base", phaseId: "tactical", stepId: "activate-system", stepName: "When you activate a system", text: "Arborec flagship. After its system is activated, it can produce up to 5 units there." },
+  { faction: "The Barony of Letnev", name: "L4 Disruptors", type: "Faction technology", source: "base", phaseId: "invasion", stepId: "bombardment-space-cannon", stepName: "Bombardment and Space Cannon", text: "Letnev faction technology. Improves your bombardment pressure by weakening defending infantry before invasion." },
+  { faction: "The Barony of Letnev", name: "Non-Euclidean Shielding", type: "Faction technology", source: "base", phaseId: "combat", stepId: "assign-hits", stepName: "Assign hits and Sustain Damage", text: "Letnev faction technology. Your Sustain Damage units cancel extra hits, making sustain timing much stronger." },
+  { faction: "The Barony of Letnev", name: "Dunlain Reaper", type: "Mech unit", source: "pok", phaseId: "invasion", stepId: "start-ground-combat", stepName: "Start of ground combat", text: "Letnev mech. Deploy at the start of a ground-combat round by spending resources to replace infantry with the mech." },
+  { faction: "The Barony of Letnev", name: "Arc Secundus", type: "Flagship unit", source: "base", phaseId: "combat", stepId: "start-combat-round", stepName: "Start of combat round", text: "Letnev flagship. Repairs itself at the start of each space-combat round and strips Planetary Shield from enemy units in its system." },
+  { faction: "The Clan of Saar", name: "Chaos Mapping", type: "Faction technology", source: "base", phaseId: "action", stepId: "start-your-turn", stepName: "Start of your turn", text: "Saar faction technology. Gives a start-of-turn production option before your normal action flow continues." },
+  { faction: "The Clan of Saar", name: "Floating Factory II", type: "Faction unit upgrade", source: "base", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Saar faction space dock upgrade. It moves and retreats like a ship, improves production, and is destroyed if blockaded." },
+  { faction: "The Clan of Saar", name: "Scavenger Zeta", type: "Mech unit", source: "pok", phaseId: "invasion", stepId: "after-control", stepName: "After gaining control", text: "Saar mech. Deploy after gaining a planet by spending a trade good." },
+  { faction: "The Clan of Saar", name: "Son of Ragh", type: "Flagship unit", source: "base", phaseId: "combat", stepId: "anti-fighter-barrage", stepName: "Anti-Fighter Barrage", text: "Saar flagship. Brings a large Anti-Fighter Barrage pool and Sustain Damage." },
+  { faction: "The Embers of Muaat", name: "Magmus Reactor", type: "Faction technology", source: "base", replacedByCodex: "Magmus Reactor Omega", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Muaat faction technology. Original version supports trade-good production from supernova-related positioning." },
+  { faction: "The Embers of Muaat", name: "Magmus Reactor Omega", type: "Faction technology", source: "codex", replaces: "Magmus Reactor", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Muaat Codex faction technology. Supernovas containing your units become Production 5 areas." },
+  { faction: "The Embers of Muaat", name: "Prototype War Sun II", type: "Faction unit upgrade", source: "base", phaseId: "invasion", stepId: "start-invasion", stepName: "Start of invasion", text: "Muaat faction War Sun upgrade. Removes Planetary Shield like War Sun and improves the faction's signature unit." },
+  { faction: "The Embers of Muaat", name: "Ember Colossus", type: "Mech unit", source: "pok", phaseId: "production", stepId: "action-phase-production", stepName: "Action-phase production", text: "Muaat mech. When using Star Forge nearby, place infantry with this unit." },
+  { faction: "The Embers of Muaat", name: "The Inferno", type: "Flagship unit", source: "base", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Muaat flagship. As an action, spend a strategy token to place a cruiser in its system." },
+  { faction: "The Emirates of Hacan", name: "Production Biomes", type: "Faction technology", source: "base", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Hacan faction technology. Provides an economic production-window boost." },
+  { faction: "The Emirates of Hacan", name: "Quantum Datahub Node", type: "Faction technology", source: "base", phaseId: "strategy", stepId: "choose-strategy-card", stepName: "Choose strategy card", text: "Hacan faction technology. Interacts with strategy-card selection and trade-good leverage." },
+  { faction: "The Emirates of Hacan", name: "Pride of Kenara", type: "Mech unit", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Hacan mech. Lets planet cards be traded; if traded, move your units off the planet to another controlled planet." },
+  { faction: "The Emirates of Hacan", name: "Wrath of Kenara", type: "Flagship unit", source: "base", phaseId: "combat", stepId: "roll-combat-dice", stepName: "Roll combat dice", text: "Hacan flagship. After rolling a die during space combat in its system, you may spend a trade good to increase that result." },
+  { faction: "The Federation of Sol", name: "Advanced Carrier II", type: "Faction unit upgrade", source: "base", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Sol faction carrier upgrade. Improves carrier mobility and capacity for Sol's infantry-heavy game." },
+  { faction: "The Federation of Sol", name: "Spec Ops II", type: "Faction unit upgrade", source: "base", phaseId: "combat", stepId: "units-destroyed", stepName: "After units are destroyed", text: "Sol faction infantry upgrade. Destroyed infantry return more reliably than standard Infantry II." },
+  { faction: "The Federation of Sol", name: "ZS Thunderbolt M2", type: "Mech unit", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Sol mech. Deploys after Orbital Drop by spending resources." },
+  { faction: "The Federation of Sol", name: "Genesis", type: "Flagship unit", source: "base", phaseId: "status", stepId: "gain-command-tokens", stepName: "Gain and redistribute command tokens", text: "Sol flagship. At the end of the status phase, places infantry in its space area." },
+  { faction: "The Ghosts of Creuss", name: "Wormhole Generator", type: "Faction technology", source: "base", replacedByCodex: "Wormhole Generator Omega", phaseId: "status", stepId: "gain-command-tokens", stepName: "Status phase", text: "Creuss faction technology. Original version places or moves a Creuss wormhole token at the start of the status phase." },
+  { faction: "The Ghosts of Creuss", name: "Wormhole Generator Omega", type: "Faction technology", source: "codex", replaces: "Wormhole Generator", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Creuss Codex faction technology. As an action, exhaust it to place or move a Creuss wormhole token." },
+  { faction: "The Ghosts of Creuss", name: "Dimensional Splicer", type: "Faction technology", source: "base", phaseId: "combat", stepId: "start-combat", stepName: "Start of combat", text: "Creuss faction technology. Creates a start-of-combat hit when wormhole positioning lines up." },
+  { faction: "The Ghosts of Creuss", name: "Icarus Drive", type: "Mech unit", source: "pok", phaseId: "tactical", stepId: "activate-system", stepName: "When you activate a system", text: "Creuss mech. After any player activates a system, remove the mech to place or move a Creuss wormhole token there." },
+  { faction: "The Ghosts of Creuss", name: "Hil Colish", type: "Flagship unit", source: "base", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Creuss flagship. Its system contains the delta wormhole, and it may move before or after your other ships during movement." },
+  { faction: "The L1Z1X Mindnet", name: "Inheritance Systems", type: "Faction technology", source: "base", phaseId: "research", stepId: "research-unit-upgrade", stepName: "When researching technology", text: "L1Z1X faction technology. Exhaust and spend resources while researching to ignore all prerequisites." },
+  { faction: "The L1Z1X Mindnet", name: "Super-Dreadnought II", type: "Faction unit upgrade", source: "base", phaseId: "combat", stepId: "assign-hits", stepName: "Assign hits and Sustain Damage", text: "L1Z1X faction dreadnought upgrade. Like Dreadnought II, it cannot be destroyed by Direct Hit." },
+  { faction: "The L1Z1X Mindnet", name: "Annihilator", type: "Mech unit", source: "pok", phaseId: "invasion", stepId: "bombardment-space-cannon", stepName: "Bombardment and Space Cannon", text: "L1Z1X mech. Can use Bombardment against planets in its system while not in ground combat." },
+  { faction: "The L1Z1X Mindnet", name: "[0.0.1]", type: "Flagship unit", source: "base", phaseId: "combat", stepId: "assign-hits", stepName: "Assign hits and Sustain Damage", text: "L1Z1X flagship. Hits produced by this ship and your dreadnoughts must be assigned to non-fighter ships if able." },
+  { faction: "The Mentak Coalition", name: "Salvage Operations", type: "Faction technology", source: "base", phaseId: "combat", stepId: "units-destroyed", stepName: "After units are destroyed", text: "Mentak faction technology. Rewards you after space combat by salvaging value from destroyed ships." },
+  { faction: "The Mentak Coalition", name: "Mirror Computing", type: "Faction technology", source: "base", phaseId: "agenda", stepId: "votes-cast", stepName: "After votes are cast", text: "Mentak faction technology. Improves the value of trade goods for spending and voting leverage." },
+  { faction: "The Mentak Coalition", name: "Moll Terminus", type: "Mech unit", source: "pok", phaseId: "invasion", stepId: "assign-hits", stepName: "Assign hits and Sustain Damage", text: "Mentak mech. Enemy ground forces on its planet cannot use Sustain Damage." },
+  { faction: "The Mentak Coalition", name: "Fourth Moon", type: "Flagship unit", source: "base", phaseId: "combat", stepId: "assign-hits", stepName: "Assign hits and Sustain Damage", text: "Mentak flagship. Enemy ships in its system cannot use Sustain Damage." },
+  { faction: "The Naalu Collective", name: "Hybrid Crystal Fighter II", type: "Faction unit upgrade", source: "base", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Naalu faction fighter upgrade. Fighters may move without being transported, and excess fighters count as half a ship against fleet pool." },
+  { faction: "The Naalu Collective", name: "Neuroglaive", type: "Faction technology", source: "base", phaseId: "tactical", stepId: "opponent-activates-your-system", stepName: "After another player activates your system", text: "Naalu faction technology. Pressures opponents' command-token economy when they activate systems containing your ships." },
+  { faction: "The Naalu Collective", name: "Iconoclast", type: "Mech unit", source: "pok", replacedByCodex: "Iconoclast Omega", phaseId: "combat", stepId: "roll-combat-dice", stepName: "Roll combat dice", text: "Naalu mech. Base version improves combat rolls against opponents with relic fragments." },
+  { faction: "The Naalu Collective", name: "Iconoclast Omega", type: "Mech unit", source: "codex", replaces: "Iconoclast", requiresPok: true, phaseId: "combat", stepId: "anti-fighter-barrage", stepName: "Anti-Fighter Barrage", text: "Naalu Codex mech. Prevents enemy Anti-Fighter Barrage against your units in its system." },
+  { faction: "The Naalu Collective", name: "Matriarch", type: "Flagship unit", source: "base", phaseId: "invasion", stepId: "commit-ground-forces", stepName: "Commit ground forces", text: "Naalu flagship. Fighters in its system may be committed to planets as ground forces during invasion, then return afterward." },
+  { faction: "The Nekro Virus", name: "Valefar Assimilator X", type: "Faction technology", source: "base", phaseId: "research", stepId: "research-unit-upgrade", stepName: "When gaining technology", text: "Nekro faction technology. Tracks an assimilated opponent technology gained through Nekro technology-copy effects." },
+  { faction: "The Nekro Virus", name: "Valefar Assimilator Y", type: "Faction technology", source: "base", phaseId: "research", stepId: "research-unit-upgrade", stepName: "When gaining technology", text: "Nekro faction technology. Tracks a second assimilated opponent technology gained through Nekro technology-copy effects." },
+  { faction: "The Nekro Virus", name: "The Alastor", type: "Flagship unit", source: "base", phaseId: "combat", stepId: "start-combat", stepName: "Start of combat", text: "Nekro flagship. At the start of space combat, choose any number of ground forces in its system to participate as ships during that combat." },
+  { faction: "The Nekro Virus", name: "Mordred", type: "Mech unit", source: "pok", phaseId: "combat", stepId: "roll-combat-dice", stepName: "Roll combat dice", text: "Nekro mech. During combat against an opponent who owns an X or Y assimilator technology, it can roll extra dice." },
+  { faction: "Sardakk N'orr", name: "Exotrireme II", type: "Faction unit upgrade", source: "base", phaseId: "combat", stepId: "units-destroyed", stepName: "After units are destroyed", text: "Sardakk faction dreadnought upgrade. After a space-combat round, you may destroy it to destroy up to 2 ships." },
+  { faction: "Sardakk N'orr", name: "Valkyrie Particle Weave", type: "Faction technology", source: "base", phaseId: "invasion", stepId: "start-ground-combat", stepName: "Start of ground combat", text: "Sardakk faction technology. Adds extra ground-combat pressure when opponent infantry are destroyed." },
+  { faction: "Sardakk N'orr", name: "Valkyrie Exoskeleton", type: "Mech unit", source: "pok", phaseId: "invasion", stepId: "assign-hits", stepName: "Assign hits and Sustain Damage", text: "Sardakk mech. After it uses Sustain Damage during ground combat, it produces 1 hit." },
+  { faction: "Sardakk N'orr", name: "C'Morran N'orr", type: "Flagship unit", source: "base", phaseId: "combat", stepId: "roll-combat-dice", stepName: "Roll combat dice", text: "Sardakk flagship. Your other ships in its system get stronger combat rolls." },
+  { faction: "The Universities of Jol-Nar", name: "E-Res Siphons", type: "Faction technology", source: "base", phaseId: "tactical", stepId: "opponent-activates-your-system", stepName: "After another player activates your system", text: "Jol-Nar faction technology. Rewards you when another player activates a system containing your ships." },
+  { faction: "The Universities of Jol-Nar", name: "Spacial Conduit Cylinder", type: "Faction technology", source: "base", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Jol-Nar faction technology. Creates extra movement/positioning options through tech infrastructure." },
+  { faction: "The Universities of Jol-Nar", name: "Shield Paling", type: "Mech unit", source: "pok", phaseId: "invasion", stepId: "commit-ground-forces", stepName: "Commit ground forces", text: "Jol-Nar mech. Infantry on its planet are not affected by the Jol-Nar Fragile faction ability." },
+  { faction: "The Universities of Jol-Nar", name: "J.N.S. Hylarim", type: "Flagship unit", source: "base", phaseId: "combat", stepId: "roll-combat-dice", stepName: "Roll combat dice", text: "Jol-Nar flagship. Natural high combat rolls produce extra hits." },
+  { faction: "The Winnu", name: "Lazax Gate Folding", type: "Faction technology", source: "base", phaseId: "tactical", stepId: "activate-system", stepName: "When you activate a system", text: "Winnu faction technology. Helps place units and command pressure around Mecatol Rex and home-system positioning." },
+  { faction: "The Winnu", name: "Hegemonic Trade Policy", type: "Faction technology", source: "base", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Winnu faction technology. Gives economic leverage for production and faction tempo." },
+  { faction: "The Winnu", name: "Reclaimer", type: "Mech unit", source: "pok", phaseId: "invasion", stepId: "after-control", stepName: "After gaining control", text: "Winnu mech. After a tactical action where you gain control of its planet, place 1 PDS or 1 space dock there." },
+  { faction: "The Winnu", name: "Salai Sai Corian", type: "Flagship unit", source: "base", phaseId: "combat", stepId: "roll-combat-dice", stepName: "Roll combat dice", text: "Winnu flagship. Rolls a number of dice tied to the opponent's non-fighter ships in its system." },
+  { faction: "The Xxcha Kingdom", name: "Nullification Field", type: "Faction technology", source: "base", phaseId: "tactical", stepId: "activate-system", stepName: "When you activate a system", text: "Xxcha faction technology. Taxes or blocks activations into systems containing your units." },
+  { faction: "The Xxcha Kingdom", name: "Indomitus", type: "Mech unit", source: "pok", phaseId: "tactical", stepId: "space-cannon-offense", stepName: "Space Cannon Offense", text: "Xxcha mech. Adds adjacent Space Cannon pressure." },
+  { faction: "The Xxcha Kingdom", name: "Loncarra Ssodu", type: "Flagship unit", source: "base", phaseId: "tactical", stepId: "space-cannon-offense", stepName: "Space Cannon Offense", text: "Xxcha flagship. Can use Space Cannon against ships in adjacent systems, giving Xxcha a wide defensive firing net." },
+  { faction: "The Yin Brotherhood", name: "Yin Spinner", type: "Faction technology", source: "base", replacedByCodex: "Yin Spinner Omega", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Yin faction technology. Original version places extra infantry as part of Yin's infantry engine." },
+  { faction: "The Yin Brotherhood", name: "Yin Spinner Omega", type: "Faction technology", source: "codex", replaces: "Yin Spinner", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Yin Codex faction technology. Places up to 2 infantry more flexibly than the original." },
+  { faction: "The Yin Brotherhood", name: "Impulse Core", type: "Faction technology", source: "base", phaseId: "combat", stepId: "units-destroyed", stepName: "After units are destroyed", text: "Yin faction technology. Supports sacrifice/destruction timing in combat." },
+  { faction: "The Yin Brotherhood", name: "Moyin's Ashes", type: "Mech unit", source: "pok", phaseId: "invasion", stepId: "start-ground-combat", stepName: "Start of ground combat", text: "Yin mech. Deploys with Indoctrination and adds influence for replacement effects." },
+  { faction: "The Yin Brotherhood", name: "Van Hauge", type: "Flagship unit", source: "base", phaseId: "combat", stepId: "units-destroyed", stepName: "After units are destroyed", text: "Yin flagship. When it is destroyed, destroy all ships in its system." },
+  { faction: "The Yssaril Tribes", name: "Mageon Implants", type: "Faction technology", source: "base", phaseId: "action", stepId: "start-your-turn", stepName: "Start of your turn", text: "Yssaril faction technology. Supports action-card theft and hand pressure." },
+  { faction: "The Yssaril Tribes", name: "Transparasteel Plating", type: "Faction technology", source: "base", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Yssaril faction technology. Helps stall and protect action-card tempo." },
+  { faction: "The Yssaril Tribes", name: "Blackshade Infiltrator", type: "Mech unit", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Yssaril mech. Deploys after Stall Tactics by placing the mech on a planet you control." },
+  { faction: "The Yssaril Tribes", name: "Y'sia Y'ssrila", type: "Flagship unit", source: "base", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Yssaril flagship. Can move through systems that contain other players' ships." },
+  { faction: "The Argent Flight", name: "Aerie Hololattice", type: "Faction technology", source: "pok", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Argent faction technology. Adds structure and production flexibility around PDS/dock positioning." },
+  { faction: "The Argent Flight", name: "Strike Wing Alpha II", type: "Faction unit upgrade", source: "pok", phaseId: "combat", stepId: "anti-fighter-barrage", stepName: "Anti-Fighter Barrage", text: "Argent faction destroyer upgrade. Improves unit-ability dice pressure, especially Anti-Fighter Barrage." },
+  { faction: "The Argent Flight", name: "Aerie Sentinel", type: "Mech unit", source: "pok", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Argent mech. Does not count against capacity when transported or while in space with ships that have capacity." },
+  { faction: "The Argent Flight", name: "Quetzecoatl", type: "Flagship unit", source: "pok", phaseId: "tactical", stepId: "space-cannon-offense", stepName: "Space Cannon Offense", text: "Argent flagship. Other players cannot use Space Cannon against your ships in its system." },
+  { faction: "The Empyrean", name: "Aetherstream", type: "Faction technology", source: "pok", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Empyrean faction technology. Improves movement through anomaly/empty-space positioning." },
+  { faction: "The Empyrean", name: "Watcher", type: "Mech unit", source: "pok", phaseId: "action", stepId: "action-card-window", stepName: "When action cards are played or discarded", text: "Empyrean mech. Remove it from a system containing or adjacent to another player's units to cancel an action card played by that player." },
+  { faction: "The Empyrean", name: "Dynamo", type: "Flagship unit", source: "pok", phaseId: "combat", stepId: "assign-hits", stepName: "Assign hits and Sustain Damage", text: "Empyrean flagship. After a unit in or adjacent to its system uses Sustain Damage, you may spend influence to repair that unit." },
+  { faction: "The Mahact Gene-Sorcerers", name: "Crimson Legionnaire II", type: "Faction unit upgrade", source: "pok", phaseId: "combat", stepId: "units-destroyed", stepName: "After units are destroyed", text: "Mahact faction infantry upgrade. Destroyed infantry can return later and add commodity/trade-good value before being placed on the card." },
+  { faction: "The Mahact Gene-Sorcerers", name: "Starlancer", type: "Mech unit", source: "pok", phaseId: "tactical", stepId: "activate-system", stepName: "When you activate a system", text: "Mahact mech. If a player whose token is in your fleet pool activates this system, you may spend their token to end their turn." },
+  { faction: "The Mahact Gene-Sorcerers", name: "Arvicon Rex", type: "Flagship unit", source: "pok", phaseId: "combat", stepId: "roll-combat-dice", stepName: "Roll combat dice", text: "Mahact flagship. Gets stronger combat rolls against opponents whose command token is not in your fleet pool." },
+  { faction: "The Naaz-Rokha Alliance", name: "Eidolon", type: "Mech unit", source: "pok", phaseId: "combat", stepId: "start-combat", stepName: "Start of combat", text: "Naaz-Rokha mech. Flips into ship mode in active-system space combat, then flips back at the end of the space battle." },
+  { faction: "The Naaz-Rokha Alliance", name: "Visz el Vir", type: "Flagship unit", source: "pok", phaseId: "combat", stepId: "roll-combat-dice", stepName: "Roll combat dice", text: "Naaz-Rokha flagship. Your mechs in its system roll an additional die during combat." },
+  { faction: "The Nomad", name: "Temporal Command Suite", type: "Faction technology", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Nomad faction technology. Adds action/flagship tempo around the Nomad's multi-agent toolkit." },
+  { faction: "The Nomad", name: "Quantum Manipulator", type: "Mech unit", source: "pok", phaseId: "combat", stepId: "assign-hits", stepName: "Assign hits and Sustain Damage", text: "Nomad mech. During space combat, it may use Sustain Damage to cancel a hit against your ships in its system." },
+  { faction: "The Nomad", name: "Memoria", type: "Flagship unit", source: "pok", phaseId: "combat", stepId: "start-combat", stepName: "Start of combat", text: "Nomad flagship. The faction's central flagship; check it for The Cavalry and other Nomad effects that copy or move flagship values." },
+  { faction: "The Nomad", name: "Memoria II", type: "Faction unit upgrade", source: "pok", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Nomad faction flagship upgrade. Its system is treated as adjacent to systems that contain your mechs." },
+  { faction: "The Titans of Ul", name: "Saturn Engine II", type: "Faction unit upgrade", source: "pok", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Titans faction cruiser upgrade. Improves Saturn Engine movement and combat flexibility." },
+  { faction: "The Titans of Ul", name: "Hel Titan II", type: "Faction unit upgrade", source: "pok", phaseId: "tactical", stepId: "space-cannon-offense", stepName: "Space Cannon Offense", text: "Titans faction PDS upgrade. Treated as both structure and ground force; cannot be transported; has Sustain Damage and Production 1." },
+  { faction: "The Titans of Ul", name: "Hecatoncheires", type: "Mech unit", source: "pok", phaseId: "tactical", stepId: "activate-system", stepName: "When you activate a system", text: "Titans mech. Deploys when you would place a PDS, placing this unit and infantry instead." },
+  { faction: "The Titans of Ul", name: "Ouranos", type: "Flagship unit", source: "pok", phaseId: "tactical", stepId: "activate-system", stepName: "When you activate a system", text: "Titans flagship. After you activate a system containing one or more of your PDS, you may replace a PDS with this unit." },
+  { faction: "The Vuil'Raith Cabal", name: "Vortex", type: "Faction technology", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Cabal faction technology. Captures a unit through dimensional-tear positioning." },
+  { faction: "The Vuil'Raith Cabal", name: "Dimensional Tear II", type: "Faction unit upgrade", source: "pok", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Cabal faction space dock upgrade. Its system is a gravity rift your ships ignore and it exempts up to 12 fighters from capacity." },
+  { faction: "The Vuil'Raith Cabal", name: "Reanimator", type: "Mech unit", source: "pok", phaseId: "combat", stepId: "units-destroyed", stepName: "After units are destroyed", text: "Cabal mech. Enemy infantry destroyed on its planet are captured on your faction sheet instead of returning normally." },
+  { faction: "The Vuil'Raith Cabal", name: "The Terror Between", type: "Flagship unit", source: "pok", phaseId: "combat", stepId: "units-destroyed", stepName: "After units are destroyed", text: "Cabal flagship. Capture all other non-structure units that are destroyed in its system, including your own." },
+  { faction: "The Council Keleres", name: "I.I.H.Q. Modernization", type: "Faction technology", source: "codex", requiresPok: true, phaseId: "agenda", stepId: "votes-cast", stepName: "After votes are cast", text: "Keleres Codex faction technology. Supports agenda and political economy play; noted as a version-tracking edge case in later releases." },
+  { faction: "The Council Keleres", name: "Agency Supply Network", type: "Faction technology", source: "codex", requiresPok: true, phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Keleres Codex faction technology. Adds supply and production support for the faction's tax-and-tempo game." },
+  { faction: "The Council Keleres", name: "Omniopiares", type: "Mech unit", source: "codex", requiresPok: true, phaseId: "invasion", stepId: "commit-ground-forces", stepName: "Commit ground forces", text: "Keleres mech. Other players must spend influence to commit ground forces to its planet." },
+  { faction: "The Council Keleres", name: "Artemiris", type: "Flagship unit", source: "codex", requiresPok: true, phaseId: "tactical", stepId: "activate-system", stepName: "When you activate a system", text: "Keleres flagship. Other players must spend influence to activate its system." }
+];
+
+const factionSpecificEntries = [
+  ...factionLeaderEntries,
+  ...factionUnitTechEntries
+];
+
 const heroFactionByName = {
   "Adjudicator Ba'al": "The Embers of Muaat",
   "Ahk-Syl Siven": "The Nomad",
@@ -113,6 +219,7 @@ const heroFactionByName = {
   "Riftwalker Meian": "The Ghosts of Creuss",
   "Rin, the Master's Legacy": "The Universities of Jol-Nar",
   "Sh'val, Harbinger": "Sardakk N'orr",
+  "Supercharge": "The Naaz-Rokha Alliance",
   "The Helmsman": "The L1Z1X Mindnet",
   "The Oracle": "The Naalu Collective",
   "Ul the Progenitor": "The Titans of Ul",
@@ -1221,7 +1328,7 @@ const placementMap = {
 };
 
 const cardGroups = [
-  "Faction Leaders",
+  "Faction Cards",
   "Action Cards",
   "Blue Technology",
   "Yellow Technology",
@@ -1275,7 +1382,7 @@ const categoryByName = {
   "Assault Cannon": "Red Technology",
   "Magen Defense Grid": "Red Technology",
   "Plasma Scoring": "Red Technology",
-  "Supercharge": "Red Technology",
+  "Supercharge": "Faction Cards",
   "Dacxive Animators": "Green Technology",
   "Hyper Metabolism": "Green Technology",
   "Neural Motivator": "Green Technology",
@@ -1648,7 +1755,7 @@ function getGameSettings() {
 }
 
 function getLeaderInfo(cardName) {
-  const supportEntry = factionLeaderEntries.find((entry) => entry.name === cardName);
+  const supportEntry = factionSpecificEntries.find((entry) => entry.name === cardName);
 
   if (supportEntry) {
     return supportEntry;
@@ -1685,7 +1792,7 @@ function isCardAvailable(cardName) {
   }
 
   if (meta.source === "codex" && meta.replaces) {
-    const replacedMeta = cardVersionMeta[meta.replaces];
+    const replacedMeta = cardVersionMeta[meta.replaces] || getLeaderInfo(meta.replaces);
 
     if (replacedMeta?.source === "pok" && settings.version !== "pok") {
       return false;
@@ -1747,7 +1854,7 @@ function getModifierEntries() {
 
         entries.push({
           ...card,
-          category: categoryByName[card.name] || (card.type.includes("leader") ? "Faction Leaders" : card.type),
+          category: categoryByName[card.name] || (card.type.includes("leader") ? "Faction Cards" : card.type),
           faction: getLeaderInfo(card.name)?.faction || "",
           flowTitle: flow.title,
           phaseId: placement[0],
@@ -1758,21 +1865,21 @@ function getModifierEntries() {
     });
   });
 
-  factionLeaderEntries.forEach((leader) => {
-    if (!isCardAvailable(leader.name)) {
+  factionSpecificEntries.forEach((factionCard) => {
+    if (!isCardAvailable(factionCard.name)) {
       return;
     }
 
     entries.push({
-      name: leader.name,
-      type: leader.type,
-      text: leader.text,
-      category: "Faction Leaders",
-      faction: leader.faction,
-      flowTitle: "Faction Leaders",
-      phaseId: leader.phaseId,
-      stepId: leader.stepId,
-      stepName: leader.stepName
+      name: factionCard.name,
+      type: factionCard.type,
+      text: factionCard.text,
+      category: "Faction Cards",
+      faction: factionCard.faction,
+      flowTitle: "Faction Cards",
+      phaseId: factionCard.phaseId,
+      stepId: factionCard.stepId,
+      stepName: factionCard.stepName
     });
   });
 
@@ -1837,7 +1944,7 @@ function renderChecklist() {
                 <span class="card-summary">
                   <strong>${card.name}</strong>
                   <span>${card.type}</span>
-                  ${card.category === "Faction Leaders" ? `<p class="card-description">${card.text}</p>` : ""}
+                  ${card.category === "Faction Cards" ? `<p class="card-description">${card.text}</p>` : ""}
                 </span>
                 <div class="colour-choice-group" aria-label="${card.name} owner colours">
                   ${playerColours.map((colour) => {
@@ -1865,27 +1972,27 @@ function renderChecklist() {
     `;
   }
 
-  const leaderCards = cards.filter((card) => card.category === "Faction Leaders");
+  const factionCards = cards.filter((card) => card.category === "Faction Cards");
 
-  if (leaderCards.length) {
-    const factionNames = [...new Set(leaderCards.map((card) => card.faction || "Other Leaders"))].sort();
-    heroChecklistMessage.textContent = "Open a faction, read what each agent, commander, or hero does, then tick the player colours that have that leader. Selected effects appear in the matching phase flow.";
+  if (factionCards.length) {
+    const factionNames = [...new Set(factionCards.map((card) => card.faction || "Other Faction Cards"))].sort();
+    heroChecklistMessage.textContent = "Open a faction, read what each agent, commander, hero, faction technology, unique unit, mech, or flagship does, then tick the player colours that have it. Selected effects appear in the matching phase flow.";
     heroChecklist.innerHTML = factionNames.map((factionName) => {
-      const factionCards = leaderCards
-        .filter((card) => (card.faction || "Other Leaders") === factionName)
+      const matchingFactionCards = factionCards
+        .filter((card) => (card.faction || "Other Faction Cards") === factionName)
         .sort((first, second) => first.type.localeCompare(second.type) || first.name.localeCompare(second.name));
 
-      return renderChecklistGroup(factionName, factionCards);
+      return renderChecklistGroup(factionName, matchingFactionCards);
     }).join("");
   } else {
     const settings = getGameSettings();
     heroChecklistMessage.textContent = settings.version === "base"
-      ? "Faction leaders are introduced by Prophecy of Kings. Change Game version to Prophecy of Kings to pick agents, commanders, and heroes."
-      : "No faction leaders are available for the current version choices.";
+      ? "Faction leaders are introduced by Prophecy of Kings, but base faction technologies, unique units, and flagships can still appear here when they affect a phase window."
+      : "No faction-specific cards are available for the current version choices.";
     heroChecklist.innerHTML = "";
   }
 
-  cardChecklist.innerHTML = cardGroups.filter((group) => group !== "Faction Leaders").map((group) => {
+  cardChecklist.innerHTML = cardGroups.filter((group) => group !== "Faction Cards").map((group) => {
     const groupCards = cards.filter((card) => card.category === group);
 
     if (!groupCards.length) {
