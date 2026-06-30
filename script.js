@@ -12,6 +12,7 @@ const clearCardsButton = document.querySelector("#clearCards");
 const playerColourSelect = document.querySelector("#playerColour");
 const gameVersionSelect = document.querySelector("#gameVersion");
 const useCodexCardsInput = document.querySelector("#useCodexCards");
+const showFactionAbilitiesInput = document.querySelector("#showFactionAbilities");
 const saveStatus = document.querySelector("#saveStatus");
 const exportSaveButton = document.querySelector("#exportSave");
 const importSaveInput = document.querySelector("#importSave");
@@ -229,6 +230,62 @@ const factionSpecificEntries = [
   ...factionLeaderEntries,
   ...factionUnitTechEntries,
   ...factionPromissoryEntries
+];
+
+const factionAbilityEntries = [
+  { faction: "The Arborec", name: "Mitosis", source: "base", phaseId: "status", stepId: "gain-command-tokens", stepName: "Status phase", text: "Your space docks cannot produce infantry. At the start of the status phase, place 1 infantry from your reinforcements on any planet you control." },
+  { faction: "The Barony of Letnev", name: "Munitions Reserves", source: "base", phaseId: "combat", stepId: "start-combat-round", stepName: "Start of combat round", text: "At the start of each round of space combat, you may spend 2 trade goods to reroll any number of your dice during that combat round." },
+  { faction: "The Barony of Letnev", name: "Armada", source: "base", phaseId: "tactical", stepId: "move-ships", stepName: "Fleet supply checks", text: "The maximum number of non-fighter ships you can have in each system is equal to 2 more than the number of tokens in your fleet pool." },
+  { faction: "The Clan of Saar", name: "Scavenge", source: "base", phaseId: "invasion", stepId: "after-control", stepName: "After gaining control", text: "After you gain control of a planet, gain 1 trade good." },
+  { faction: "The Clan of Saar", name: "Nomadic", source: "base", phaseId: "status", stepId: "gain-command-tokens", stepName: "Scoring checks", text: "You can score objectives even if you do not control the planets in your home system." },
+  { faction: "The Embers of Muaat", name: "Star Forge", source: "base", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Action: Spend 1 token from your strategy pool to place either 2 fighters or 1 destroyer in a system that contains 1 or more of your war suns." },
+  { faction: "The Embers of Muaat", name: "Gashlai Physiology", source: "base", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Your ships can move through supernovas." },
+  { faction: "The Emirates of Hacan", name: "Masters of Trade", source: "base", phaseId: "action", stepId: "strategic-action", stepName: "Trade secondary", text: "You do not have to spend a command token to resolve the secondary ability of the Trade strategy card." },
+  { faction: "The Emirates of Hacan", name: "Guild Ships", source: "base", phaseId: "action", stepId: "during-your-turn", stepName: "Transactions", text: "You can negotiate transactions with players who are not your neighbor, and action cards can be exchanged as part of those transactions." },
+  { faction: "The Federation of Sol", name: "Orbital Drop", source: "base", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Action: Spend 1 token from your strategy pool to place 2 infantry from your reinforcements on 1 planet you control." },
+  { faction: "The Federation of Sol", name: "Versatile", source: "base", phaseId: "status", stepId: "gain-command-tokens", stepName: "Gain command tokens", text: "When you gain command tokens during the status phase, gain 1 additional command token." },
+  { faction: "The Ghosts of Creuss", name: "Quantum Entanglement", source: "base", phaseId: "tactical", stepId: "move-ships", stepName: "Wormhole adjacency", text: "You treat all alpha and beta wormhole systems as adjacent to each other. Game effects cannot prevent you from using this ability." },
+  { faction: "The Ghosts of Creuss", name: "Slipstream", source: "base", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "During your tactical actions, apply +1 to the move value of ships that start in your home system or in an alpha or beta wormhole system." },
+  { faction: "The L1Z1X Mindnet", name: "Assimilate", source: "base", phaseId: "invasion", stepId: "after-control", stepName: "After gaining control", text: "When you gain control of a planet, replace each PDS and space dock on that planet with matching units from your reinforcements." },
+  { faction: "The L1Z1X Mindnet", name: "Harrow", source: "base", phaseId: "invasion", stepId: "after-winning-ground-combat", stepName: "End of ground-combat round", text: "At the end of each round of ground combat, your ships in the active system may use Bombardment against your opponent's ground forces on the planet." },
+  { faction: "The Mentak Coalition", name: "Ambush", source: "base", phaseId: "combat", stepId: "start-combat", stepName: "Start of combat", text: "At the start of space combat, roll for up to 2 cruisers or destroyers; each success produces 1 hit that your opponent must assign to a ship." },
+  { faction: "The Mentak Coalition", name: "Pillage", source: "base", phaseId: "action", stepId: "action-card-window", stepName: "After transactions or trade-good gains", text: "After a neighbor gains trade goods or resolves a transaction, if they have 3 or more trade goods, you may take 1 of their trade goods or commodities." },
+  { faction: "The Naalu Collective", name: "Telepathic", source: "base", phaseId: "strategy", stepId: "choose-strategy-card", stepName: "End of strategy phase", text: "At the end of the strategy phase, place the Naalu 0 token on your strategy card; you are first in initiative order." },
+  { faction: "The Naalu Collective", name: "Foresight", source: "base", phaseId: "tactical", stepId: "move-ships", stepName: "After another player moves in", text: "After another player moves ships into a system that contains your ships, you may spend a strategy token to move your ships to an adjacent eligible system." },
+  { faction: "The Nekro Virus", name: "Galactic Threat", source: "base", phaseId: "agenda", stepId: "agenda-revealed", stepName: "After an agenda is revealed", text: "You cannot vote on agendas. Once per agenda phase, after an agenda is revealed, predict the outcome; if correct, gain 1 technology owned by a player who voted that way." },
+  { faction: "The Nekro Virus", name: "Technological Singularity", source: "base", phaseId: "combat", stepId: "units-destroyed", stepName: "After units are destroyed", text: "Once per combat, after 1 of your opponent's units is destroyed, you may gain 1 technology owned by that player." },
+  { faction: "The Nekro Virus", name: "Propagation", source: "base", phaseId: "research", stepId: "research-unit-upgrade", stepName: "When you would research", text: "You cannot research technology. When you would research a technology, gain 3 command tokens instead." },
+  { faction: "Sardakk N'orr", name: "Unrelenting", source: "base", phaseId: "combat", stepId: "roll-combat-dice", stepName: "Roll combat dice", text: "Apply +1 to the result of each of your unit's combat rolls." },
+  { faction: "The Universities of Jol-Nar", name: "Fragile", source: "base", phaseId: "combat", stepId: "roll-combat-dice", stepName: "Roll combat dice", text: "Apply -1 to the result of each of your unit's combat rolls." },
+  { faction: "The Universities of Jol-Nar", name: "Brilliant", source: "base", phaseId: "action", stepId: "strategic-action", stepName: "Technology secondary", text: "When you spend a command token to resolve the secondary ability of the Technology strategy card, you may resolve the primary ability instead." },
+  { faction: "The Universities of Jol-Nar", name: "Analytical", source: "base", phaseId: "research", stepId: "research-unit-upgrade", stepName: "When researching", text: "When you research a technology that is not a unit upgrade technology, you may ignore 1 prerequisite." },
+  { faction: "The Winnu", name: "Blood Ties", source: "base", phaseId: "invasion", stepId: "after-control", stepName: "Mecatol Rex control", text: "You do not have to spend influence to remove the custodians token from Mecatol Rex." },
+  { faction: "The Winnu", name: "Reclamation", source: "base", phaseId: "tactical", stepId: "end-tactical-action", stepName: "After resolving tactical action", text: "After you resolve a tactical action during which you gained control of Mecatol Rex, you may place 1 PDS and 1 space dock there." },
+  { faction: "The Xxcha Kingdom", name: "Peace Accords", source: "base", phaseId: "action", stepId: "strategic-action", stepName: "After Diplomacy resolves", text: "After you resolve the primary or secondary ability of Diplomacy, you may gain control of 1 eligible empty planet adjacent to a planet you control." },
+  { faction: "The Xxcha Kingdom", name: "Quash", source: "base", phaseId: "agenda", stepId: "agenda-revealed", stepName: "When an agenda is revealed", text: "When an agenda is revealed, you may spend 1 token from your strategy pool to discard it and reveal the next agenda instead." },
+  { faction: "The Yin Brotherhood", name: "Indoctrination", source: "base", phaseId: "invasion", stepId: "start-ground-combat", stepName: "Start of ground combat", text: "At the start of a ground combat, you may spend 2 influence to replace 1 opponent infantry with 1 infantry from your reinforcements." },
+  { faction: "The Yin Brotherhood", name: "Devotion", source: "base", phaseId: "combat", stepId: "units-destroyed", stepName: "After each space battle round", text: "After each space battle round, you may destroy 1 of your cruisers or destroyers in the active system to produce 1 hit against an opponent ship." },
+  { faction: "The Yssaril Tribes", name: "Stall Tactics", source: "base", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Action: Discard 1 action card from your hand." },
+  { faction: "The Yssaril Tribes", name: "Scheming", source: "base", phaseId: "status", stepId: "draw-action-cards", stepName: "When drawing action cards", text: "When you draw 1 or more action cards, draw 1 additional action card, then choose and discard 1 action card from your hand." },
+  { faction: "The Yssaril Tribes", name: "Crafty", source: "base", phaseId: "status", stepId: "draw-action-cards", stepName: "Action-card hand limit", text: "You can have any number of action cards in your hand. Game effects cannot prevent you from using this ability." },
+  { faction: "The Argent Flight", name: "Zeal", source: "pok", phaseId: "agenda", stepId: "votes-cast", stepName: "Vote casting", text: "You always vote first during the agenda phase. When you cast at least 1 vote, cast 1 additional vote for each player in the game including you." },
+  { faction: "The Argent Flight", name: "Raid Formation", source: "pok", phaseId: "combat", stepId: "anti-fighter-barrage", stepName: "Anti-Fighter Barrage", text: "When your units use Anti-Fighter Barrage, each excess hit can damage an opponent ship that has Sustain Damage." },
+  { faction: "The Empyrean", name: "Voidborn", source: "pok", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Nebulae do not affect your ships' movement." },
+  { faction: "The Empyrean", name: "Aetherpassage", source: "pok", phaseId: "tactical", stepId: "activate-system", stepName: "After a system is activated", text: "After a player activates a system, you may allow that player to move their ships through systems that contain your ships." },
+  { faction: "The Mahact Gene-Sorcerers", name: "Edict", source: "pok", phaseId: "combat", stepId: "units-destroyed", stepName: "After you win combat", text: "When you win a combat, place 1 command token from your opponent's reinforcements in your fleet pool if it does not already contain one of their tokens." },
+  { faction: "The Mahact Gene-Sorcerers", name: "Imperia", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "Commander access", text: "While another player's command token is in your fleet pool, you can use that player's commander ability if it is unlocked." },
+  { faction: "The Naaz-Rokha Alliance", name: "Distant Suns", source: "pok", phaseId: "invasion", stepId: "after-control", stepName: "Explore", text: "When you explore a planet that contains 1 of your mechs, draw 1 additional card, choose 1 to resolve, and discard the rest." },
+  { faction: "The Naaz-Rokha Alliance", name: "Fabrication", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Action: Purge matching relic fragments to gain a relic, or purge 1 relic fragment to gain 1 command token." },
+  { faction: "The Nomad", name: "Future Sight", source: "pok", phaseId: "agenda", stepId: "agenda-outcome", stepName: "After agenda outcome resolves", text: "During the agenda phase, after an outcome that you voted for or predicted is resolved, gain 1 trade good." },
+  { faction: "The Titans of Ul", name: "Terragenesis", source: "pok", phaseId: "invasion", stepId: "after-control", stepName: "After exploration", text: "After you explore a planet that does not have a sleeper token, you may place or move 1 sleeper token onto that planet." },
+  { faction: "The Titans of Ul", name: "Awaken", source: "pok", phaseId: "tactical", stepId: "activate-system", stepName: "After activation", text: "After you activate a system that contains one or more of your sleeper tokens, you may replace each of those tokens with 1 PDS from your reinforcements." },
+  { faction: "The Titans of Ul", name: "Coalescence", source: "pok", phaseId: "combat", stepId: "start-combat", stepName: "Combat after placement", text: "If your flagship or Awaken places your units into another player's units, your units must participate in space or ground combat as normal." },
+  { faction: "The Vuil'Raith Cabal", name: "Devour", source: "pok", phaseId: "combat", stepId: "units-destroyed", stepName: "When enemy units are destroyed", text: "Capture your opponent's non-structure units that are destroyed during combat." },
+  { faction: "The Vuil'Raith Cabal", name: "Amalgamation", source: "pok", phaseId: "production", stepId: "units-use-production", stepName: "When producing", text: "When you produce a unit, you may return 1 captured unit of that type to produce it without spending resources." },
+  { faction: "The Vuil'Raith Cabal", name: "Riftmeld", source: "pok", phaseId: "research", stepId: "research-unit-upgrade", stepName: "When researching unit upgrades", text: "When you research a unit upgrade technology, you may return 1 captured unit of that type to ignore all of its prerequisites." },
+  { faction: "The Council Keleres", name: "The Tribunii", source: "codex", requiresPok: true, phaseId: "strategy", stepId: "choose-strategy-card", stepName: "Setup", text: "During setup, choose an unplayed Keleres-linked faction package and take that faction's home system, command tokens, control tokens, and corresponding hero." },
+  { faction: "The Council Keleres", name: "Agency", source: "codex", requiresPok: true, phaseId: "strategy", stepId: "choose-strategy-card", stepName: "Start of strategy phase", text: "Replenish your commodities at the start of the strategy phase, then gain 1 trade good." },
+  { faction: "The Council Keleres", name: "Law's Order", source: "codex", requiresPok: true, phaseId: "action", stepId: "start-your-turn", stepName: "Start of turn", text: "You may spend influence at the start of your turn to treat all laws as blank until the end of your turn." }
 ];
 
 const heroFactionByName = {
@@ -1574,6 +1631,11 @@ function isValidSaveState(value) {
       return false;
     }
 
+    if (pageSettings.showFactionAbilities !== undefined
+      && typeof pageSettings.showFactionAbilities !== "boolean") {
+      return false;
+    }
+
     if (pageSettings.playerFactions === undefined) {
       return true;
     }
@@ -1615,6 +1677,7 @@ function getCurrentPageSettings() {
   return {
     gameVersion: gameVersionSelect?.value || "base",
     useCodexCards: useCodexCardsInput?.checked || false,
+    showFactionAbilities: showFactionAbilitiesInput?.checked ?? true,
     playerFactions: getPlayerFactionSelections()
   };
 }
@@ -1622,6 +1685,7 @@ function getCurrentPageSettings() {
 function getFactionNames() {
   const factionNames = new Set([
     ...factionSpecificEntries.map((entry) => entry.faction),
+    ...factionAbilityEntries.map((entry) => entry.faction),
     ...Object.values(heroFactionByName)
   ]);
 
@@ -1702,6 +1766,10 @@ function applyPageSettings(pageSettings) {
 
   if (useCodexCardsInput && typeof pageSettings.useCodexCards === "boolean") {
     useCodexCardsInput.checked = pageSettings.useCodexCards;
+  }
+
+  if (showFactionAbilitiesInput && typeof pageSettings.showFactionAbilities === "boolean") {
+    showFactionAbilitiesInput.checked = pageSettings.showFactionAbilities;
   }
 
   if (pageSettings.playerFactions && typeof pageSettings.playerFactions === "object") {
@@ -1942,6 +2010,7 @@ function resetCurrentPageSave() {
   applyPageSettings({
     gameVersion: "base",
     useCodexCards: false,
+    showFactionAbilities: true,
     playerFactions: {}
   });
   renderChecklist();
@@ -1960,26 +2029,8 @@ function getGameSettings() {
   };
 }
 
-function getLeaderInfo(cardName) {
-  const supportEntry = factionSpecificEntries.find((entry) => entry.name === cardName);
-
-  if (supportEntry) {
-    return supportEntry;
-  }
-
-  if (heroFactionByName[cardName]) {
-    return {
-      faction: heroFactionByName[cardName]
-    };
-  }
-
-  return null;
-}
-
-function isCardAvailable(cardName) {
+function isVersionedEntryAvailable(meta) {
   const settings = getGameSettings();
-  const leaderInfo = getLeaderInfo(cardName);
-  const meta = cardVersionMeta[cardName] || leaderInfo || { source: "base" };
 
   if (meta.source === "te") {
     return false;
@@ -2010,6 +2061,29 @@ function isCardAvailable(cardName) {
   }
 
   return true;
+}
+
+function getLeaderInfo(cardName) {
+  const supportEntry = factionSpecificEntries.find((entry) => entry.name === cardName);
+
+  if (supportEntry) {
+    return supportEntry;
+  }
+
+  if (heroFactionByName[cardName]) {
+    return {
+      faction: heroFactionByName[cardName]
+    };
+  }
+
+  return null;
+}
+
+function isCardAvailable(cardName) {
+  const leaderInfo = getLeaderInfo(cardName);
+  const meta = cardVersionMeta[cardName] || leaderInfo || { source: "base" };
+
+  return isVersionedEntryAvailable(meta);
 }
 
 function renderOwnerChips(ownerColours, playerColour) {
@@ -2110,6 +2184,34 @@ function getModifierEntries() {
     });
   });
 
+  if (showFactionAbilitiesInput?.checked) {
+    factionAbilityEntries.forEach((ability) => {
+      const ownerColour = getFactionOwnerColour(ability.faction);
+
+      if (!selectedFactionNames.size || !selectedFactionNames.has(ability.faction) || !ownerColour) {
+        return;
+      }
+
+      if (!isVersionedEntryAvailable(ability)) {
+        return;
+      }
+
+      entries.push({
+        name: ability.name,
+        type: "Faction ability",
+        text: ability.text,
+        category: "Faction Ability",
+        faction: ability.faction,
+        flowTitle: "Faction Abilities",
+        phaseId: ability.phaseId,
+        stepId: ability.stepId,
+        stepName: ability.stepName,
+        alwaysActive: true,
+        ownerColours: [ownerColour]
+      });
+    });
+  }
+
   return entries;
 }
 
@@ -2117,6 +2219,10 @@ function getUniqueCards() {
   const cardsByName = new Map();
 
   getModifierEntries().forEach((entry) => {
+    if (entry.alwaysActive) {
+      return;
+    }
+
     if (!cardsByName.has(entry.name)) {
       cardsByName.set(entry.name, {
         name: entry.name,
@@ -2354,9 +2460,11 @@ function renderPhaseFlows() {
 
   const playerColour = playerColourSelect?.value || "red";
   const activeEntries = getModifierEntries()
-    .filter((entry) => selectedCards.has(entry.name))
+    .filter((entry) => entry.alwaysActive || selectedCards.has(entry.name))
     .map((entry) => {
-      const ownerColours = [...selectedCards.get(entry.name)];
+      const ownerColours = entry.alwaysActive
+        ? entry.ownerColours
+        : [...selectedCards.get(entry.name)];
 
       return {
         ...entry,
@@ -2364,7 +2472,8 @@ function renderPhaseFlows() {
         isPlayerOwned: ownerColours.includes(playerColour),
         hasOpponentOwner: ownerColours.some((ownerColour) => ownerColour !== playerColour)
       };
-    });
+    })
+    .filter((entry) => entry.ownerColours.length);
 
   phaseFlowList.innerHTML = basePhases.map((phase) => {
     const phaseEntries = activeEntries.filter((entry) => entry.phaseId === phase.id);
@@ -2395,13 +2504,13 @@ function renderPhaseFlows() {
                 ${modifiers.length ? `
                   <div class="active-modifiers">
                     ${modifiers.map((modifier) => `
-                      <div class="modifier-card ${modifier.isPlayerOwned ? "player-owned" : "opponent-owned"} ${modifier.hasOpponentOwner ? "has-opponent-owner" : ""}">
+                      <div class="modifier-card ${modifier.isPlayerOwned ? "player-owned" : "opponent-owned"} ${modifier.hasOpponentOwner ? "has-opponent-owner" : ""} ${modifier.alwaysActive ? "faction-ability-modifier" : ""}">
                         <span class="modifier-meta">
                           <span class="owner-chip-list">${renderOwnerChips(modifier.ownerColours, playerColour)}</span>
                           <span>${modifier.category}</span>
                         </span>
                         <strong>${modifier.name}</strong>
-                        <p><strong>Card text:</strong> ${modifier.text}</p>
+                        <p><strong>${modifier.alwaysActive ? "Ability text" : "Card text"}:</strong> ${modifier.text}</p>
                         <p><strong>How it modifies this step:</strong> ${getOwnerSummary(modifier.ownerColours, playerColour)} during ${modifier.stepName}.</p>
                       </div>
                     `).join("")}
@@ -2493,6 +2602,13 @@ if (gameVersionSelect) {
 if (useCodexCardsInput) {
   useCodexCardsInput.addEventListener("change", () => {
     renderFilteredViews();
+    saveCurrentPageState();
+  });
+}
+
+if (showFactionAbilitiesInput) {
+  showFactionAbilitiesInput.addEventListener("change", () => {
+    renderPhaseFlows();
     saveCurrentPageState();
   });
 }

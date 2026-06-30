@@ -696,6 +696,10 @@ h3 {
   background: linear-gradient(135deg, rgba(216, 177, 95, 0.08), rgba(109, 168, 138, 0.06));
 }
 
+.modifier-card.faction-ability-modifier {
+  border-style: dashed;
+}
+
 .modifier-meta {
   display: inline-flex;
   align-items: center;
