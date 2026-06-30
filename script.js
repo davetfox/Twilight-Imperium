@@ -7,6 +7,7 @@ const phaseFlowList = document.querySelector("#phaseFlowList");
 const cardChecklist = document.querySelector("#cardChecklist");
 const heroChecklist = document.querySelector("#heroChecklist");
 const heroChecklistMessage = document.querySelector("#heroChecklistMessage");
+const factionSelectors = document.querySelector("#factionSelectors");
 const clearCardsButton = document.querySelector("#clearCards");
 const playerColourSelect = document.querySelector("#playerColour");
 const gameVersionSelect = document.querySelector("#gameVersion");
@@ -190,9 +191,44 @@ const factionUnitTechEntries = [
   { faction: "The Council Keleres", name: "Artemiris", type: "Flagship unit", source: "codex", requiresPok: true, phaseId: "tactical", stepId: "activate-system", stepName: "When you activate a system", text: "Keleres flagship. Other players must spend influence to activate its system." }
 ];
 
+const factionPromissoryEntries = [
+  { faction: "The Arborec", name: "Stymie", type: "Faction promissory note", source: "base", replacedByCodex: "Stymie Omega", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Arborec promissory note. Original version creates an action-phase lockout around Arborec production near the holder's units." },
+  { faction: "The Arborec", name: "Stymie Omega", type: "Faction promissory note", source: "codex", replaces: "Stymie", phaseId: "tactical", stepId: "move-ships", stepName: "After ships move", text: "Arborec Codex promissory note. After another player's ships move into a system containing your units, place one of their command tokens in a non-home system." },
+  { faction: "The Barony of Letnev", name: "War Funding", type: "Faction promissory note", source: "base", replacedByCodex: "War Funding Omega", phaseId: "combat", stepId: "start-combat-round", stepName: "Start of combat round", text: "Letnev promissory note. Original version grants rerolls at the start of a space-combat round, then returns to Letnev." },
+  { faction: "The Barony of Letnev", name: "War Funding Omega", type: "Faction promissory note", source: "codex", replaces: "War Funding", phaseId: "combat", stepId: "start-combat-round", stepName: "Start of combat round", text: "Letnev Codex promissory note. Revised start-of-space-combat-round reroll support; return it after resolving the effect." },
+  { faction: "The Clan of Saar", name: "Ragh's Call", type: "Faction promissory note", source: "base", phaseId: "invasion", stepId: "commit-ground-forces", stepName: "After committing ground forces", text: "Saar promissory note. After you commit ground forces to a planet, remove Saar ground forces from that planet and return the note." },
+  { faction: "The Embers of Muaat", name: "Fires of the Gashlai", type: "Faction promissory note", source: "base", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Muaat promissory note. As an action, remove a Muaat fleet token from the board to gain War Sun technology, then return the note." },
+  { faction: "The Emirates of Hacan", name: "Trade Convoys", type: "Faction promissory note", source: "base", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Hacan promissory note. As an action, you may transact with players who are not your neighbors until the note is returned." },
+  { faction: "The Federation of Sol", name: "Military Support", type: "Faction promissory note", source: "base", phaseId: "action", stepId: "start-your-turn", stepName: "Start of your turn", text: "Sol promissory note. At the start of your turn, remove one of Sol's strategy tokens from the board to place infantry, then return the note." },
+  { faction: "The Ghosts of Creuss", name: "Creuss Iff", type: "Faction promissory note", source: "base", phaseId: "action", stepId: "start-your-turn", stepName: "Start of your turn", text: "Creuss promissory note. At the start of your turn, place or move a Creuss wormhole token, then return the note." },
+  { faction: "The L1Z1X Mindnet", name: "Cybernetic Enhancements", type: "Faction promissory note", source: "base", replacedByCodex: "Cybernetic Enhancements Omega", phaseId: "strategy", stepId: "choose-strategy-card", stepName: "Strategy phase", text: "L1Z1X promissory note. Original version manipulates command-token economy around the strategy phase." },
+  { faction: "The L1Z1X Mindnet", name: "Cybernetic Enhancements Omega", type: "Faction promissory note", source: "codex", replaces: "Cybernetic Enhancements", phaseId: "status", stepId: "gain-command-tokens", stepName: "Gain command tokens", text: "L1Z1X Codex promissory note. During the status phase command-token gain window, gain an extra command token, then return the note." },
+  { faction: "The Mentak Coalition", name: "Promise of Protection", type: "Faction promissory note", source: "base", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Mentak promissory note. As an action, protect yourself from Mentak Pillage until the note is returned." },
+  { faction: "The Naalu Collective", name: "Gift of Prescience", type: "Faction promissory note", source: "base", phaseId: "strategy", stepId: "choose-strategy-card", stepName: "End of strategy phase", text: "Naalu promissory note. At the end of the strategy phase, take the Naalu 0 token for the round and disable Naalu's initiative ability until it returns." },
+  { faction: "The Nekro Virus", name: "Antivirus", type: "Faction promissory note", source: "base", phaseId: "combat", stepId: "start-combat", stepName: "Start of combat", text: "Nekro promissory note. At the start of combat, prevent Nekro from using Technological Singularity against you until the note returns." },
+  { faction: "Sardakk N'orr", name: "Tekklar Legion", type: "Faction promissory note", source: "base", phaseId: "invasion", stepId: "start-ground-combat", stepName: "Start of ground combat", text: "Sardakk promissory note. At the start of invasion combat, modify combat rolls depending on whether Sardakk is involved." },
+  { faction: "The Universities of Jol-Nar", name: "Research Agreement", type: "Faction promissory note", source: "base", phaseId: "research", stepId: "research-unit-upgrade", stepName: "After Jol-Nar researches", text: "Jol-Nar promissory note. After Jol-Nar researches a non-faction technology, gain that technology, then return the note." },
+  { faction: "The Winnu", name: "Acquiescence", type: "Faction promissory note", source: "base", replacedByCodex: "Acquiescence Omega", phaseId: "strategy", stepId: "choose-strategy-card", stepName: "End of strategy phase", text: "Winnu promissory note. Original version lets you swap strategy cards with the Winnu at the end of the strategy phase." },
+  { faction: "The Winnu", name: "Acquiescence Omega", type: "Faction promissory note", source: "codex", replaces: "Acquiescence", phaseId: "action", stepId: "strategic-action", stepName: "When another player would perform a strategic action", text: "Winnu Codex promissory note. Lets you resolve the Winnu player's strategic-action secondary without spending a command token." },
+  { faction: "The Xxcha Kingdom", name: "Political Favor", type: "Faction promissory note", source: "base", phaseId: "agenda", stepId: "agenda-revealed", stepName: "After an agenda is revealed", text: "Xxcha promissory note. When an agenda is revealed, remove an Xxcha strategy token to discard it and reveal the next agenda instead." },
+  { faction: "The Yin Brotherhood", name: "Greyfire Mutagen", type: "Faction promissory note", source: "base", replacedByCodex: "Greyfire Mutagen Omega", phaseId: "tactical", stepId: "activate-system", stepName: "After a system is activated", text: "Yin promissory note. Original version restricts Yin faction abilities and faction technologies during the tactical action after a system is activated." },
+  { faction: "The Yin Brotherhood", name: "Greyfire Mutagen Omega", type: "Faction promissory note", source: "codex", replaces: "Greyfire Mutagen", phaseId: "invasion", stepId: "start-ground-combat", stepName: "Start of ground combat", text: "Yin Codex promissory note. At the start of ground combat against multiple non-Yin ground forces, replace an enemy infantry with one of your infantry." },
+  { faction: "The Yssaril Tribes", name: "Spy Net", type: "Faction promissory note", source: "base", phaseId: "action", stepId: "start-your-turn", stepName: "Start of your turn", text: "Yssaril promissory note. At the start of your turn, look at the Yssaril player's action cards and take one, then return the note." },
+  { faction: "The Argent Flight", name: "Strike Wing Ambuscade", type: "Faction promissory note", source: "pok", phaseId: "combat", stepId: "anti-fighter-barrage", stepName: "When a unit rolls for a unit ability", text: "Argent promissory note. When one or more units make a roll for a unit ability, choose one of those units to roll an additional die, then return the note." },
+  { faction: "The Empyrean", name: "Dark Pact", type: "Faction promissory note", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Empyrean promissory note. A face-up pact that supports commodity-to-trade-good cooperation with Empyrean." },
+  { faction: "The Empyrean", name: "Blood Pact", type: "Faction promissory note", source: "pok", phaseId: "agenda", stepId: "votes-cast", stepName: "After votes are cast", text: "Empyrean promissory note. A face-up pact that can add joint voting leverage during agendas." },
+  { faction: "The Mahact Gene-Sorcerers", name: "Scepter of Dominion", type: "Faction promissory note", source: "pok", phaseId: "strategy", stepId: "choose-strategy-card", stepName: "Start of strategy phase", text: "Mahact promissory note. At the start of the strategy phase, place command tokens into a system with Mahact units for players whose tokens Mahact has." },
+  { faction: "The Naaz-Rokha Alliance", name: "Black Market Forgery", type: "Faction promissory note", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Naaz-Rokha promissory note. As an action, purge matching relic fragments to gain a relic, then return the note." },
+  { faction: "The Nomad", name: "The Cavalry", type: "Faction promissory note", source: "pok", phaseId: "combat", stepId: "start-combat", stepName: "Start of space combat", text: "Nomad promissory note. At the start of space combat against a non-Nomad player, one of your non-fighter ships can gain the Nomad flagship's combat values for that combat." },
+  { faction: "The Titans of Ul", name: "Terraform", type: "Faction promissory note", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Titans promissory note. As an action, attach it to an eligible non-home planet you control to improve the planet and give it all three traits." },
+  { faction: "The Vuil'Raith Cabal", name: "Crucible", type: "Faction promissory note", source: "pok", phaseId: "tactical", stepId: "activate-system", stepName: "After you activate a system", text: "Cabal promissory note. After you activate a system, your ships ignore gravity-rift rolls this movement and gain extra movement through dimensional tears, then return the note." },
+  { faction: "The Council Keleres", name: "Keleres Rider", type: "Faction promissory note", source: "codex", requiresPok: true, phaseId: "agenda", stepId: "agenda-revealed", stepName: "After an agenda is revealed", text: "Keleres promissory note. A rider played after an agenda is revealed; if your prediction is correct, draw an action card and gain trade goods." }
+];
+
 const factionSpecificEntries = [
   ...factionLeaderEntries,
-  ...factionUnitTechEntries
+  ...factionUnitTechEntries,
+  ...factionPromissoryEntries
 ];
 
 const heroFactionByName = {
@@ -1511,7 +1547,10 @@ function isValidSaveState(value) {
       return false;
     }
 
-    return Object.values(pageState).every((checkboxValue) => typeof checkboxValue === "boolean");
+    return Object.values(pageState).every((savedValue) => {
+      return typeof savedValue === "boolean"
+        || playerColours.some((colour) => colour.value === savedValue);
+    });
   });
 
   if (!pagesAreValid) {
@@ -1527,23 +1566,129 @@ function isValidSaveState(value) {
   }
 
   return Object.values(value.pageSettings).every((pageSettings) => {
-    return pageSettings
-      && typeof pageSettings === "object"
-      && !Array.isArray(pageSettings)
-      && ["base", "pok"].includes(pageSettings.gameVersion)
-      && typeof pageSettings.useCodexCards === "boolean";
+    if (!pageSettings
+      || typeof pageSettings !== "object"
+      || Array.isArray(pageSettings)
+      || !["base", "pok"].includes(pageSettings.gameVersion)
+      || typeof pageSettings.useCodexCards !== "boolean") {
+      return false;
+    }
+
+    if (pageSettings.playerFactions === undefined) {
+      return true;
+    }
+
+    if (!pageSettings.playerFactions || typeof pageSettings.playerFactions !== "object" || Array.isArray(pageSettings.playerFactions)) {
+      return false;
+    }
+
+    return Object.entries(pageSettings.playerFactions).every(([colourValue, factionName]) => {
+      return playerColours.some((colour) => colour.value === colourValue)
+        && (factionName === "" || getFactionNames().includes(factionName));
+    });
   });
 }
 
 function getCurrentVisibleCheckboxIds() {
-  return getChecklistCheckboxes().map((checkbox) => checkbox.id);
+  const visibleIds = [
+    ...getChecklistCheckboxes().map((checkbox) => checkbox.id)
+  ];
+
+  getChecklistCheckboxes().forEach((checkbox) => {
+    if (!checkbox.dataset.cardSlug) {
+      return;
+    }
+
+    if (checkbox.dataset.singleOwner === "true" || checkbox.dataset.factionTechnology === "true") {
+      visibleIds.push(`card-${checkbox.dataset.cardSlug}-owner-colour`);
+    }
+
+    playerColours.forEach((colour) => {
+      visibleIds.push(`card-${checkbox.dataset.cardSlug}-${colour.value}`);
+    });
+  });
+
+  return visibleIds;
 }
 
 function getCurrentPageSettings() {
   return {
     gameVersion: gameVersionSelect?.value || "base",
-    useCodexCards: useCodexCardsInput?.checked || false
+    useCodexCards: useCodexCardsInput?.checked || false,
+    playerFactions: getPlayerFactionSelections()
   };
+}
+
+function getFactionNames() {
+  const factionNames = new Set([
+    ...factionSpecificEntries.map((entry) => entry.faction),
+    ...Object.values(heroFactionByName)
+  ]);
+
+  return [...factionNames].filter(Boolean).sort();
+}
+
+function getFactionColourSelects() {
+  return [...document.querySelectorAll("#factionSelectors select[data-player-colour]")];
+}
+
+function getPlayerFactionSelections() {
+  return getFactionColourSelects().reduce((selections, select) => {
+    selections[select.dataset.playerColour] = select.value;
+    return selections;
+  }, {});
+}
+
+function getVisiblePlayerColours() {
+  const selections = getPlayerFactionSelections();
+  const selectedColours = playerColours.filter((colour) => selections[colour.value]);
+
+  return selectedColours.length ? selectedColours : playerColours;
+}
+
+function getFactionOwnerColour(factionName) {
+  if (!factionName) {
+    return "";
+  }
+
+  const matchingSelect = getFactionColourSelects().find((select) => select.value === factionName);
+  return matchingSelect?.dataset.playerColour || "";
+}
+
+function getSelectedFactionNames() {
+  return new Set(Object.values(getPlayerFactionSelections()).filter(Boolean));
+}
+
+function renderFactionSelectors() {
+  if (!factionSelectors) {
+    return;
+  }
+
+  const factionOptions = getFactionNames().map((factionName) => {
+    return `<option value="${factionName}">${factionName}</option>`;
+  }).join("");
+
+  factionSelectors.innerHTML = playerColours.map((colour) => `
+    <label class="faction-colour-control faction-colour-${colour.value}" for="faction-${colour.value}">
+      <span>
+        <span class="colour-dot colour-${colour.value}" aria-hidden="true"></span>
+        ${colour.label}
+      </span>
+      <select id="faction-${colour.value}" data-player-colour="${colour.value}">
+        <option value="">No faction</option>
+        ${factionOptions}
+      </select>
+    </label>
+  `).join("");
+
+  getFactionColourSelects().forEach((select) => {
+    select.addEventListener("change", () => {
+      renderChecklist();
+      restoreCurrentPageState();
+      renderPhaseFlows();
+      saveCurrentPageState();
+    });
+  });
 }
 
 function applyPageSettings(pageSettings) {
@@ -1558,6 +1703,16 @@ function applyPageSettings(pageSettings) {
   if (useCodexCardsInput && typeof pageSettings.useCodexCards === "boolean") {
     useCodexCardsInput.checked = pageSettings.useCodexCards;
   }
+
+  if (pageSettings.playerFactions && typeof pageSettings.playerFactions === "object") {
+    getFactionColourSelects().forEach((select) => {
+      const selectedFaction = pageSettings.playerFactions[select.dataset.playerColour] || "";
+
+      if ([...select.options].some((option) => option.value === selectedFaction)) {
+        select.value = selectedFaction;
+      }
+    });
+  }
 }
 
 function restorePageSettings() {
@@ -1567,6 +1722,22 @@ function restorePageSettings() {
 
 function getChecklistCheckboxes() {
   return [...document.querySelectorAll("#heroChecklist input[type='checkbox'], #cardChecklist input[type='checkbox']")];
+}
+
+function updateSingleOwnerChoiceStyle(checkbox, ownerColour, recommendedColour = ownerColour) {
+  const choiceLabel = checkbox?.closest(".colour-choice");
+
+  if (!choiceLabel) {
+    return;
+  }
+
+  choiceLabel.classList.remove(...playerColours.map((colour) => `colour-${colour.value}`));
+  choiceLabel.classList.remove("player-colour-choice", "recommended-colour-choice");
+  choiceLabel.classList.add(`colour-${ownerColour}`);
+
+  if (ownerColour === recommendedColour) {
+    choiceLabel.classList.add("recommended-colour-choice");
+  }
 }
 
 function getCurrentPageCheckboxState() {
@@ -1589,12 +1760,41 @@ function applyPageCheckboxState(pageState) {
   }
 
   getChecklistCheckboxes().forEach((checkbox) => {
-    checkbox.checked = pageState[checkbox.id] === true;
+    let isChecked = pageState[checkbox.id] === true;
+
+    if (!isChecked && checkbox.dataset.singleOwner === "true") {
+      const legacyOwner = playerColours.find((colour) => {
+        return pageState[`card-${checkbox.dataset.cardSlug}-${colour.value}`] === true;
+      });
+
+      if (legacyOwner) {
+        isChecked = true;
+      }
+    }
+
+    if (!isChecked && checkbox.dataset.factionTechnology === "true") {
+      isChecked = pageState[`card-${checkbox.dataset.cardSlug}-${checkbox.value}`] === true;
+    }
+
+    if (checkbox.dataset.singleOwner === "true") {
+      const factionName = getLeaderInfo(checkbox.dataset.cardName)?.faction || "";
+      updateSingleOwnerChoiceStyle(
+        checkbox,
+        checkbox.value,
+        getFactionOwnerColour(factionName) || checkbox.value
+      );
+    }
+
+    checkbox.checked = isChecked;
 
     if (checkbox.checked) {
       const cardName = checkbox.dataset.cardName;
+      const factionName = getLeaderInfo(cardName)?.faction || "";
+      const ownerColour = checkbox.dataset.singleOwner === "true"
+        ? getFactionOwnerColour(factionName) || checkbox.value
+        : checkbox.value;
       const selectedColours = selectedCards.get(cardName) || new Set();
-      selectedColours.add(checkbox.value);
+      selectedColours.add(ownerColour);
       selectedCards.set(cardName, selectedColours);
     }
   });
@@ -1739,6 +1939,12 @@ function resetCurrentPageSave() {
   }
 
   applyPageCheckboxState({});
+  applyPageSettings({
+    gameVersion: "base",
+    useCodexCards: false,
+    playerFactions: {}
+  });
+  renderChecklist();
   renderPhaseFlows();
   showAutosaveStatus("Page reset");
 }
@@ -1836,8 +2042,19 @@ function getOwnerSummary(ownerColours, playerColour) {
   return `${opponentLabels.join(", ")} can affect this window`;
 }
 
+function isSingleOwnerCard(card) {
+  return card.category === "Faction Cards"
+    && card.type !== "Commander leader"
+    && card.type !== "Faction technology";
+}
+
+function isFactionTechnologyCard(card) {
+  return card.category === "Faction Cards" && card.type === "Faction technology";
+}
+
 function getModifierEntries() {
   const entries = [];
+  const selectedFactionNames = getSelectedFactionNames();
 
   flows.forEach((flow) => {
     flow.steps.forEach((step) => {
@@ -1852,10 +2069,16 @@ function getModifierEntries() {
           return;
         }
 
+        const cardFaction = getLeaderInfo(card.name)?.faction || "";
+
+        if (cardFaction && selectedFactionNames.size && !selectedFactionNames.has(cardFaction)) {
+          return;
+        }
+
         entries.push({
           ...card,
           category: categoryByName[card.name] || (card.type.includes("leader") ? "Faction Cards" : card.type),
-          faction: getLeaderInfo(card.name)?.faction || "",
+          faction: cardFaction,
           flowTitle: flow.title,
           phaseId: placement[0],
           stepId: placement[1],
@@ -1867,6 +2090,10 @@ function getModifierEntries() {
 
   factionSpecificEntries.forEach((factionCard) => {
     if (!isCardAvailable(factionCard.name)) {
+      return;
+    }
+
+    if (selectedFactionNames.size && !selectedFactionNames.has(factionCard.faction)) {
       return;
     }
 
@@ -1928,6 +2155,9 @@ function renderChecklist() {
   const cards = getUniqueCards();
 
   function renderChecklistGroup(group, groupCards, isOpen = false) {
+    const playerColour = playerColourSelect?.value || "red";
+    const visiblePlayerColours = getVisiblePlayerColours();
+
     return `
       <details class="checklist-group" ${isOpen ? "open" : ""}>
         <summary>
@@ -1938,6 +2168,16 @@ function renderChecklist() {
           ${groupCards.map((card) => {
             const cardSlug = slugify(card.name);
             const selectedColours = selectedCards.get(card.name) || new Set();
+            const isSingleOwner = isSingleOwnerCard(card);
+            const isFactionTechnology = isFactionTechnologyCard(card);
+            const recommendedColour = getFactionOwnerColour(card.faction) || playerColour;
+            const nekroColour = getFactionOwnerColour("The Nekro Virus");
+            const showNekroTechnologyChoice = isFactionTechnology
+              && card.faction !== "The Nekro Virus"
+              && nekroColour
+              && nekroColour !== recommendedColour;
+            const singleOwnerCheckboxId = `card-${cardSlug}-owner`;
+            const nekroTechnologyCheckboxId = `card-${cardSlug}-nekro`;
 
             return `
               <div class="checklist-item">
@@ -1946,24 +2186,72 @@ function renderChecklist() {
                   <span>${card.type}</span>
                   ${card.category === "Faction Cards" ? `<p class="card-description">${card.text}</p>` : ""}
                 </span>
-                <div class="colour-choice-group" aria-label="${card.name} owner colours">
-                  ${playerColours.map((colour) => {
-                    const id = `card-${cardSlug}-${colour.value}`;
-
-                    return `
-                      <label class="colour-choice colour-${colour.value}" for="${id}">
+                ${isSingleOwner ? `
+                  <div class="single-owner-control" aria-label="${card.name} owner colour">
+                    <label class="colour-choice single-owner-choice colour-${recommendedColour} recommended-colour-choice" for="${singleOwnerCheckboxId}">
+                      <input
+                        id="${singleOwnerCheckboxId}"
+                        type="checkbox"
+                        value="${recommendedColour}"
+                        data-card-name="${card.name}"
+                        data-card-slug="${cardSlug}"
+                        data-single-owner="true"
+                        ${selectedColours.size ? "checked" : ""}
+                      >
+                      <span>In play (${getColourLabel(recommendedColour)})</span>
+                    </label>
+                  </div>
+                ` : isFactionTechnology ? `
+                  <div class="colour-choice-group faction-technology-choice-group" aria-label="${card.name} owner colours">
+                    <label class="colour-choice colour-${recommendedColour} recommended-colour-choice" for="${singleOwnerCheckboxId}">
+                      <input
+                        id="${singleOwnerCheckboxId}"
+                        type="checkbox"
+                        value="${recommendedColour}"
+                        data-card-name="${card.name}"
+                        data-card-slug="${cardSlug}"
+                        data-faction-technology="true"
+                        ${selectedColours.has(recommendedColour) ? "checked" : ""}
+                      >
+                      <span>${getColourLabel(recommendedColour)}</span>
+                    </label>
+                    ${showNekroTechnologyChoice ? `
+                      <label class="colour-choice colour-${nekroColour} recommended-colour-choice" for="${nekroTechnologyCheckboxId}">
                         <input
-                          id="${id}"
+                          id="${nekroTechnologyCheckboxId}"
+                          type="checkbox"
+                          value="${nekroColour}"
+                          data-card-name="${card.name}"
+                          data-card-slug="${cardSlug}"
+                          data-faction-technology="true"
+                          data-nekro-technology="true"
+                          ${selectedColours.has(nekroColour) ? "checked" : ""}
+                        >
+                        <span>Nekro Virus</span>
+                      </label>
+                    ` : ""}
+                  </div>
+                ` : `
+                  <div class="colour-choice-group" aria-label="${card.name} owner colours">
+                    ${visiblePlayerColours.map((colour) => {
+                      const id = `card-${cardSlug}-${colour.value}`;
+
+                      return `
+                        <label class="colour-choice colour-${colour.value} ${colour.value === recommendedColour ? "recommended-colour-choice" : ""}" for="${id}">
+                          <input
+                            id="${id}"
                           type="checkbox"
                           value="${colour.value}"
                           data-card-name="${card.name}"
+                          data-card-slug="${cardSlug}"
                           ${selectedColours.has(colour.value) ? "checked" : ""}
                         >
-                        <span>${colour.label}</span>
-                      </label>
-                    `;
-                  }).join("")}
-                </div>
+                          <span>${colour.label}</span>
+                        </label>
+                      `;
+                    }).join("")}
+                  </div>
+                `}
               </div>
             `;
           }).join("")}
@@ -1972,17 +2260,30 @@ function renderChecklist() {
     `;
   }
 
-  const factionCards = cards.filter((card) => card.category === "Faction Cards");
+  const selectedFactionNames = getSelectedFactionNames();
+  const factionCards = cards.filter((card) => {
+    if (card.category !== "Faction Cards") {
+      return false;
+    }
+
+    return !selectedFactionNames.size || selectedFactionNames.has(card.faction);
+  });
 
   if (factionCards.length) {
     const factionNames = [...new Set(factionCards.map((card) => card.faction || "Other Faction Cards"))].sort();
-    heroChecklistMessage.textContent = "Open a faction, read what each agent, commander, hero, faction technology, unique unit, mech, or flagship does, then tick the player colours that have it. Selected effects appear in the matching phase flow.";
+    heroChecklistMessage.textContent = selectedFactionNames.size
+      ? "Showing faction-specific cards for the selected player factions. The outlined colour is the colour assigned to that faction."
+      : "Pick player factions above to focus this section. Until then, all faction-specific cards are shown.";
     heroChecklist.innerHTML = factionNames.map((factionName) => {
       const matchingFactionCards = factionCards
         .filter((card) => (card.faction || "Other Faction Cards") === factionName)
         .sort((first, second) => first.type.localeCompare(second.type) || first.name.localeCompare(second.name));
+      const factionOwnerColour = getFactionOwnerColour(factionName);
+      const groupLabel = factionOwnerColour
+        ? `${getColourLabel(factionOwnerColour)} - ${factionName}`
+        : factionName;
 
-      return renderChecklistGroup(factionName, matchingFactionCards);
+      return renderChecklistGroup(groupLabel, matchingFactionCards);
     }).join("");
   } else {
     const settings = getGameSettings();
@@ -2006,17 +2307,37 @@ function renderChecklist() {
     checkbox.addEventListener("change", () => {
       const cardName = checkbox.dataset.cardName;
       const selectedColours = selectedCards.get(cardName) || new Set();
+      const factionName = getLeaderInfo(cardName)?.faction || "";
 
       if (checkbox.checked) {
-        selectedColours.add(checkbox.value);
-        selectedCards.set(cardName, selectedColours);
-      } else {
-        selectedColours.delete(checkbox.value);
-
-        if (selectedColours.size) {
+        if (checkbox.dataset.singleOwner === "true") {
+          selectedCards.set(cardName, new Set([getFactionOwnerColour(factionName) || checkbox.value]));
+        } else if (checkbox.dataset.factionTechnology === "true") {
+          selectedColours.add(checkbox.value);
           selectedCards.set(cardName, selectedColours);
         } else {
+          selectedColours.add(checkbox.value);
+          selectedCards.set(cardName, selectedColours);
+        }
+      } else {
+        if (checkbox.dataset.singleOwner === "true") {
           selectedCards.delete(cardName);
+        } else if (checkbox.dataset.factionTechnology === "true") {
+          selectedColours.delete(checkbox.value);
+
+          if (selectedColours.size) {
+            selectedCards.set(cardName, selectedColours);
+          } else {
+            selectedCards.delete(cardName);
+          }
+        } else {
+          selectedColours.delete(checkbox.value);
+
+          if (selectedColours.size) {
+            selectedCards.set(cardName, selectedColours);
+          } else {
+            selectedCards.delete(cardName);
+          }
         }
       }
 
@@ -2156,7 +2477,10 @@ document.querySelectorAll(".filter-button").forEach((button) => {
 });
 
 if (playerColourSelect) {
-  playerColourSelect.addEventListener("change", renderPhaseFlows);
+  playerColourSelect.addEventListener("change", () => {
+    renderChecklist();
+    renderPhaseFlows();
+  });
 }
 
 if (gameVersionSelect) {
@@ -2208,6 +2532,7 @@ window.addEventListener("resize", () => {
 resizeCanvas();
 createStars();
 drawStarfield();
+renderFactionSelectors();
 restorePageSettings();
 renderChecklist();
 restoreCurrentPageState();
