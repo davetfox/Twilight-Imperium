@@ -63,12 +63,24 @@
         <p class="eyebrow">Active modifiers</p>
         <h2>Card checklist</h2>
         <p>
-          Tick the cards in play. The phase flows below will show the card text at the
-          step it modifies.
+          Assign cards, technologies, and upgrades to the player colour that has them.
+          The phase flows below will show your effects and the effects other players can
+          bring into the same timing window.
         </p>
       </div>
 
       <div class="checklist-actions">
+        <label class="player-colour-control" for="playerColour">
+          <span>Your colour</span>
+          <select id="playerColour">
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="black">Black</option>
+            <option value="yellow">Yellow</option>
+            <option value="white">White</option>
+          </select>
+        </label>
         <button class="utility-button" type="button" id="clearCards">Clear All</button>
       </div>
 
@@ -121,7 +133,7 @@
       </div>
       <p>
         Source: the local research document in <strong>Research/Research.txt.txt</strong>.
-        Tick cards in the checklist to insert their timing text into the matching phase step.
+        Assign cards to player colours to insert their timing text into the matching phase step.
       </p>
     </section>
   </main>

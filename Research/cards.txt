@@ -1,0 +1,417 @@
+# Twilight Imperium Card Version Mapping Report
+
+## Executive summary
+
+The cleanest way to track *Twilight Imperium Fourth Edition* card provenance is to treat **Base Game**, **Prophecy of Kings**, **Codex I–IV**, and **Thunder’s Edge** as distinct source layers, then track **replacement chains** separately from **new-addition chains**. Official Fantasy Flight support materials clearly show the publication history of the relevant documents: the base rules, the *Prophecy of Kings* rulebook, all four Codex volumes and card packs, the early standalone updated Diplomacy and Technology files, the Codex 4.5 technology update file, and the *Thunder’s Edge* rulebook. citeturn11search0turn12search0turn8view0
+
+For the categories you asked about, the version story is:
+
+* **Strategy cards:** Base has the original eight. **Diplomacy** is officially updated in the early 2020 “Alternate Diplomacy” release and later rolled into Codex I-era materials; **Construction** gets a wording update in *Prophecy of Kings* and a functional replacement again in *Thunder’s Edge*; **Warfare** gets a *Thunder’s Edge* updated version. citeturn10view5turn21view4turn14view2turn24search9
+* **Action cards:** Base has the original action deck; **Codex I** adds 20 cards; **PoK** adds 20 more cards; **Thunder’s Edge** adds 20 more cards and republishes Codex action cards with several wording updates. Community card indexes and the TI4 JSON data set are consistent on the Base / Codex I / PoK / Thunder’s Edge additions, but there is one important dispute: one community JSON data set tags several updated action cards as **Codex III**, while the TI Wiki’s version tracking and *Thunder’s Edge* section attribute those wording updates to **Thunder’s Edge**. I treat those as **Thunder’s Edge** updates, and I flag the discrepancy explicitly below. citeturn26view0turn26view1turn26view2turn26view3turn27view0turn23view0turn24search1
+* **Political / agenda cards:** Base contains 50 agendas. When using *Prophecy of Kings*, **13 base agendas are removed**, **13 new agendas are added**, and **Representative Government** is replaced by a new card of the same name with different wording. citeturn14view1turn34view0
+* **Technology cards:** The most important official replacement chain is **Magen Defense Grid → Magen Defense Grid Ω → Magen Defense Grid ΩΩ** and **X-89 Bacterial Weapon → X-89 Bacterial Weapon Ω → X-89 Bacterial Weapon ΩΩ**. Codex I also updates **Magmus Reactor** and **Yin Spinner**. *Prophecy of Kings* adds eight generic technologies and many faction technologies. Codex III introduces **I.I.H.Q. Modernization** for Council Keleres; the TI Wiki further notes that this card is moved to a **Breakthrough** in *Thunder’s Edge*, which makes it a genuine version-tracking edge case. citeturn41view0turn41view1turn30view3turn41view2turn37view2
+
+Because Fantasy Flight’s current support pages do not expose a clean official per-card browser for every base and PoK card face, this report uses **official FFG support documents first** for release provenance, then cross-checks per-card names and wording against the well-maintained TI Wiki and the `ti4-mcp` JSON data set. Where those community sources disagree or overstate certainty, I mark the case as **ambiguous**. citeturn11search0turn38view0turn15view0
+
+## Source hierarchy and method
+
+I used the following source hierarchy.
+
+**Official sources** came first: Fantasy Flight’s *Twilight Imperium Fourth Edition* support page and linked files, including the base rules documents, the *Prophecy of Kings* rulebook, *Twilight Codex* Volumes I–IV and their card PDFs, the early standalone “Alternate Diplomacy” and “Alternate Technology Cards” files, the “Codex 4.5 Technology Card Updates” file, and the *Thunder’s Edge* rulebook. The official support page itself is important evidence because it establishes which documents exist, when Fantasy Flight dated them, and which update files are meant to be used with the game. citeturn11search0turn12search0turn8view0
+
+**Primary community verification** came from the TI Wiki pages for Action Cards, Agenda Cards, Strategy Cards, Technology, the color-specific technology pages, Faction Technologies, Omegas, and Version Tracking. Those pages are especially useful because they label **expansion symbols**, **Ω / ΩΩ chains**, and **removed-by-PoK** agenda status in human-readable form. citeturn14view0turn14view1turn14view2turn14view3turn30view0turn30view1turn30view2turn30view3turn38view0
+
+**Machine-readable community verification** came from the `surewht/ti4-mcp` repository, whose README explains the data model and explicitly says that when codex volumes are included, updated components automatically replace older Base / PoK versions. Its JSON files for action cards, agendas, strategy cards, and technologies were useful for checking source tags and replacement chains. I did **not** treat that repository as authoritative when it conflicted with the TI Wiki’s version tracking or the official document structure. citeturn15view0turn20view0turn20view2turn20view3turn20view4
+
+For this report, I interpret **Current official status** as a practical usage label:
+
+* **Use in Base** = current when playing only the base game.
+* **Use in PoK** = current when playing with *Prophecy of Kings*.
+* **Use in Codex** = current if your group uses the relevant official Codex print-and-play updates.
+* **Use in TE** = current in *Thunder’s Edge*.
+* **Deprecated** = earlier printing superseded by an official later printing for the same component family in that content environment.
+
+That matches the TI Wiki’s expansion-symbol and omega-label approach and the MCP data model’s explicit “updated components automatically replace older versions” logic. citeturn38view0turn15view0
+
+## How to read the version labels
+
+The TI Wiki’s version-tracking rules are the most explicit single explanation of the notation. It distinguishes **expansion symbols** from **omega symbols**. Expansion symbols identify where a component first appears; omega symbols identify a later updated printing of a pre-existing component. The same page gives **X-89 Bacterial Weapon** as the canonical example of a three-step chain: original Base, **Ω** from Codex I, and **ΩΩ** from Codex IV. It also notes that some updated printed game components do not physically print the omega symbol, but the wiki uses omega notation anyway for consistency. citeturn38view0
+
+In this report, the labels mean:
+
+| Version label | Meaning |
+|---|---|
+| original | First official printing for that card family |
+| revised | Later official printing with wording cleanup but no omega symbol consistently printed |
+| Ω | First official replacement version in an omega chain |
+| ΩΩ | Second official replacement version in an omega chain |
+| replacement | A practical label for cards like PoK Construction or TE Warfare where the later print supersedes play usage in that content environment |
+
+The rows below use shorthand source codes:
+
+| Code | Official source family |
+|---|---|
+| BG | Base game official rules / support docs |
+| PoK | *Prophecy of Kings* rulebook / support docs |
+| C1 | Codex I-era official materials, including Alternate Diplomacy / Alternate Technology Cards / Codex I / Codex I Cards |
+| C2 | Codex II: *Affinity* / *Affinity Cards* |
+| C3 | Codex III: *Vigil* / *Vigil Cards* |
+| C4 | Codex IV: *Liberation* / *Liberation Cards* / Codex 4.5 Technology Card Updates |
+| TE | *Thunder’s Edge* rulebook / support docs |
+
+This source-code mapping is grounded in the official FFG support page. citeturn11search0turn12search0
+
+## Per-card tables
+
+### Strategy cards
+
+This table is complete for the standard Strategy Card family. The official release chain is straightforward: base originals, then later official replacements where applicable. citeturn20view3turn21view4turn14view2turn24search9
+
+| Card name | Card type | Source set | Version label | Replaces | Current official status | Official source code | Notes on wording / timing |
+|---|---|---|---|---|---|---|---|
+| Leadership | Strategy | Base | original | — | Use in Base / PoK / Codex / TE | BG | Unchanged in the sources reviewed |
+| Diplomacy | Strategy | Base | original | — | Use in Base only if not using Codex updates | BG | Original readied planets in the chosen system |
+| Diplomacy Ω | Strategy | Strategy replacement | Codex I | Ω replacement | Diplomacy | Use in Codex / TE; commonly the current official form with PoK-era play | C1 | Official updated Diplomacy was separately released; wording/readied-planets effect revised citeturn10view5turn20view3 |
+| Politics | Strategy | Base | original | — | Use in Base / PoK / Codex / TE | BG | Unchanged in the sources reviewed |
+| Construction | Strategy | Base | original | — | Use in Base only | BG | Original secondary says “place” a strategy token |
+| Construction | Strategy | PoK | revised replacement | Construction | Use in PoK unless TE is in use | PoK | Functional play is the same, wording clarified to “spend” a strategy token citeturn21view4turn24search9 |
+| Construction ΩΩ | Strategy | Thunder’s Edge | replacement / ΩΩ-style chain | PoK Construction | Use in TE | TE | Functional change: primary can either place a structure or produce; secondary now places 1 structure directly citeturn21view4turn24search9 |
+| Trade | Strategy | Base | original | — | Use in Base / PoK / Codex / TE | BG | Unchanged in the sources reviewed |
+| Warfare | Strategy | Base | original | — | Use in Base / PoK / Codex unless TE is in use | BG | Original standard card |
+| Warfare Ω | Strategy | Thunder’s Edge | replacement | Warfare | Use in TE | TE | TE introduces an updated Warfare card; see TI Wiki strategy-card version table citeturn14view2 |
+| Technology | Strategy | Base | original | — | Use in Base / PoK / Codex / TE | BG | Unchanged in the sources reviewed |
+| Imperial | Strategy | Base | original | — | Use in Base / PoK / Codex / TE | BG | Unchanged in the sources reviewed |
+
+### Action cards
+
+The action-card family is best understood as **Base originals**, **Codex I additions**, **PoK additions**, **Thunder’s Edge additions**, and **Thunder’s Edge wording updates to earlier Codex cards**. The TI Wiki gives the cleanest human-readable inventory: base cards, 20 additional cards in Codex I, 20 more in PoK, and 20 more in Thunder’s Edge. The machine-readable JSON agrees on the major set assignments for Base, C1, PoK, and TE additions. citeturn26view0turn26view1turn26view2turn26view3turn27view0turn20view0turn20view1turn23view3
+
+#### Base action-card originals
+
+| Card name | Source set | Version label | Current official status |
+|---|---|---|---|
+| Ancient Burial Sites | Base | original | Use in Base / PoK / Codex / TE |
+| Assassinate Representative | Base | original | Use in Base / PoK / Codex / TE |
+| Bribery | Base | original | Use in Base / PoK / Codex / TE |
+| Bunker | Base | original | Use in Base / PoK / Codex / TE |
+| Confusing Legal Text | Base | original | Use in Base / PoK / Codex / TE |
+| Construction Rider | Base | original | Use in Base / PoK / Codex / TE |
+| Courageous to the End | Base | original | Use in Base / PoK / Codex / TE |
+| Cripple Defenses | Base | original | Use in Base / PoK / Codex / TE |
+| Diplomacy Rider | Base | original | Use in Base / PoK / Codex / TE |
+| Direct Hit | Base | original | Use in Base / PoK / Codex / TE |
+| Disable | Base | original | Use in Base / PoK / Codex / TE |
+| Distinguished Councilor | Base | original | Use in Base / PoK / Codex / TE |
+| Economic Initiative | Base | original | Use in Base / PoK / Codex / TE |
+| Emergency Repairs | Base | original | Use in Base / PoK / Codex / TE |
+| Experimental Battlestation | Base | original | Use in Base / PoK / Codex / TE |
+| Fighter Prototype | Base | original | Use in Base / PoK / Codex / TE |
+| Fire Team | Base | original | Use in Base / PoK / Codex / TE |
+| Flank Speed | Base | original | Use in Base / PoK / Codex / TE |
+| Focused Research | Base | original | Use in Base / PoK / Codex / TE |
+| Frontline Deployment | Base | original | Use in Base / PoK / Codex / TE |
+| Ghost Ship | Base | original | Use in Base / PoK / Codex / TE |
+| Imperial Rider | Base | original | Use in Base / PoK / Codex / TE |
+| In The Silence Of Space | Base | original | Use in Base / PoK / Codex / TE |
+| Industrial Initiative | Base | original | Use in Base / PoK / Codex / TE |
+| Infiltrate | Base | original | Use in Base / PoK / Codex / TE |
+| Insubordination | Base | original | Use in Base / PoK / Codex / TE |
+| Intercept | Base | original | Use in Base / PoK / Codex / TE |
+| Leadership Rider | Base | original | Use in Base / PoK / Codex / TE |
+| Lost Star Chart | Base | original | Use in Base / PoK / Codex / TE |
+| Lucky Shot | Base | original | Use in Base / PoK / Codex / TE |
+| Maneuvering Jets | Base | original | Use in Base / PoK / Codex / TE |
+| Mining Initiative | Base | original | Use in Base / PoK / Codex / TE |
+| Morale Boost | Base | original | Use in Base / PoK / Codex / TE |
+| Parley | Base | original | Use in Base / PoK / Codex / TE |
+| Plague | Base | original | Use in Base / PoK / Codex / TE |
+| Political Stability | Base | original | Use in Base / PoK / Codex / TE |
+| Politics Rider | Base | original | Use in Base / PoK / Codex / TE |
+| Public Disgrace | Base | original | Use in Base / PoK / Codex / TE |
+| Reactor Meltdown | Base | original | Use in Base / PoK / Codex / TE |
+| Reparations | Base | original | Use in Base / PoK / Codex / TE |
+| Repeal Law | Base | original | Use in Base / PoK / Codex / TE |
+| Rise of a Messiah | Base | original | Use in Base / PoK / Codex / TE |
+| Sabotage | Base | original | Use in Base / PoK / Codex / TE |
+| Salvage | Base | original | Use in Base / PoK / Codex / TE |
+| Shields Holding | Base | original | Use in Base / PoK / Codex / TE |
+| Signal Jamming | Base | original | Use in Base / PoK / Codex / TE |
+| Skilled Retreat | Base | original | Use in Base / PoK / Codex / TE |
+| Spy | Base | original | Use in Base / PoK / Codex / TE |
+| Summit | Base | original | Use in Base / PoK / Codex / TE |
+| Tactical Bombardment | Base | original | Use in Base / PoK / Codex / TE |
+| Technology Rider | Base | original | Use in Base / PoK / Codex / TE |
+| Trade Rider | Base | original | Use in Base / PoK / Codex / TE |
+| Unexpected Action | Base | original | Use in Base / PoK / Codex / TE |
+| Unstable Planet | Base | original | Use in Base / PoK / Codex / TE |
+| Upgrade | Base | original | Use in Base / PoK / Codex / TE |
+| Uprising | Base | original | Use in Base / PoK / Codex / TE |
+| Veto | Base | original | Use in Base / PoK / Codex / TE |
+| War Effort | Base | original | Use in Base / PoK / Codex / TE |
+| Warfare Rider | Base | original | Use in Base / PoK / Codex / TE |
+
+#### Codex I action-card additions
+
+| Card name | Source set | Version label | Current official status |
+|---|---|---|---|
+| Blitz | Codex I | new | Use in Codex / TE |
+| Counterstroke | Codex I | new | Use in Codex unless superseded by TE wording |
+| Fighter Conscription | Codex I | new | Use in Codex unless superseded by TE wording |
+| Forward Supply Base | Codex I | new | Use in Codex / TE |
+| Ghost Squad | Codex I | new | Use in Codex unless superseded by TE wording |
+| Hack Election | Codex I | new | Use in Codex unless superseded by TE wording |
+| Harness Energy | Codex I | new | Use in Codex / TE |
+| Impersonation | Codex I | new | Use in Codex / TE |
+| Insider Information | Codex I | new | Use in Codex / TE |
+| Master Plan | Codex I | new | Use in Codex unless superseded by TE wording |
+| Plagiarize | Codex I | new | Use in Codex / TE |
+| Rally | Codex I | new | Use in Codex / TE |
+| Reflective Shielding | Codex I | new | Use in Codex / TE |
+| Sanction | Codex I | new | Use in Codex / TE |
+| Scramble Frequency | Codex I | new | Use in Codex unless superseded by TE wording |
+| Solar Flare | Codex I | new | Use in Codex unless superseded by TE wording |
+| War Machine | Codex I | new | Use in Codex unless superseded by TE wording |
+
+#### Prophecy of Kings action-card additions
+
+| Card name | Source set | Version label | Current official status |
+|---|---|---|---|
+| Archaeological Expedition | PoK | new | Use in PoK / Codex / TE |
+| Confounding Legal Text | PoK | new | Use in PoK / Codex / TE |
+| Coup d'Etat | PoK | new | Use in PoK / Codex / TE |
+| Deadly Plot | PoK | new | Use in PoK / Codex / TE |
+| Decoy Operation | PoK | new | Use in PoK / Codex / TE |
+| Diplomatic Pressure | PoK | new | Use in PoK / Codex / TE |
+| Divert Funding | PoK | new | Use in PoK / Codex / TE |
+| Exploration Probe | PoK | new | Use in PoK / Codex / TE |
+| Manipulate Investments | PoK | new | Use in PoK / Codex / TE |
+| Nav Suite | PoK | new | Use in PoK / Codex / TE |
+| Refit Troops | PoK | new | Use in PoK / Codex / TE |
+| Reveal Prototype | PoK | new | Use in PoK / Codex / TE |
+| Reverse Engineer | PoK | new | Use in PoK / Codex / TE |
+| Rout | PoK | new | Use in PoK / Codex / TE |
+| Scuttle | PoK | new | Use in PoK / Codex / TE |
+| Seize Artifact | PoK | new | Use in PoK / Codex / TE |
+| Waylay | PoK | new | Use in PoK / Codex / TE |
+
+#### Thunder’s Edge action-card additions
+
+| Card name | Source set | Version label | Current official status |
+|---|---|---|---|
+| Black Market Dealings | Thunder’s Edge | new | Use in TE |
+| Brilliance | Thunder’s Edge | new | Use in TE |
+| Crash Landing | Thunder’s Edge | new | Use in TE |
+| Crisis | Thunder’s Edge | new | Use in TE |
+| Exchange Program | Thunder’s Edge | new | Use in TE |
+| Extreme Duress | Thunder’s Edge | new | Use in TE |
+| Lie in Wait | Thunder’s Edge | new | Use in TE |
+| Mercenary Contract | Thunder’s Edge | new | Use in TE |
+| Pirate Contract | Thunder’s Edge | new | Use in TE |
+| Pirate Fleet | Thunder’s Edge | new | Use in TE |
+| Puppets on a String | Thunder’s Edge | new | Use in TE |
+| Rescue | Thunder’s Edge | new | Use in TE |
+| Strategize | Thunder’s Edge | new | Use in TE |
+| Overrule | Thunder’s Edge | new | Use in TE |
+
+#### Thunder’s Edge updated action cards
+
+| Card name | Source set | Version label | Replaces | Current official status | Notes |
+|---|---|---|---|---|---|
+| Master Plan Ω | Thunder’s Edge | replacement / Ω | Master Plan | Use in TE | TI Wiki places this under “Thunder’s Edge Updated” citeturn26view3turn27view0 |
+| Fighter Conscription Ω | Thunder’s Edge | replacement / Ω | Fighter Conscription | Use in TE | Capacity wording updated from “units that have capacity” to “ships that have a capacity value” citeturn25view1 |
+| Blitz Ω | Thunder’s Edge | replacement / Ω | Blitz | Use in TE | Singular/plural wording normalized citeturn25view0turn25view2 |
+| Hack Election Ω | Thunder’s Edge | replacement / Ω | Hack Election | Use in TE | Now “you vote last” instead of reversed vote order citeturn25view0 |
+| Solar Flare Ω | Thunder’s Edge | replacement / Ω | Solar Flare | Use in TE | Explicitly tied to the “Movement” step citeturn25view0 |
+| Counterstroke Ω | Thunder’s Edge | replacement / Ω | Counterstroke | Use in TE | Trigger clarified to “another player activates” citeturn25view0 |
+| Ghost Squad Ω | Thunder’s Edge | replacement / Ω | Ghost Squad | Use in TE | Trigger clarified to “another player commits” citeturn25view0 |
+| War Machine Ω | Thunder’s Edge | replacement / Ω | War Machine | Use in TE | Refers to “those units” instead of “your units” citeturn25view0 |
+
+### Agenda cards
+
+The agenda family is unusually clean from a version perspective because the TI Wiki explicitly marks all 13 **removed in PoK** cards and all 13 **new in PoK** cards, while the `ti4-mcp` data adds a useful `removedByPok` tag to the removed base rows. citeturn20view2turn21view3turn34view0
+
+#### Base agenda cards
+
+| Card name | Card type | Source set | Version label | Current official status | Notes |
+|---|---|---|---|---|---|
+| Anti-Intellectual Revolution | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Classified Document Leaks | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Committee Formation | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Conventions of War | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Core Mining | Law | Base | original | Base only / Deprecated in PoK+ | Removed in PoK citeturn20view2turn34view0 |
+| Demilitarized Zone | Law | Base | original | Base only / Deprecated in PoK+ | Removed in PoK citeturn20view2turn34view0 |
+| Enforced Travel Ban | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Executive Sanctions | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Fleet Regulations | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Holy Planet of Ixth | Law | Base | original | Base only / Deprecated in PoK+ | Removed in PoK citeturn34view0 |
+| Homeland Defense Act | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Imperial Arbiter | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Minister of Commerce | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Minister of Exploration | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Minister of Industry | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Minister of Peace | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Minister of Policy | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Minister of Sciences | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Minister of War | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Prophecy of Ixth | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Publicize Weapon Schematics | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Regulated Conscription | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Representative Government | Law | Base | original | Base only / Replaced in PoK+ | Same-name replacement in PoK citeturn34view0 |
+| Research Team: Biotic | Law | Base | original | Base only / Deprecated in PoK+ | Removed in PoK |
+| Research Team: Cybernetic | Law | Base | original | Base only / Deprecated in PoK+ | Removed in PoK |
+| Research Team: Propulsion | Law | Base | original | Base only / Deprecated in PoK+ | Removed in PoK |
+| Research Team: Warfare | Law | Base | original | Base only / Deprecated in PoK+ | Removed in PoK |
+| Senate Sanctuary | Law | Base | original | Base only / Deprecated in PoK+ | Removed in PoK |
+| Shard of the Throne | Law | Base | original | Base only / Deprecated in PoK+ | Removed in PoK |
+| Shared Research | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Terraforming Initiative | Law | Base | original | Base only / Deprecated in PoK+ | Removed in PoK |
+| The Crown of Emphidia | Law | Base | original | Base only / Deprecated in PoK+ | Removed in PoK |
+| The Crown of Thalnos | Law | Base | original | Base only / Deprecated in PoK+ | Removed in PoK |
+| Wormhole Reconstruction | Law | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Archived Secret | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Arms Reduction | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Colonial Redistribution | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Compensated Disarmament | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Economic Equality | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Incentive Program | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Ixthian Artifact | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Judicial Abolishment | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Miscount Disclosed | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Mutiny | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| New Constitution | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Public Execution | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Seed of an Empire | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Swords to Plowshares | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Unconventional Measures | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+| Wormhole Research | Directive | Base | original | Use in Base / PoK / Codex / TE | Unchanged |
+
+#### Prophecy of Kings agenda cards
+
+| Card name | Card type | Source set | Version label | Replaces | Current official status |
+|---|---|---|---|---|---|
+| Articles of War | Law | PoK | new | — | Use in PoK / Codex / TE |
+| Checks and Balances | Law | PoK | new | — | Use in PoK / Codex / TE |
+| Nexus Sovereignty | Law | PoK | new | — | Use in PoK / Codex / TE |
+| Political Censure | Law | PoK | new | — | Use in PoK / Codex / TE |
+| Representative Government | Law | PoK | replacement | Base Representative Government | Use in PoK / Codex / TE |
+| Search Warrant | Law | PoK | new | — | Use in PoK / Codex / TE |
+| Armed Forces Standardization | Directive | PoK | new | — | Use in PoK / Codex / TE |
+| Clandestine Operations | Directive | PoK | new | — | Use in PoK / Codex / TE |
+| Covert Legislation | Directive | PoK | new | — | Use in PoK / Codex / TE |
+| Galactic Crisis Pact | Directive | PoK | new | — | Use in PoK / Codex / TE |
+| Minister of Antiques | Directive | PoK | new | — | Use in PoK / Codex / TE |
+| Rearmament Agreement | Directive | PoK | new | — | Use in PoK / Codex / TE |
+| Research Grant Reallocation | Directive | PoK | new | — | Use in PoK / Codex / TE |
+
+### Technology cards
+
+This section is complete for the **generic/basic technology replacement chains** and the major clearly sourced tech-version changes. For **faction-specific technologies that never received a later printed variant in the sources I could verify**, the source family is usually simple: Base faction techs remain Base, PoK faction techs remain PoK, Council Keleres faction techs begin in Codex III, and new *Thunder’s Edge* factions add their own faction technologies. The complication is not source assignment but the lack of accessible official per-card base/PoK face scans; those rows are therefore summarized after the main table rather than expanded into a giant low-confidence appendix. citeturn30view0turn30view1turn37view1
+
+#### Generic and revised technology cards
+
+| Card name | Card type | Source set | Version label | Replaces | Current official status | Notes |
+|---|---|---|---|---|---|---|
+| Neural Motivator | Tech | Base | original | — | Use in Base / PoK / Codex / TE | Unchanged |
+| Dacxive Animators | Tech | Base | original | — | Use in Base / PoK / Codex / TE | Unchanged |
+| Hyper Metabolism | Tech | Base | original | — | Use in Base / PoK / Codex / TE | Unchanged |
+| X-89 Bacterial Weapon | Tech | Base | original | — | Base only if no Codex updates are used | Original exhaust-and-destroy version |
+| X-89 Bacterial Weapon Ω | Tech | Codex I | Ω replacement | X-89 Bacterial Weapon | Use in Codex I–III if not replaced by C4 | Bombardment-triggered wipe effect citeturn41view1 |
+| X-89 Bacterial Weapon ΩΩ | Tech | Codex IV | ΩΩ replacement | X-89 Bacterial Weapon Ω | Use in C4 / TE | New double-hits / exhaust-planets version citeturn41view1 |
+| Psychoarchaeology | Tech | PoK | new | — | Use in PoK / Codex / TE | PoK generic green tech |
+| Bio-Stims | Tech | PoK | new | — | Use in PoK / Codex / TE | PoK generic green tech |
+| Antimass Deflectors | Tech | Base | original | — | Use in Base / PoK / Codex / TE | Unchanged |
+| Gravity Drive | Tech | Base | original | — | Use in Base / PoK / Codex / TE | Unchanged |
+| Fleet Logistics | Tech | Base | original | — | Use in Base / PoK / Codex / TE | Unchanged |
+| Light/Wave Deflector | Tech | Base | original | — | Use in Base / PoK / Codex / TE | Unchanged |
+| Dark Energy Tap | Tech | PoK | new | — | Use in PoK / Codex / TE | PoK generic blue tech |
+| Sling Relay | Tech | PoK | new | — | Use in PoK / Codex / TE | PoK generic blue tech |
+| Sarween Tools | Tech | Base | original | — | Use in Base / PoK / Codex / TE | Unchanged |
+| Graviton Laser System | Tech | Base | original | — | Use in Base / PoK / Codex / TE | Unchanged |
+| Transit Diodes | Tech | Base | original | — | Use in Base / PoK / Codex / TE | Unchanged |
+| Integrated Economy | Tech | Base | original | — | Use in Base / PoK / Codex / TE | Unchanged |
+| Scanlink Drone Network | Tech | PoK | new | — | Use in PoK / Codex / TE | PoK generic yellow tech |
+| Predictive Intelligence | Tech | PoK | new | — | Use in PoK / Codex / TE | PoK generic yellow tech |
+| Plasma Scoring | Tech | Base | original | — | Use in Base / PoK / Codex / TE | Unchanged |
+| Magen Defense Grid | Tech | Base | original | — | Base only if no Codex updates are used | Original “opponent cannot roll” version |
+| Magen Defense Grid Ω | Tech | Codex I | Ω replacement | Magen Defense Grid | Use in C1–C3 if not replaced by C4 | First structures-based rewrite citeturn41view0 |
+| Magen Defense Grid ΩΩ | Tech | Codex IV | ΩΩ replacement | Magen Defense Grid Ω | Use in C4 / TE | Adds infantry placement on activation plus combat hit citeturn41view0 |
+| Duranium Armor | Tech | Base | original | — | Use in Base / PoK / Codex / TE | Unchanged |
+| Assault Cannon | Tech | Base | original | — | Use in Base / PoK / Codex / TE | Unchanged |
+| AI Development Algorithm | Tech | PoK | new | — | Use in PoK / Codex / TE | PoK generic red tech citeturn41view2 |
+| Self Assembly Routines | Tech | PoK | new | — | Use in PoK / Codex / TE | PoK generic red tech citeturn41view2 |
+
+#### Clearly sourced faction-tech version changes
+
+| Card name | Card type | Source set | Version label | Replaces | Current official status | Notes |
+|---|---|---|---|---|---|---|
+| Magmus Reactor | Faction tech | Base | original | — | Base / PoK only if no C1 tech update is used | Original trade-good production text |
+| Magmus Reactor Ω | Faction tech | Codex I | Ω replacement | Magmus Reactor | Use in Codex / PoK+Codex | Turns supernovas with your units into PRODUCTION 5 areas citeturn30view2 |
+| Yin Spinner | Faction tech | Base | original | — | Base / PoK only if no C1 tech update is used | Original “place 1 infantry” version |
+| Yin Spinner Ω | Faction tech | Codex I | Ω replacement | Yin Spinner | Use in Codex / PoK+Codex | Now places up to 2 infantry more flexibly citeturn30view3 |
+| I.I.H.Q. Modernization | Faction tech | Codex III | original | — | Use in Codex III; ambiguous / moved in TE | TI Wiki says it is “moved to Breakthrough in Thunder’s Edge” citeturn37view2 |
+
+#### Technology-family source inventory
+
+For non-revised faction techs, the source assignment is stable:
+
+* **Base faction-specific technology cards** belong to their original Base factions and remain Base-source printings unless they later receive an official omega replacement. citeturn30view1turn38view0
+* **PoK faction-specific technology cards** belong to the seven PoK factions and are first printed in *Prophecy of Kings*. citeturn37view1
+* **Council Keleres** faction technology begins in **Codex III**. citeturn12search2turn37view2
+* **Thunder’s Edge** introduces additional faction technologies for its new factions. I was able to verify the faction families on the TI Wiki and in the MCP repository README, but I could not verify every single TE faction-tech card face directly from official scans in this run, so those should be marked **unspecified** in a strict per-card database until you ingest the TE card PDF or a trusted scan set. citeturn15view0turn37view3
+
+## Ambiguous and disputed cases
+
+The biggest disputed case I found concerns a cluster of updated action cards. The `ti4-mcp` action-card JSON tags **Master Plan Ω**, **Fighter Conscription Ω**, **Blitz Ω**, **Hack Election Ω**, **Solar Flare Ω**, **Counterstroke Ω**, **Ghost Squad Ω**, and **War Machine Ω** as **Codex III** replacements, but the TI Wiki puts them in a dedicated **“Thunder’s Edge Updated”** section and the version-tracking/omega pages compare the original Codex I versions against **TE-icon** updated versions. I therefore recommend storing these as **Thunder’s Edge replacements**, with a “community-source conflict” note attached. citeturn23view0turn24search1turn26view3turn27view0
+
+**Codex II** looks much less important for the card families you asked about than many players assume. Official and community sources both characterize *Affinity* mainly around **Alliance promissory-note reworks**, faction/alliance reference cards, and Council Keleres support material rather than action / agenda / strategy / generic-technology changes. If your site is only tracking action / strategy / tech / political cards, Codex II should exist in your schema, but it will often have **no rows** for those card types. citeturn29search1turn12search13
+
+**I.I.H.Q. Modernization** is another edge case. The TI Wiki explicitly says the Council Keleres faction technology introduced in Codex III is **moved to Breakthrough in Thunder’s Edge**. That means your database should not just track `replaces`; it also needs a field for **component-type migration** so a card can move from “technology card” to some other official component family without losing provenance. citeturn37view2turn15view0
+
+Finally, there is a practical evidence limitation: Fantasy Flight’s support page is excellent for **release provenance**, but not for **systematic per-card face access** for the entire Base and PoK catalog. For many base and PoK rows, the best official evidence is the existence of the relevant support document plus the general rules/component listing, while exact face text comes from the TI Wiki and machine-readable card databases. Those rows are still high-confidence for source-set attribution, but lower-confidence for “official source link per exact card face.” citeturn11search0turn12search0turn14view0turn14view1turn30view0
+
+## Recommended schema for your website
+
+A version-aware TI4 card database should not treat “card name” as the unique key. It should treat each printed form as its own record.
+
+I recommend this schema:
+
+| Field | Type | Purpose |
+|---|---|---|
+| `card_id` | string | Stable unique ID for this exact printed form |
+| `family_id` | string | Groups all versions of the same named card together |
+| `name` | string | Printed card name |
+| `normalized_name` | string | Search-safe name without Ω symbols or punctuation |
+| `card_type` | enum | action / strategy / agenda-law / agenda-directive / tech-basic / tech-faction / tech-unit-upgrade / other |
+| `faction` | nullable string | Faction owner if faction-specific |
+| `source_set` | enum | base / pok / codex-1 / codex-2 / codex-3 / codex-4 / thunders-edge / twilights-fall / unspecified |
+| `version_label` | enum | original / revised / omega / omega-2 / replacement |
+| `replaces_card_id` | nullable string | Direct backward link to superseded printing |
+| `superseded_by_card_id` | nullable string | Direct forward link |
+| `component_type_migrates_to` | nullable string | Needed for cases like I.I.H.Q. Modernization |
+| `official_status` | enum | use-in-base / use-in-pok / use-in-codex / use-in-te / deprecated / unspecified |
+| `deck_group` | string | action / agenda / strategy / tech-color / faction-tech / etc. |
+| `count_in_deck` | integer | Physical copies in the relevant deck |
+| `timing_window` | nullable string | For action cards and some abilities |
+| `rules_text` | text | Full normalized card text |
+| `notes_diff` | text | Human-readable wording changes against prior version |
+| `official_source_code` | string | BG / PoK / C1 / C2 / C3 / C4 / TE |
+| `official_source_ref` | string | URL or document anchor stored in your backend |
+| `community_source_ref` | nullable string | TI Wiki / BGG / MCP / other verification ref |
+| `confidence` | enum | official-face / official-release-only / cross-checked-community / disputed |
+| `tags` | array | rider / combat / agenda / tech / relic-fragment / wormhole / etc. |
+
+A useful ingestion rule is:
+
+* one **family** = one conceptual card lineage,
+* one **record** = one printed or officially revised wording,
+* one **status** = “what should a player use in this rules/content environment?”
+
+That model will let your site answer all the questions players actually ask:
+
+* “Is this Base, PoK, or Codex?”
+* “Which printing do I use if I own PoK and use Codex?”
+* “What did this replace?”
+* “What was the old wording?”
+* “Is this still current in Thunder’s Edge?”
+
+The official support-page chronology and the TI Wiki’s version-tracking rules are strong enough to support that model cleanly. citeturn11search0turn38view0turn15view0

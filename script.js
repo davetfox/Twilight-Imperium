@@ -6,7 +6,17 @@ const flowList = document.querySelector("#flowList");
 const phaseFlowList = document.querySelector("#phaseFlowList");
 const cardChecklist = document.querySelector("#cardChecklist");
 const clearCardsButton = document.querySelector("#clearCards");
-const selectedCards = new Set();
+const playerColourSelect = document.querySelector("#playerColour");
+const selectedCards = new Map();
+
+const playerColours = [
+  { value: "red", label: "Red" },
+  { value: "blue", label: "Blue" },
+  { value: "green", label: "Green" },
+  { value: "black", label: "Black" },
+  { value: "yellow", label: "Yellow" },
+  { value: "white", label: "White" }
+];
 
 const flows = [
   {
@@ -997,6 +1007,40 @@ function slugify(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
+function getColourLabel(value) {
+  return playerColours.find((colour) => colour.value === value)?.label || value;
+}
+
+function renderOwnerChips(ownerColours, playerColour) {
+  return ownerColours.map((ownerColour) => {
+    const ownerText = ownerColour === playerColour ? "You" : getColourLabel(ownerColour);
+
+    return `
+      <span class="owner-chip">
+        <span class="colour-dot colour-${ownerColour}" aria-hidden="true"></span>
+        ${ownerText}
+      </span>
+    `;
+  }).join("");
+}
+
+function getOwnerSummary(ownerColours, playerColour) {
+  const hasPlayer = ownerColours.includes(playerColour);
+  const opponentLabels = ownerColours
+    .filter((ownerColour) => ownerColour !== playerColour)
+    .map(getColourLabel);
+
+  if (hasPlayer && opponentLabels.length) {
+    return `You and ${opponentLabels.join(", ")} can affect this window`;
+  }
+
+  if (hasPlayer) {
+    return "You can use this effect";
+  }
+
+  return `${opponentLabels.join(", ")} can affect this window`;
+}
+
 function getModifierEntries() {
   const entries = [];
 
@@ -1070,16 +1114,34 @@ function renderChecklist() {
         </summary>
         <div class="checklist-items">
           ${groupCards.map((card) => {
-            const id = `card-${slugify(card.name)}`;
+            const cardSlug = slugify(card.name);
+            const selectedColours = selectedCards.get(card.name) || new Set();
 
             return `
-              <label class="checklist-item" for="${id}">
-                <input id="${id}" type="checkbox" value="${card.name}">
-                <span>
+              <div class="checklist-item">
+                <span class="card-summary">
                   <strong>${card.name}</strong>
                   <span>${card.type}</span>
                 </span>
-              </label>
+                <div class="colour-choice-group" aria-label="${card.name} owner colours">
+                  ${playerColours.map((colour) => {
+                    const id = `card-${cardSlug}-${colour.value}`;
+
+                    return `
+                      <label class="colour-choice colour-${colour.value}" for="${id}">
+                        <input
+                          id="${id}"
+                          type="checkbox"
+                          value="${colour.value}"
+                          data-card-name="${card.name}"
+                          ${selectedColours.has(colour.value) ? "checked" : ""}
+                        >
+                        <span>${colour.label}</span>
+                      </label>
+                    `;
+                  }).join("")}
+                </div>
+              </div>
             `;
           }).join("")}
         </div>
@@ -1089,10 +1151,20 @@ function renderChecklist() {
 
   cardChecklist.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
     checkbox.addEventListener("change", () => {
+      const cardName = checkbox.dataset.cardName;
+      const selectedColours = selectedCards.get(cardName) || new Set();
+
       if (checkbox.checked) {
-        selectedCards.add(checkbox.value);
+        selectedColours.add(checkbox.value);
+        selectedCards.set(cardName, selectedColours);
       } else {
-        selectedCards.delete(checkbox.value);
+        selectedColours.delete(checkbox.value);
+
+        if (selectedColours.size) {
+          selectedCards.set(cardName, selectedColours);
+        } else {
+          selectedCards.delete(cardName);
+        }
       }
 
       renderPhaseFlows();
@@ -1105,17 +1177,31 @@ function renderPhaseFlows() {
     return;
   }
 
-  const activeEntries = getModifierEntries().filter((entry) => selectedCards.has(entry.name));
+  const playerColour = playerColourSelect?.value || "red";
+  const activeEntries = getModifierEntries()
+    .filter((entry) => selectedCards.has(entry.name))
+    .map((entry) => {
+      const ownerColours = [...selectedCards.get(entry.name)];
+
+      return {
+        ...entry,
+        ownerColours,
+        isPlayerOwned: ownerColours.includes(playerColour),
+        hasOpponentOwner: ownerColours.some((ownerColour) => ownerColour !== playerColour)
+      };
+    });
 
   phaseFlowList.innerHTML = basePhases.map((phase) => {
-    const activeCount = activeEntries.filter((entry) => entry.phaseId === phase.id).length;
+    const phaseEntries = activeEntries.filter((entry) => entry.phaseId === phase.id);
+    const playerActiveCount = phaseEntries.filter((entry) => entry.isPlayerOwned).length;
+    const opponentActiveCount = phaseEntries.filter((entry) => entry.hasOpponentOwner).length;
 
     return `
     <details class="phase-card">
       <summary>
         <span>${phase.number}</span>
         <strong>${phase.title}</strong>
-        <span>${activeCount} active</span>
+        <span>You ${playerActiveCount} | Others ${opponentActiveCount}</span>
       </summary>
       <ol class="phase-step-list">
         ${phase.steps.map((step, index) => {
@@ -1132,11 +1218,14 @@ function renderPhaseFlows() {
                 ${modifiers.length ? `
                   <div class="active-modifiers">
                     ${modifiers.map((modifier) => `
-                      <div class="modifier-card">
-                        <span>${modifier.category}</span>
+                      <div class="modifier-card ${modifier.isPlayerOwned ? "player-owned" : "opponent-owned"} ${modifier.hasOpponentOwner ? "has-opponent-owner" : ""}">
+                        <span class="modifier-meta">
+                          <span class="owner-chip-list">${renderOwnerChips(modifier.ownerColours, playerColour)}</span>
+                          <span>${modifier.category}</span>
+                        </span>
                         <strong>${modifier.name}</strong>
                         <p><strong>Card text:</strong> ${modifier.text}</p>
-                        <p><strong>How it modifies this step:</strong> Check this effect during ${modifier.stepName}.</p>
+                        <p><strong>How it modifies this step:</strong> ${getOwnerSummary(modifier.ownerColours, playerColour)} during ${modifier.stepName}.</p>
                       </div>
                     `).join("")}
                   </div>
@@ -1195,6 +1284,10 @@ document.querySelectorAll(".filter-button").forEach((button) => {
     renderFlows(button.dataset.filter);
   });
 });
+
+if (playerColourSelect) {
+  playerColourSelect.addEventListener("change", renderPhaseFlows);
+}
 
 if (clearCardsButton) {
   clearCardsButton.addEventListener("click", () => {
