@@ -7,7 +7,15 @@ const phaseFlowList = document.querySelector("#phaseFlowList");
 const cardChecklist = document.querySelector("#cardChecklist");
 const clearCardsButton = document.querySelector("#clearCards");
 const playerColourSelect = document.querySelector("#playerColour");
+const saveStatus = document.querySelector("#saveStatus");
+const exportSaveButton = document.querySelector("#exportSave");
+const importSaveInput = document.querySelector("#importSave");
+const resetPageSaveButton = document.querySelector("#resetPageSave");
 const selectedCards = new Map();
+const saveKey = "ti4-checklists-state-v1";
+const saveVersion = 1;
+const pageSaveId = getPageSaveId();
+let saveStatusTimer;
 
 const playerColours = [
   { value: "red", label: "Red" },
@@ -1007,6 +1015,217 @@ function slugify(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
+function getPageSaveId() {
+  const pathName = window.location.pathname.split("/").pop();
+  return pathName || "index.html";
+}
+
+function createEmptySaveState() {
+  return {
+    version: saveVersion,
+    pages: {},
+    lastSaved: ""
+  };
+}
+
+function readSaveState() {
+  try {
+    const savedValue = localStorage.getItem(saveKey);
+
+    if (!savedValue) {
+      return createEmptySaveState();
+    }
+
+    const parsedState = JSON.parse(savedValue);
+
+    if (!isValidSaveState(parsedState)) {
+      return createEmptySaveState();
+    }
+
+    return {
+      version: saveVersion,
+      pages: parsedState.pages,
+      lastSaved: parsedState.lastSaved || ""
+    };
+  } catch (error) {
+    return createEmptySaveState();
+  }
+}
+
+function writeSaveState(state) {
+  localStorage.setItem(saveKey, JSON.stringify(state));
+}
+
+function isValidSaveState(value) {
+  if (!value || value.version !== saveVersion || !value.pages || typeof value.pages !== "object" || Array.isArray(value.pages)) {
+    return false;
+  }
+
+  return Object.values(value.pages).every((pageState) => {
+    if (!pageState || typeof pageState !== "object" || Array.isArray(pageState)) {
+      return false;
+    }
+
+    return Object.values(pageState).every((checkboxValue) => typeof checkboxValue === "boolean");
+  });
+}
+
+function getCurrentPageCheckboxState() {
+  const pageState = {};
+
+  if (!cardChecklist) {
+    return pageState;
+  }
+
+  cardChecklist.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
+    if (checkbox.checked) {
+      pageState[checkbox.id] = true;
+    }
+  });
+
+  return pageState;
+}
+
+function applyPageCheckboxState(pageState) {
+  selectedCards.clear();
+
+  if (!cardChecklist || !pageState) {
+    return;
+  }
+
+  cardChecklist.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
+    checkbox.checked = pageState[checkbox.id] === true;
+
+    if (checkbox.checked) {
+      const cardName = checkbox.dataset.cardName;
+      const selectedColours = selectedCards.get(cardName) || new Set();
+      selectedColours.add(checkbox.value);
+      selectedCards.set(cardName, selectedColours);
+    }
+  });
+}
+
+function saveCurrentPageState(showFeedback = true) {
+  const state = readSaveState();
+  state.pages[pageSaveId] = getCurrentPageCheckboxState();
+  state.lastSaved = new Date().toISOString();
+
+  try {
+    writeSaveState(state);
+  } catch (error) {
+    showAutosaveStatus("Save failed");
+    return;
+  }
+
+  if (showFeedback) {
+    showAutosaveStatus("Autosaved");
+  }
+}
+
+function restoreCurrentPageState() {
+  const state = readSaveState();
+  applyPageCheckboxState(state.pages[pageSaveId]);
+}
+
+function showAutosaveStatus(message) {
+  if (!saveStatus) {
+    return;
+  }
+
+  saveStatus.textContent = message;
+  saveStatus.classList.add("visible");
+  window.clearTimeout(saveStatusTimer);
+  saveStatusTimer = window.setTimeout(() => {
+    saveStatus.classList.remove("visible");
+    saveStatus.textContent = "";
+  }, 1600);
+}
+
+function exportSaveState() {
+  const state = readSaveState();
+  state.pages[pageSaveId] = getCurrentPageCheckboxState();
+  state.lastSaved = new Date().toISOString();
+
+  try {
+    writeSaveState(state);
+  } catch (error) {
+    alert("Export failed because the current save could not be written.");
+    return;
+  }
+
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+  const downloadLink = document.createElement("a");
+  const objectUrl = URL.createObjectURL(blob);
+  downloadLink.href = objectUrl;
+  downloadLink.download = `ti4-checklists-state-${pageSaveId.replace(/[^a-z0-9._-]+/gi, "-")}.json`;
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  downloadLink.remove();
+  URL.revokeObjectURL(objectUrl);
+  showAutosaveStatus("Save exported");
+}
+
+function importSaveState(file) {
+  if (!file) {
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.addEventListener("load", () => {
+    try {
+      const importedState = JSON.parse(reader.result);
+
+      if (!isValidSaveState(importedState)) {
+        throw new Error("Invalid save format.");
+      }
+
+      writeSaveState({
+        version: saveVersion,
+        pages: importedState.pages,
+        lastSaved: new Date().toISOString()
+      });
+      restoreCurrentPageState();
+      renderPhaseFlows();
+      showAutosaveStatus("Save imported");
+    } catch (error) {
+      alert("Import failed. Please choose a valid TI4 checklist save JSON file.");
+    } finally {
+      importSaveInput.value = "";
+    }
+  });
+
+  reader.addEventListener("error", () => {
+    alert("Import failed. The selected file could not be read.");
+    importSaveInput.value = "";
+  });
+
+  reader.readAsText(file);
+}
+
+function resetCurrentPageSave() {
+  const confirmed = window.confirm("Reset saved checkbox state for this page only?");
+
+  if (!confirmed) {
+    return;
+  }
+
+  const state = readSaveState();
+  delete state.pages[pageSaveId];
+  state.lastSaved = new Date().toISOString();
+
+  try {
+    writeSaveState(state);
+  } catch (error) {
+    alert("Reset failed because the current save could not be written.");
+    return;
+  }
+
+  applyPageCheckboxState({});
+  renderPhaseFlows();
+  showAutosaveStatus("Page reset");
+}
+
 function getColourLabel(value) {
   return playerColours.find((colour) => colour.value === value)?.label || value;
 }
@@ -1168,6 +1387,7 @@ function renderChecklist() {
       }
 
       renderPhaseFlows();
+      saveCurrentPageState();
     });
   });
 }
@@ -1194,7 +1414,9 @@ function renderPhaseFlows() {
   phaseFlowList.innerHTML = basePhases.map((phase) => {
     const phaseEntries = activeEntries.filter((entry) => entry.phaseId === phase.id);
     const playerActiveCount = phaseEntries.filter((entry) => entry.isPlayerOwned).length;
-    const opponentActiveCount = phaseEntries.filter((entry) => entry.hasOpponentOwner).length;
+    const opponentActiveCount = phaseEntries.reduce((count, entry) => {
+      return count + entry.ownerColours.filter((ownerColour) => ownerColour !== playerColour).length;
+    }, 0);
 
     return `
     <details class="phase-card">
@@ -1300,7 +1522,22 @@ if (clearCardsButton) {
     }
 
     renderPhaseFlows();
+    saveCurrentPageState();
   });
+}
+
+if (exportSaveButton) {
+  exportSaveButton.addEventListener("click", exportSaveState);
+}
+
+if (importSaveInput) {
+  importSaveInput.addEventListener("change", () => {
+    importSaveState(importSaveInput.files[0]);
+  });
+}
+
+if (resetPageSaveButton) {
+  resetPageSaveButton.addEventListener("click", resetCurrentPageSave);
 }
 
 window.addEventListener("resize", () => {
@@ -1312,5 +1549,6 @@ resizeCanvas();
 createStars();
 drawStarfield();
 renderChecklist();
+restoreCurrentPageState();
 renderPhaseFlows();
 renderFlows();

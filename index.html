@@ -81,6 +81,13 @@
             <option value="white">White</option>
           </select>
         </label>
+        <span class="save-status" id="saveStatus" role="status" aria-live="polite"></span>
+        <button class="utility-button" type="button" id="exportSave">Export save</button>
+        <label class="utility-button import-save-control" for="importSave">
+          Import save
+          <input id="importSave" type="file" accept="application/json,.json">
+        </label>
+        <button class="utility-button" type="button" id="resetPageSave">Reset this page</button>
         <button class="utility-button" type="button" id="clearCards">Clear All</button>
       </div>
 

@@ -244,6 +244,31 @@ h3 {
   border-color: var(--gold);
 }
 
+.import-save-control {
+  position: relative;
+  overflow: hidden;
+}
+
+.import-save-control input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.save-status {
+  min-width: 76px;
+  color: var(--green);
+  font-size: 0.84rem;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.save-status.visible {
+  opacity: 1;
+}
+
 .checklist-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
