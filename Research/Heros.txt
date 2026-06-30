@@ -1,0 +1,270 @@
+# Twilight Imperium hero cards and versioned support cards
+
+## Executive summary
+
+In official **Twilight Imperium Fourth Edition** product history, **hero leader cards do not exist in the base game**. Leaders are introduced by **Prophecy of Kings**, which adds leaders for the original base-game factions plus seven new factions, and it also replaces the base-game **Diplomacy** and **Construction** strategy cards with revised versions. **Codex III** adds the **Council Keleres** faction and introduces the first published **leader Ω replacements** for existing factions. **Thunder’s Edge** then physically compiles prior Codex gameplay content, adds five new factions, and replaces **Construction** and **Warfare** with new revised versions. citeturn2search8turn6search2turn34search0turn35search1turn26search1turn34search1turn29search2
+
+The highest-value version-control issues for a card database are therefore not “all cards in the whole game,” but the narrower set of cards that actually change how heroes are unlocked, resolved, or supported in play: **hero leader cards themselves**, **strategy cards** that heroes reference or reproduce, **Alliance** and selected **promissory-note Ω replacements**, and the smaller number of **action/agenda cards** that directly alter **strategy-card selection or strategic actions**. In the card-text corpora checked for action cards and agenda cards, no standard base/PoK action or agenda card text explicitly uses the words **leader**, **agent**, **commander**, or **hero**; the overlap is mostly indirect through strategy timing, agenda windows, and promissory-note handling. citeturn11view3turn11view4turn12view1turn12view2turn12view3turn14view0turn14view5turn25view0
+
+Two Thunder’s Edge hero **names** are still not surfaced in the indexed community transcription I could verify from the public web pages I checked: the **Ral Nel Consortium** hero for **Signal Intrusion** and the **Crimson Rebellion** hero for **Fragmented Reality**. Their **ability names and timing** do appear in the leader index, but the personal hero names are shown as unknown there, so I mark those names as **ambiguous / not surfaced in indexed sources checked**. citeturn22view0turn20view3turn34search1
+
+## Scope and method
+
+I used a strict inclusion rule for the “comprehensive” tables below. The report includes:
+
+- every **hero leader card** I could verify from the public card-transcription corpus and product documents,
+- every **versioned support card** that materially changes hero play or the hero timing environment,
+- a compact **promissory-note inventory** because hero effects such as **The Oracle** and several commander/agenda interactions can make note versioning matter,
+- and a short list of **action/agenda cards** whose text directly changes **strategy selection** or **strategic action resolution**, because those are the main non-leader windows that repeatedly intersect hero timing. citeturn20view0turn22view0turn25view0turn37view0
+
+Where public official card images were easily available, I prioritized them. Where they were not easily indexed, I used a combination of **official set/rules pages** for set membership and replacement status, together with the **Twilight Imperium Wiki/Fandom card indexes** for card-by-card wording. Because of that limitation, the tables below use **authoritative summaries** rather than reproducing long verbatim card text. That is the safer and more reliable way to normalize multiple printings into database-ready records. citeturn3view0turn4view1turn4view2turn4view3turn4view4turn4view5turn4view6turn5view0turn5view1turn11view2turn37view0
+
+One more important boundary: in the official snippets I checked, **Codex II** surfaced reference-card / drafting support material rather than hero replacements, and **Codex IV** surfaced new gameplay material such as relics and other card types but no indexed leader/hero replacement text. I therefore found **no hero-card version rows attributable to Codex II or Codex IV** in the public indexed sources checked. citeturn29search3turn35search2turn36search2
+
+## Version map
+
+The version landscape for hero-relevant cards is best understood as a layered publication history.
+
+The **base game** provides the original eight standard strategy cards and the original promissory-note pool, but **no leader cards**. citeturn2search5turn26search15turn37view0
+
+**Prophecy of Kings** is the decisive turning point. It introduces **leaders**—including heroes—for all pre-existing factions, adds leaders for seven new factions, adds the generic **Alliance** promissory note, and officially replaces the base-game **Diplomacy** and **Construction** strategy cards. citeturn2search8turn2search10turn2search4turn6search2
+
+**Codex I** is where the first meaningful **Ω note replacements** appear in the indexed materials checked, especially for **Stymie**, **War Funding**, **Cybernetic Enhancements**, **Acquiescence**, and **Greyfire Mutagen**. citeturn32view0turn33view0turn33view1turn36search1
+
+**Codex III** is the key leader update release. Officially, it adds **The Council Keleres**. In the indexed Codex material and leader tables, it also carries the leader-facing **Ω initiative** updates for **Xxcha**, **Yin**, and the Naalu leader suite. citeturn34search0turn35search1turn30search1turn31search0turn24view0
+
+**Thunder’s Edge** does two things at once: it introduces new factions and hero suites, and it physically **compiles prior Codex gameplay content**. Its rules snippet explicitly says to replace **Construction** and **Warfare** with revised versions. citeturn26search1turn29search2turn35search3turn34search1
+
+## Hero leader cards
+
+The table below is the normalized hero-card dataset. “Official source citation” points to an official set/rules source for **set and replacement status**, plus the leader index used for the card-by-card wording summary.
+
+| Faction | Card name | Card type | Timing window / phase | Source set | Version tag | Replaces | Use in | Authoritative summary | Official source citation | Notes |
+|---|---|---|---|---|---|---|---|---|---|---|
+| The Arborec | Letani Miasmiala | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Produce in any systems containing your ground forces, then purge. | Leader index + PoK leader rules citeturn20view0turn2search8turn2search4 | Pure production hero; timing is straightforward. |
+| The Barony of Letnev | Darktalon Treilla | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | For the current round, fleet-supply and law caps do not limit your non-fighter ships in systems; purge later. | Leader index + PoK leader rules citeturn20view0turn2search8turn2search4 | Duration runs to round end. |
+| The Clan of Saar | Gurno Aggero | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Destroys other players’ infantry and fighters in a system adjacent to one of your space docks, then purges. | Leader index + PoK leader rules citeturn21view0turn2search8turn2search4 | Commonly treated as anti-screen / anti-garrison cleanup. |
+| The Embers of Muaat | Adjudicator Ba'al | Hero leader | Triggered after moving a war sun into an eligible system | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Destroys all other units in that system and turns it into the Muaat supernova; hero and replaced planets are purged. | Leader index + PoK leader rules citeturn23view0turn2search8turn2search4 | System-replacement timing can matter for attachments and planets. |
+| The Emirates of Hacan | Harrugh Gefhara | Hero leader | During a PRODUCTION use | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Sets the cost of your produced units to 0 for that production window, then purges. | Leader index + PoK leader rules citeturn23view0turn2search8turn2search4 | One of the clearest “burst economy” heroes. |
+| The Federation of Sol | Jace X. 4th Air Legion | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Removes all your command tokens from the board back to reinforcements, then purges. | Leader index + PoK leader rules citeturn23view0turn2search8turn2search4 | Often used to reopen multiple locked systems. |
+| The Ghosts of Creuss | Riftwalker Meian | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Swaps two systems containing wormholes or your units, excluding Creuss and the Nexus, then purges. | Leader index + PoK leader rules citeturn23view1turn2search8turn2search4 | Position-swap effects create many adjacency questions. |
+| The L1Z1X Mindnet | The Helmsman | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Repositions your flagship and any number of dreadnoughts into a chosen system without enemy ships, then purges. | Leader index + PoK leader rules citeturn23view1turn2search8turn2search4 | Strong surprise-projection tool. |
+| The Mentak Coalition | Ipswitch, Loose Cannon | Hero leader | Start of a space combat you are in | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Converts destroyed ships in that combat into matching ships from your reinforcements in the active system; purge to trigger. | Leader index + PoK leader rules citeturn23view1turn2search8turn2search4 | Replacement timing in combat can create sequencing questions. |
+| The Naalu Collective | The Oracle | Hero leader | End of the status phase | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Forces each other player to hand over one promissory note; purge if you do. | Leader index + PoK leader rules citeturn23view1turn2search8turn2search4 | This is the strongest reason to track the full promissory-note corpus. |
+| The Nekro Virus | UNIT.DSGN.FLAYESH | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | On a tech-specialty planet with your units, wipe other players there, gain TG equal to the planet’s total values, then gain a matching-color tech and purge. | Leader index + PoK leader rules citeturn23view2turn2search8turn2search4 | Specialty color is the key lookup field. |
+| Sardakk N'orr | Sh'val, Harbinger | Hero leader | After moving ships into the active system | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Skips directly to commit ground forces; after committing, purges and returns your ships in that system to reinforcements. | Leader index + PoK leader rules citeturn23view2turn16view4turn2search8 | High-rules-load hero because it shortcuts normal combat flow. |
+| The Universities of Jol-Nar | Rin, the Master's Legacy | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Exchanges your non-unit-upgrade technologies for other technologies of the same colors, then purges. | Leader index + PoK leader rules citeturn21view4turn2search8turn2search4 | Requires color-based tech lookup in data model. |
+| The Winnu | Mathis Mathinus | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Performs the primary of any strategy card and optionally lets any number of other players do the secondary, then purges. | Leader index + PoK leader rules citeturn23view3turn2search8turn2search4 | One of the main reasons strategy-card version tracking matters. |
+| The Xxcha Kingdom | Xxekir Grom | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK without Codex III | Discards one law, inspects five agendas, resolves two as if you voted for chosen outcomes, discards the rest, blocks outside abilities, then purges. | Leader index + PoK rules + Codex III change note citeturn23view3turn2search8turn30search1 | Replaced by Ω version in Codex III environments. |
+| The Xxcha Kingdom | Xxekir Grom | Hero leader | Passive / always-on economy text | Codex III | Ω replacement | Political Data Nexus | PoK+Codex / Thunder’s Edge | When exhausting planets, combine resources and influence and treat the total as both. | Leader index + Codex III note citeturn23view3turn30search1turn34search0 | This is functionally a redesign, not a mild wording tweak. |
+| The Yin Brotherhood | Dannel of the Tenth | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK without Codex III | For each planet with your infantry, either ready it or add matching infantry from reinforcements, then purge. | Leader index + PoK rules + Codex III change note citeturn23view3turn2search8turn31search0 | Replaced by Ω version in Codex III environments. |
+| The Yin Brotherhood | Dannel of the Tenth | Hero leader | Component action after 3 scored objectives | Codex III | Ω replacement | Spinner Overdrive | PoK+Codex / Thunder’s Edge | Lands up to three infantry from reinforcements on non-home planets and resolves invasions without SPACE CANNON against them, then purges. | Leader index + Codex III note citeturn23view3turn31search0turn34search0 | Major gameplay redesign. |
+| The Yssaril Tribes | Kyver, Blade and Key | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Each opponent reveals one action card; for each one, you either steal it or force that player to discard three random action cards, then purge. | Leader index + PoK leader rules citeturn24view0turn2search8turn2search4 | Requires action-card hand interaction. |
+| The Argent Flight | Mirik Aun Sissiri | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Repositions any number of your ships into systems containing your command tokens and no enemy ships, then purges. | Leader index + PoK leader rules citeturn24view0turn2search8turn2search4 | Broad redeployment hero. |
+| The Empyrean | Conservator Procyon | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Seeds frontier tokens into eligible empty systems, then explores all such frontier tokens where you have ships, then purges. | Leader index + PoK leader rules citeturn24view0turn2search8turn2search4 | Exploration-heavy hero; interacts with frontier-token state. |
+| The Mahact Gene-Sorcerers | Airo Shir Aur | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Forces one fleet to move into an adjacent enemy fleet’s system and fight there without retreat or ship-movement abilities, then purges. | Faction page + leader index + PoK rules citeturn16view1turn24view0turn2search8 | Official/community FAQs are especially important for attack/defense status. |
+| The Naaz-Rokha Alliance | Hesh and Prit | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Gains a relic and performs up to two secondary strategy abilities using tokens from reinforcements instead of the strategy pool, then purges. | Leader index + PoK leader rules citeturn24view0turn2search8turn2search4 | Another major reason to track strategy-card versions. |
+| The Nomad | Ahk-Syl Siven | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | For the round, your flagship and transported units can move out of systems with your command tokens; purge at end of round. | Leader index + PoK leader rules citeturn24view0turn2search8turn2search4 | Duration should be stored as “until end of round.” |
+| The Titans of Ul | Ul the Progenitor | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Readies Elysium, buffs its values, and makes it behave like a SPACE CANNON unit via attachment. | Leader index + PoK leader rules citeturn22view1turn2search8turn2search4 | Best stored as an attachment-like persistent effect. |
+| The Vuil'Raith Cabal | It Feeds on Carrion | Hero leader | Component action after 3 scored objectives | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Rolls to capture other players’ non-fighter ships near dimensional tears and also captures dependent units removed as a consequence; then purges. | Leader index + PoK leader rules citeturn22view1turn2search8turn2search4 | Capture dependency is the key interaction field. |
+| The Council Keleres | Kuuasi Aun Jalatai | Hero leader | Start of a space-combat round in a system with your planet | Codex III | original | — | PoK+Codex / Thunder’s Edge | Deploys your flagship and up to two cruisers/destroyers from reinforcements to the active system, then purges. | Keleres leader entry + Codex III intro citeturn20view1turn16view2turn34search0 | Available only if Argent is the chosen Tribunii branch. |
+| The Council Keleres | Odlynn Myrr | Hero leader | After an agenda is revealed | Codex III | original | — | PoK+Codex / Thunder’s Edge | Adds votes, predicts an outcome, and rewards dissenting votes with TG and command tokens, then purges. | Keleres leader entry + Codex III intro citeturn20view1turn16view2turn34search0 | Available only if Xxcha is the chosen Tribunii branch. |
+| The Council Keleres | Harka Leeds | Hero leader | Component action | Codex III | original | — | PoK+Codex / Thunder’s Edge | Digs three component-action cards out of the action deck, then purges. | Keleres leader entry + Codex III intro citeturn20view1turn16view2turn34search0 | Available only if Mentak is the chosen Tribunii branch. |
+| Last Bastion | Entity 4X41A “Apollo” | Hero leader | When one of your galvanized units is destroyed | Thunder’s Edge | original | — | Thunder’s Edge | Purges to roll against every enemy unit in that system and destroy those that meet the threshold. | Leader index + Thunder’s Edge announcement/rules citeturn20view1turn34search1turn26search1 | Reactive hero, unlike most component-action heroes. |
+| The Ral Nel Consortium | **Name not surfaced in indexed sources checked** | Hero leader | After the last player passes | Thunder’s Edge | original | — | Thunder’s Edge | Lets you become un-passed, gain 2 command tokens, draw 1 action card, and purge. | Leader index + Thunder’s Edge announcement/rules citeturn22view0turn34search1turn26search1 | Ability name is **Signal Intrusion**; personal hero name remains ambiguous in sources checked. |
+| The Deepwrought Scholarate | Ta Zern | Hero leader | Component action | Thunder’s Edge | original | — | Thunder’s Edge | Purges itself and a non-unit-upgrade technology, purges all copies of that tech elsewhere, then affected players each research a replacement. | Leader index + Thunder’s Edge announcement/rules citeturn22view1turn34search1turn26search1 | Requires technology-name matching in a data model. |
+| The Crimson Rebellion | **Name not surfaced in indexed sources checked** | Hero leader | During ship production / start of a space combat | Thunder’s Edge | original | — | Thunder’s Edge | Stores produced ships on the hero and later purges to drop them into the active system at combat start. | Leader index + Thunder’s Edge announcement/rules citeturn20view3turn34search1turn26search1 | Ability name is **Fragmented Reality**; personal hero name remains ambiguous in sources checked. |
+| The Firmament | Sharsis | Hero leader | Component action | Thunder’s Edge | original | — | Thunder’s Edge | Places other players’ control tokens onto your plot cards in a special distribution pattern, then purges. | Leader index + Thunder’s Edge announcement/rules citeturn20view3turn34search1turn26search1 | Plot-card metadata will need dedicated storage. |
+| The Obsidian | Sharsiss Hollow | Hero leader | Component action | Thunder’s Edge | original | — | Thunder’s Edge | Readies all of your planets, then purges. | Leader index + Thunder’s Edge announcement/rules citeturn20view3turn34search1turn26search1 | Shortest and simplest TE hero text in the indexed set. |
+
+## Support cards and promissory-note version inventory
+
+The first table below is the **version-sensitive non-hero support set**. The second is a **compact promissory-note inventory** intended for database seeding and version tagging.
+
+### Version-sensitive support cards
+
+| Card name | Card type | Timing window / phase | Source set | Version tag | Replaces | Use in | Authoritative summary | Official source citation | Notes |
+|---|---|---|---|---|---|---|---|---|---|
+| Leadership | Strategy | Strategic action / secondary | Base | original | — | Base / PoK / PoK+Codex / Thunder’s Edge | Gains tokens and converts influence into more; secondary lets others buy tokens. | Official image + base rules citeturn4view1turn26search15 | Referenced indirectly by hero and strategy-phase effects. |
+| Diplomacy | Strategy | Strategic action / secondary | Base | original | — | Base only | Protects one eligible system and readies planets in that system. | Official image + base rules citeturn5view0turn27search19 | Replaced in Codex I / PoK environments. |
+| Diplomacy Ω | Strategy | Strategic action / secondary | Codex I / Prophecy of Kings | Ω replacement | Diplomacy | Base+Codex / PoK / PoK+Codex / Thunder’s Edge | Revised protected-system text used in PoK-era play. | PoK rules + strategy-version note citeturn6search2turn27search3turn25view0 | Same functional family; revised wording matters for database versioning. |
+| Politics | Strategy | Strategic action / secondary | Base | original | — | Base / PoK / PoK+Codex / Thunder’s Edge | Assigns speaker, draws 2 action cards, and stacks the agenda deck; secondary draws 2 cards. | Official image + preview article citeturn4view2turn3view0 | Key overlap with agenda-aware heroes. |
+| Construction | Strategy | Strategic action / secondary | Base | original | — | Base only | Places one structure plus one extra PDS; secondary places a token then builds one structure there. | Official image + base rules citeturn5view1turn26search15 | Replaced in PoK and later TE formats. |
+| Construction Ω | Strategy | Strategic action / secondary | Prophecy of Kings | revised replacement | Construction | PoK / PoK+Codex | PoK revision of Construction; still structure-focused but uses the revised wording introduced for expansion play. | PoK rules + strategy-version note citeturn6search0turn6search2turn27search13 | Official replacement in PoK setup. |
+| Construction ΩΩ | Strategy | Strategic action / secondary | Thunder’s Edge | revised replacement | Construction Ω | Thunder’s Edge | Thunder’s Edge revises Construction again; indexed sources show a structure/PRODUCTION-focused primary. | TE replacement note + strategy-version index citeturn26search1turn25view0turn27search1 | Full official printed text was not surfaced in indexed official snippets I checked. |
+| Trade | Strategy | Strategic action / secondary | Base | original | — | Base / PoK / PoK+Codex / Thunder’s Edge | Gains 3 TG, replenishes commodities, and lets chosen players follow for free. | Official image + strategy summary citeturn4view3turn27search15 | Intersects Hacan/Keleres effects and some agenda timing. |
+| Warfare | Strategy | Strategic action / secondary | Base | original | — | Base / PoK / PoK+Codex | Removes a token from the board, gains one, redistributes tokens, and lets others build at home. | Official image + PoK rules reference citeturn4view4turn26search13 | Replaced in Thunder’s Edge. |
+| Warfare Ω | Strategy | Strategic action / secondary | Thunder’s Edge | revised replacement | Warfare | Thunder’s Edge | Thunder’s Edge replaces Warfare with a revised version; public official snippets confirm the replacement though not the full indexed text. | TE replacement note + strategy-version index citeturn26search1turn25view0turn27search2 | Important because several heroes imitate or combine with strategic-action windows. |
+| Technology | Strategy | Strategic action / secondary | Base | original | — | Base / PoK / PoK+Codex / Thunder’s Edge | Researches one tech and optionally a second; secondary researches one for a token and resources. | Official image + base rules citeturn4view5turn26search15 | Affected by Minister of Sciences and several tech-focused leaders. |
+| Imperial | Strategy | Strategic action / secondary | Base | original | — | Base / PoK / PoK+Codex / Thunder’s Edge | Scores a public objective immediately and then awards either Mecatol VP or a secret objective. | Official image + base rules citeturn4view6turn26search15 | Central to Winnu and several timing races. |
+| Alliance | Promissory note | Ongoing while face-up | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Lets the holder use the issuer’s **commander** ability while unlocked. | Promissory-note rules + PoK set doc citeturn32view0turn37view0turn2search10 | This is the single most direct non-leader card-to-leader connection. |
+| Acquiescence | Promissory note | End of strategy phase | Base | original | — | Base / PoK without Codex | Swaps one of your strategy cards with Winnu’s chosen card. | Promissory index + strategy interaction page citeturn33view0turn25view0 | Original version changes strategy ownership directly. |
+| Acquiescence Ω | Promissory note | When Winnu resolves a strategic action | Codex I | Ω replacement | Acquiescence | Base+Codex / PoK+Codex / Thunder’s Edge | Lets you follow Winnu’s strategy card without spending or placing a command token, then returns. | Promissory index + Codex Ω note citeturn33view0turn36search1 | Important for hero/strategy timing trees. |
+| Stymie Ω | Promissory note | After enemy ships move into your system | Codex I | Ω replacement | Stymie | Base+Codex / PoK+Codex / Thunder’s Edge | Places one of that player’s tokens into a non-home system, then returns. | Promissory index + Codex Ω note citeturn32view0turn36search1 | Version-sensitive base-faction note. |
+| War Funding Ω | Promissory note | After space-combat dice are rolled | Codex I | Ω replacement | War Funding | Base+Codex / PoK+Codex / Thunder’s Edge | Rerolls all enemy dice and any number of your own; then returns. | Promissory index + Codex Ω note citeturn32view0turn36search1 | Strongly timing sensitive. |
+| Cybernetic Enhancements Ω | Promissory note | Status phase token gain | Codex I | Ω replacement | Cybernetic Enhancements | Base+Codex / PoK+Codex / Thunder’s Edge | Gives one extra command token during status-phase token gain; then returns. | Promissory index + Codex Ω note citeturn33view0turn36search1 | Very different from original strategy-pool manipulation. |
+| Greyfire Mutagen Ω | Promissory note | Start of ground combat vs. 2+ non-Yin ground forces | Codex I | Ω replacement | Greyfire Mutagen | Base+Codex / PoK+Codex / Thunder’s Edge | Converts one enemy infantry into one of yours, then returns. | Promissory index + Codex Ω note citeturn32view1turn36search1 | Codex redesign, not a wording cleanup. |
+| Political Stability | Action card | When you would return strategy cards in status phase | Base | original | — | Base / PoK / PoK+Codex / Thunder’s Edge | Keeps your strategy cards into the next round and makes you skip selection. | Strategy interaction page citeturn25view0 | Relevant to strategy-copying heroes. |
+| Public Disgrace | Action card | When another player chooses a strategy card | Base | original | — | Base / PoK / PoK+Codex / Thunder’s Edge | Forces a different strategy pick if able. | Strategy interaction page citeturn25view0 | Important for strategy-card state tracking. |
+| Manipulate Investments | Action card | Start of strategy phase | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Places 5 TG from supply across at least 3 strategy cards. | Strategy interaction page + action-card index citeturn25view0turn12view0 | Alters incentives around hero-enabled strategy effects. |
+| Coup d'Etat | Action card | When another player would perform a strategic action | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Ends that turn; the strategic action does not happen and the card stays readied. | Strategy interaction page + action-card index citeturn25view0turn14view3 | One of the clearest strategic-action interrupt cards. |
+| Overrule | Action card | As an action | Thunder’s Edge | original | — | Thunder’s Edge | Performs the primary ability of any readied or unchosen strategy card. | Action-card index + TE set doc citeturn14view1turn34search1 | Very direct overlap with Winnu/Naaz-style hero play. |
+| Imperial Arbiter | Agenda | End of strategy phase after enactment | Base | original | — | Base / PoK / PoK+Codex / Thunder’s Edge if included | Lets the elected player later discard it to swap a strategy card with another player’s. | Strategy interaction page citeturn25view0 | I include it because it explicitly edits strategy ownership. |
+| Checks and Balances | Agenda | During strategy phase after enactment | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | FOR causes chosen strategy cards to be handed to another eligible player; AGAINST limits readying. | Strategy interaction page + PoK set doc citeturn25view0turn2search10 | Direct strategy-selection distortion. |
+| Galactic Crisis Pact | Agenda | Ongoing law affecting secondaries | Prophecy of Kings | original | — | PoK / PoK+Codex / Thunder’s Edge | Elects a strategy card that everyone may follow for free, with placed tokens coming from reinforcements. | Strategy interaction page + PoK set doc citeturn25view0turn2search10 | Very relevant to heroes that grant secondaries. |
+| Minister of Sciences | Agenda | Ongoing law affecting Technology | Base | original | — | Base / PoK / PoK+Codex / Thunder’s Edge | Makes Technology primary/secondary research free for the elected player. | Strategy interaction page citeturn25view0 | Important mainly because strategy originals and revisions coexist in databases. |
+| Keleres Rider | Promissory note | After an agenda is revealed | Codex III | original | — | PoK+Codex / Thunder’s Edge | Predict an agenda outcome; on success, draw an action card and gain 2 TG, then return. | Promissory index + Codex III intro citeturn32view2turn34search0 | Strong overlap with agenda-focused heroes. |
+
+### Promissory-note inventory for hero-aware databases
+
+This compact inventory is useful if you want a separate `promissory_notes` table or a hero interaction resolver. For the generic notes, the main hero relevance is **The Oracle** and any effect that inspects or steals notes. For faction notes, the same is true, but note that the **Ω** rows are the version-control hotspots. All names and set affiliations below are grounded in the promissory-note index and the official set documents. citeturn37view0turn33view1turn32view2turn32view3turn34search0turn34search1
+
+| Note | Faction / color | Source set | Version tag | Current use bucket | Source |
+|---|---|---|---|---|---|
+| Ceasefire | General | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn37view0 |
+| Trade Agreement | General | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn37view0 |
+| Political Secret | General | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn37view0 |
+| Support for the Throne | General | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn37view0 |
+| Alliance | General | Prophecy of Kings | original | PoK / PoK+Codex / Thunder’s Edge | citeturn37view0turn2search10 |
+| Stymie / Stymie Ω | Arborec | Base / Codex I | original / Ω | Base without Codex / Base+Codex / PoK+Codex / Thunder’s Edge | citeturn32view0turn36search1 |
+| War Funding / War Funding Ω | Barony of Letnev | Base / Codex I | original / Ω | Base without Codex / Base+Codex / PoK+Codex / Thunder’s Edge | citeturn32view0turn36search1 |
+| Ragh's Call | Clan of Saar | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn33view0 |
+| Fires of the Gashlai | Embers of Muaat | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn33view0 |
+| Trade Convoys | Emirates of Hacan | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn33view0 |
+| Military Support | Federation of Sol | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn33view0 |
+| Creuss Iff | Ghosts of Creuss | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn33view0 |
+| Cybernetic Enhancements / Ω | L1Z1X Mindnet | Base / Codex I | original / Ω | Base without Codex / Base+Codex / PoK+Codex / Thunder’s Edge | citeturn33view0turn36search1 |
+| Promise of Protection | Mentak Coalition | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn33view1 |
+| Gift of Prescience | Naalu Collective | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn33view1 |
+| Antivirus | Nekro Virus | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn33view1 |
+| Tekklar Legion | Sardakk N'orr | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn33view1 |
+| Research Agreement | Jol-Nar | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn33view1 |
+| Acquiescence / Ω | Winnu | Base / Codex I | original / Ω | Base without Codex / Base+Codex / PoK+Codex / Thunder’s Edge | citeturn33view0turn36search1 |
+| Political Favor | Xxcha Kingdom | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn33view1 |
+| Greyfire Mutagen / Ω | Yin Brotherhood | Base / Codex I | original / Ω | Base without Codex / Base+Codex / PoK+Codex / Thunder’s Edge | citeturn32view1turn36search1 |
+| Spy Net | Yssaril Tribes | Base | original | Base / PoK / PoK+Codex / Thunder’s Edge | citeturn32view1 |
+| Strike Wing Ambuscade | Argent Flight | Prophecy of Kings | original | PoK / PoK+Codex / Thunder’s Edge | citeturn32view1turn2search10 |
+| Dark Pact | Empyrean | Prophecy of Kings | original | PoK / PoK+Codex / Thunder’s Edge | citeturn32view1turn2search10 |
+| Blood Pact | Empyrean | Prophecy of Kings | original | PoK / PoK+Codex / Thunder’s Edge | citeturn32view1turn2search10 |
+| Scepter of Dominion | Mahact Gene-Sorcerers | Prophecy of Kings | original | PoK / PoK+Codex / Thunder’s Edge | citeturn32view2turn2search10 |
+| Black Market Forgery | Naaz-Rokha Alliance | Prophecy of Kings | original | PoK / PoK+Codex / Thunder’s Edge | citeturn32view2turn2search10 |
+| The Cavalry | Nomad | Prophecy of Kings | original | PoK / PoK+Codex / Thunder’s Edge | citeturn32view2turn2search10 |
+| Terraform | Titans of Ul | Prophecy of Kings | original | PoK / PoK+Codex / Thunder’s Edge | citeturn32view2turn2search10 |
+| Crucible | Vuil'Raith Cabal | Prophecy of Kings | original | PoK / PoK+Codex / Thunder’s Edge | citeturn32view2turn2search10 |
+| Keleres Rider | Council Keleres | Codex III | original | PoK+Codex / Thunder’s Edge | citeturn32view2turn34search0 |
+| Sever | Crimson Rebellion | Thunder’s Edge | original | Thunder’s Edge | citeturn32view2turn34search1 |
+| Share Knowledge | Deepwrought Scholarate | Thunder’s Edge | original | Thunder’s Edge | citeturn32view3turn34search1 |
+| Black Ops | The Firmament | Thunder’s Edge | original | Thunder’s Edge | citeturn32view3turn34search1 |
+| Malevolency | The Obsidian | Thunder’s Edge | original | Thunder’s Edge | citeturn32view3turn34search1 |
+| Raise the Standard | Last Bastion | Thunder’s Edge | original | Thunder’s Edge | citeturn32view3turn34search1 |
+| Nano-Link Permit | Ral Nel Consortium | Thunder’s Edge | original | Thunder’s Edge | citeturn32view3turn34search1 |
+
+## Recommended database schema
+
+For a site that needs to survive card revisions, optional Codex adoption, and future expansion waves, the best pattern is **cards as identities** and **printings/versions as children**. A hero such as **Dannel of the Tenth** should be one logical card identity with multiple version rows if you want users to compare **Spinner Overdrive** against **Quantum Dissemination Ω**. Likewise, **Construction** should exist once as a card identity with separate version rows for **base**, **PoK revision**, and **Thunder’s Edge revision**.
+
+A practical relational schema looks like this:
+
+```mermaid
+erDiagram
+    SETS {
+        uuid id PK
+        string name
+        string set_type
+        date release_date
+        boolean official
+    }
+
+    CARD_FAMILIES {
+        uuid id PK
+        string canonical_name
+        string canonical_type
+        string faction_name
+        boolean generic_card
+        text design_notes
+    }
+
+    CARD_VERSIONS {
+        uuid id PK
+        uuid card_family_id FK
+        uuid set_id FK
+        string printed_name
+        string subtype
+        string version_tag
+        string timing_window
+        text rules_summary
+        text exact_text_optional
+        boolean current_official_standard
+        boolean optional_print_and_play
+        boolean ambiguous_fields
+    }
+
+    REPLACEMENTS {
+        uuid id PK
+        uuid newer_version_id FK
+        uuid older_version_id FK
+        string replacement_kind
+        text rationale
+    }
+
+    VALIDITY_PROFILES {
+        uuid id PK
+        string name
+        boolean uses_pok
+        boolean uses_codex
+        boolean uses_thunders_edge
+        text notes
+    }
+
+    VERSION_VALIDITY {
+        uuid id PK
+        uuid card_version_id FK
+        uuid validity_profile_id FK
+        boolean legal
+        text note
+    }
+
+    SOURCES {
+        uuid id PK
+        uuid card_version_id FK
+        string source_kind
+        string citation_label
+        text source_note
+    }
+
+    SETS ||--o{ CARD_VERSIONS : contains
+    CARD_FAMILIES ||--o{ CARD_VERSIONS : has
+    CARD_VERSIONS ||--o{ SOURCES : documented_by
+    CARD_VERSIONS ||--o{ VERSION_VALIDITY : legal_in
+    VALIDITY_PROFILES ||--o{ VERSION_VALIDITY : defines
+    CARD_VERSIONS ||--o{ REPLACEMENTS : newer
+    CARD_VERSIONS ||--o{ REPLACEMENTS : older
+```
+
+Recommended field types:
+
+- `canonical_type`: enum such as `hero_leader`, `strategy`, `action`, `agenda`, `promissory`
+- `version_tag`: enum such as `original`, `omega`, `revised`, `replacement`
+- `timing_window`: short text, not a hard enum, because TI timing language is varied
+- `rules_summary`: long text
+- `exact_text_optional`: long text, nullable
+- `current_official_standard`: boolean
+- `optional_print_and_play`: boolean
+- `ambiguous_fields`: boolean
+- `replacement_kind`: enum such as `codex_omega`, `expansion_revision`, `physical_reprint`
+
+This model makes the hardest cases easy:
+
+- **Xxcha hero**: one family, two versions.
+- **Yin hero**: one family, two versions.
+- **Construction**: one family, three versions.
+- **Keleres hero**: either one family with three mutually exclusive branch versions, or three separate card families under faction `Council Keleres`, depending on how you want search to behave.
+- **Ambiguous TE hero names**: version exists now with `ambiguous_fields = true`, later patched when an indexed official/public card image is available.
+
+## Open ambiguities and interpretation notes
+
+The biggest ambiguity I found is not about timing, but about **naming completeness in public indexed sources**. The current indexed leader transcription I checked still leaves the **Ral Nel Consortium** and **Crimson Rebellion** hero personal names unsurfaced, even though their **ability names and timing windows** are visible. I have therefore marked those names as ambiguous rather than guessing. citeturn22view0turn20view3
+
+A second interpretive point is about **scope**. If you define “relevant to heroes” in the absolute broadest possible way, then many more cards become indirectly relevant: every promissory note because of **The Oracle**, every action card with a component action because of **Erwan’s Covenant**, and effectively every strategy card because of **Imperial Seal** and **Perfect Synthesis**. For database design, though, the real version-sensitive burden sits with the cards above: **hero suites, revised strategies, Alliance, promissory Ω replacements, and the small strategy-adjacent action/agenda subset**. That is the point where users will actually encounter conflicting texts or wrong timing if the site stores only a single flat “card name.” citeturn23view1turn20view1turn23view3turn24view0turn25view0turn37view0
+
+Finally, because **Thunder’s Edge** compiles the earlier Codex gameplay content into a physical product, a production database should not store “Codex” as merely an online-print-and-play flag. It should store both **publication origin** and **physical availability**. A card can be “introduced in Codex III” and also be “physically available in Thunder’s Edge.” That distinction matters for search filters, collection tracking, and rules help. citeturn29search2turn35search3turn34search1

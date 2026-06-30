@@ -63,7 +63,7 @@
         <p class="eyebrow">Active modifiers</p>
         <h2>Card checklist</h2>
         <p>
-          Assign cards, technologies, and upgrades to the player colour that has them.
+          Assign cards, technologies, upgrades, and heroes to the player colour that has them.
           The phase flows below will show your effects and the effects other players can
           bring into the same timing window.
         </p>
@@ -81,6 +81,17 @@
             <option value="white">White</option>
           </select>
         </label>
+        <label class="player-colour-control" for="gameVersion">
+          <span>Game version</span>
+          <select id="gameVersion">
+            <option value="base">Base game</option>
+            <option value="pok">Prophecy of Kings</option>
+          </select>
+        </label>
+        <label class="codex-control" for="useCodexCards">
+          <input id="useCodexCards" type="checkbox">
+          <span>Use Codex cards</span>
+        </label>
         <span class="save-status" id="saveStatus" role="status" aria-live="polite"></span>
         <button class="utility-button" type="button" id="exportSave">Export save</button>
         <label class="utility-button import-save-control" for="importSave">
@@ -91,6 +102,17 @@
         <button class="utility-button" type="button" id="clearCards">Clear All</button>
       </div>
 
+      <div class="hero-checklist-panel" aria-labelledby="hero-checklist-title">
+        <div class="subsection-heading">
+          <h3 id="hero-checklist-title">Faction leader checklist</h3>
+          <p id="heroChecklistMessage"></p>
+        </div>
+        <div class="checklist-grid hero-checklist-grid" id="heroChecklist"></div>
+      </div>
+
+      <div class="subsection-heading">
+        <h3>Cards, technologies, and upgrades</h3>
+      </div>
       <div class="checklist-grid" id="cardChecklist"></div>
     </section>
 

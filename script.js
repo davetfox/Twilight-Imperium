@@ -5,8 +5,12 @@ const starCount = 120;
 const flowList = document.querySelector("#flowList");
 const phaseFlowList = document.querySelector("#phaseFlowList");
 const cardChecklist = document.querySelector("#cardChecklist");
+const heroChecklist = document.querySelector("#heroChecklist");
+const heroChecklistMessage = document.querySelector("#heroChecklistMessage");
 const clearCardsButton = document.querySelector("#clearCards");
 const playerColourSelect = document.querySelector("#playerColour");
+const gameVersionSelect = document.querySelector("#gameVersion");
+const useCodexCardsInput = document.querySelector("#useCodexCards");
 const saveStatus = document.querySelector("#saveStatus");
 const exportSaveButton = document.querySelector("#exportSave");
 const importSaveInput = document.querySelector("#importSave");
@@ -25,6 +29,186 @@ const playerColours = [
   { value: "yellow", label: "Yellow" },
   { value: "white", label: "White" }
 ];
+
+const factionLeaderEntries = [
+  { faction: "The Arborec", name: "Letani Ospha", type: "Agent leader", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Arborec agent. As an action, upgrade a non-fighter ship by replacing it with a ship that costs up to 2 more." },
+  { faction: "The Arborec", name: "Dirzuga Rophal", type: "Commander leader", source: "pok", phaseId: "tactical", stepId: "activate-system", stepName: "When you activate a system", text: "Arborec commander. After a system containing your units with Production is activated, you may produce 1 unit in that system." },
+  { faction: "The Barony of Letnev", name: "Viscount Unlenn", type: "Agent leader", source: "pok", phaseId: "combat", stepId: "start-combat-round", stepName: "Start of combat round", text: "Letnev agent. At the start of a combat round, choose 1 ship to roll 1 additional die during that combat round." },
+  { faction: "The Barony of Letnev", name: "Farran", type: "Commander leader", source: "pok", phaseId: "combat", stepId: "assign-hits", stepName: "Assign hits and Sustain Damage", text: "Letnev commander. After one of your units uses Sustain Damage, gain 1 trade good." },
+  { faction: "The Clan of Saar", name: "Captain Mendosa", type: "Agent leader", source: "pok", phaseId: "tactical", stepId: "activate-system", stepName: "When you activate a system", text: "Saar agent. After a system is activated, set one ship's move value to the highest move value among ships in that system." },
+  { faction: "The Clan of Saar", name: "Rowl Sarrig", type: "Commander leader", source: "pok", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Saar commander. When producing fighters or infantry, you may place them at any of your un-blockaded space docks." },
+  { faction: "The Embers of Muaat", name: "Umbat", type: "Agent leader", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Muaat agent. As an action, let a player produce up to 2 units with total cost 4 or less in a system with their War Sun or flagship." },
+  { faction: "The Embers of Muaat", name: "Magmus", type: "Commander leader", source: "pok", phaseId: "action", stepId: "strategic-action", stepName: "When spending a strategy token", text: "Muaat commander. After you spend a strategy token, gain 1 trade good." },
+  { faction: "The Emirates of Hacan", name: "Carth of the Golden Sands", type: "Agent leader", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Hacan agent. During the action phase, exhaust to gain 2 commodities or refresh another player's commodities." },
+  { faction: "The Emirates of Hacan", name: "Gila the Silvertongue", type: "Commander leader", source: "pok", phaseId: "agenda", stepId: "votes-cast", stepName: "After votes are cast", text: "Hacan commander. When you cast votes, you may spend trade goods to cast extra votes." },
+  { faction: "The Federation of Sol", name: "Evelyn DeLouis", type: "Agent leader", source: "pok", phaseId: "invasion", stepId: "start-ground-combat", stepName: "Start of ground combat", text: "Sol agent. At the start of a ground-combat round, choose 1 ground force to roll 1 additional die during that round." },
+  { faction: "The Federation of Sol", name: "Claire Gibson", type: "Commander leader", source: "pok", phaseId: "invasion", stepId: "start-ground-combat", stepName: "Start of ground combat", text: "Sol commander. At the start of ground combat on a planet you control, place 1 infantry from reinforcements on that planet." },
+  { faction: "The Ghosts of Creuss", name: "Emissary Taivra", type: "Agent leader", source: "pok", phaseId: "tactical", stepId: "activate-system", stepName: "When you activate a system", text: "Creuss agent. After a system with a non-delta wormhole is activated, that system is adjacent to all wormhole systems during this tactical action." },
+  { faction: "The Ghosts of Creuss", name: "Sai Seravus", type: "Commander leader", source: "pok", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Creuss commander. After your ships move through a wormhole, your carriers may place fighters if they have capacity." },
+  { faction: "The L1Z1X Mindnet", name: "I48S", type: "Agent leader", source: "pok", phaseId: "tactical", stepId: "activate-system", stepName: "When you activate a system", text: "L1Z1X agent. After activation, replace infantry in the active system with one of your mechs." },
+  { faction: "The L1Z1X Mindnet", name: "2RAM", type: "Commander leader", source: "pok", phaseId: "invasion", stepId: "bombardment-space-cannon", stepName: "Bombardment and Space Cannon", text: "L1Z1X commander. Units with Planetary Shield do not prevent your units from using Bombardment." },
+  { faction: "The Mentak Coalition", name: "Suffi An", type: "Agent leader", source: "pok", phaseId: "action", stepId: "action-card-window", stepName: "When action cards are played or discarded", text: "Mentak agent. After Pillage is used against another player, both involved players draw 1 action card." },
+  { faction: "The Mentak Coalition", name: "S'ula Mentarion", type: "Commander leader", source: "pok", phaseId: "combat", stepId: "units-destroyed", stepName: "After units are destroyed", text: "Mentak commander. After you win a space combat, force your opponent to give you 1 promissory note." },
+  { faction: "The Naalu Collective", name: "Z'eu", type: "Agent leader", source: "pok", replacedByCodex: "Z'eu Omega", phaseId: "agenda", stepId: "agenda-revealed", stepName: "After an agenda is revealed", text: "Naalu agent. Base version interacts with the top agenda after an agenda is revealed." },
+  { faction: "The Naalu Collective", name: "Z'eu Omega", type: "Agent leader", source: "codex", replaces: "Z'eu", requiresPok: true, phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Naalu Codex agent. Lets a chosen player perform a tokenless tactical action." },
+  { faction: "The Naalu Collective", name: "M'aban", type: "Commander leader", source: "pok", replacedByCodex: "M'aban Omega", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Naalu commander. Base version helps produce additional fighters." },
+  { faction: "The Naalu Collective", name: "M'aban Omega", type: "Commander leader", source: "codex", replaces: "M'aban", requiresPok: true, phaseId: "agenda", stepId: "start-agenda", stepName: "Start of agenda phase", text: "Naalu Codex commander. Lets you inspect neighbors' promissory notes and the top or bottom agenda." },
+  { faction: "The Nekro Virus", name: "Nekro Malleon", type: "Agent leader", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Nekro agent. During the action phase, let a player discard an action card or spend a command token to gain 2 trade goods." },
+  { faction: "The Nekro Virus", name: "Nekro Acidos", type: "Commander leader", source: "pok", phaseId: "research", stepId: "research-unit-upgrade", stepName: "When gaining technology", text: "Nekro commander. After you gain a technology, draw 1 action card." },
+  { faction: "Sardakk N'orr", name: "T'ro", type: "Agent leader", source: "pok", phaseId: "tactical", stepId: "end-tactical-action", stepName: "End of tactical action", text: "Sardakk agent. At the end of a player's tactical action, that player may place 2 infantry in the active system." },
+  { faction: "Sardakk N'orr", name: "G'hom Sek'kus", type: "Commander leader", source: "pok", phaseId: "invasion", stepId: "commit-ground-forces", stepName: "Commit ground forces", text: "Sardakk commander. During Commit Ground Forces, you may commit up to 1 ground force from each planet in and adjacent to the active system." },
+  { faction: "The Universities of Jol-Nar", name: "Doctor Sucaban", type: "Agent leader", source: "pok", phaseId: "research", stepId: "research-unit-upgrade", stepName: "When researching technology", text: "Jol-Nar agent. When a player spends resources to research, they may remove infantry to reduce the cost." },
+  { faction: "The Universities of Jol-Nar", name: "Ta-Zern", type: "Commander leader", source: "pok", phaseId: "combat", stepId: "roll-combat-dice", stepName: "Roll combat dice", text: "Jol-Nar commander. After you roll dice for a unit ability, you may reroll any of those dice." },
+  { faction: "The Winnu", name: "Berekar Berekon", type: "Agent leader", source: "pok", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Winnu agent. When units use Production, reduce the combined cost of produced units by 2." },
+  { faction: "The Winnu", name: "Rickar Rickani", type: "Commander leader", source: "pok", phaseId: "combat", stepId: "roll-combat-dice", stepName: "Roll combat dice", text: "Winnu commander. Your units get +2 to combat rolls in Mecatol Rex, home systems, and legendary planet systems." },
+  { faction: "The Xxcha Kingdom", name: "Ggrucoto Rinn", type: "Agent leader", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Xxcha agent. As an action, ready any planet; if adjacent to your planets, you may remove 1 infantry from it." },
+  { faction: "The Xxcha Kingdom", name: "Elder Qanoj", type: "Commander leader", source: "pok", phaseId: "agenda", stepId: "votes-cast", stepName: "After votes are cast", text: "Xxcha commander. Each exhausted planet gives extra voting power, and game effects cannot prevent you from voting." },
+  { faction: "The Yin Brotherhood", name: "Brother Milor", type: "Agent leader", source: "pok", replacedByCodex: "Brother Milor Omega", phaseId: "combat", stepId: "units-destroyed", stepName: "After units are destroyed", text: "Yin agent. Base version places fighters after one of your destroyers or cruisers is destroyed." },
+  { faction: "The Yin Brotherhood", name: "Brother Milor Omega", type: "Agent leader", source: "codex", replaces: "Brother Milor", requiresPok: true, phaseId: "combat", stepId: "units-destroyed", stepName: "After units are destroyed", text: "Yin Codex agent. After one of your units is destroyed, place 2 fighters or infantry depending on the destroyed unit type." },
+  { faction: "The Yin Brotherhood", name: "Brother Omar", type: "Commander leader", source: "pok", replacedByCodex: "Brother Omar Omega", phaseId: "research", stepId: "research-unit-upgrade", stepName: "When researching technology", text: "Yin commander. Base version satisfies a green prerequisite and helps with infantry production costs." },
+  { faction: "The Yin Brotherhood", name: "Brother Omar Omega", type: "Commander leader", source: "codex", replaces: "Brother Omar", requiresPok: true, phaseId: "research", stepId: "research-unit-upgrade", stepName: "When researching technology", text: "Yin Codex commander. Satisfies a green prerequisite and can ignore a researched player's tech prerequisites by returning infantry." },
+  { faction: "The Yssaril Tribes", name: "Clever Clever Ssruu", type: "Agent leader", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Yssaril agent. Has the text ability of every other player's agent, even if those agents are exhausted." },
+  { faction: "The Yssaril Tribes", name: "So Ata", type: "Commander leader", source: "pok", phaseId: "tactical", stepId: "opponent-activates-your-system", stepName: "After another player activates your system", text: "Yssaril commander. After another player activates a system containing your units, look at that player's action cards, promissory notes, or secret objectives." },
+  { faction: "The Argent Flight", name: "Trillossa Aun Mirik", type: "Agent leader", source: "pok", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Argent agent. When a player produces ground forces, they may place them on controlled planets in or adjacent to that system." },
+  { faction: "The Argent Flight", name: "Trrakan Aun Zulok", type: "Commander leader", source: "pok", phaseId: "combat", stepId: "anti-fighter-barrage", stepName: "Anti-Fighter Barrage", text: "Argent commander. When your units roll for unit abilities, choose 1 of those units to roll 1 additional die." },
+  { faction: "The Empyrean", name: "Acamar", type: "Agent leader", source: "pok", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Empyrean agent. After ships move into a system that contains no planets, that player gains 1 command token." },
+  { faction: "The Empyrean", name: "Xuange", type: "Commander leader", source: "pok", phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Empyrean commander. After another player moves ships into a system containing your command token, return that token to your reinforcements." },
+  { faction: "The Mahact Gene-Sorcerers", name: "Jae Mir Kan", type: "Agent leader", source: "pok", phaseId: "action", stepId: "strategic-action", stepName: "Strategic action declaration", text: "Mahact agent. When resolving a strategic secondary, use an active player's command token from the board instead of spending one from your strategy pool." },
+  { faction: "The Mahact Gene-Sorcerers", name: "Il Na Viroset", type: "Commander leader", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Mahact commander. During your tactical actions, you may activate systems containing your command tokens, then return both tokens and end your turn." },
+  { faction: "The Naaz-Rokha Alliance", name: "Garv and Gunn", type: "Agent leader", source: "pok", phaseId: "action", stepId: "end-your-turn", stepName: "End of your turn", text: "Naaz-Rokha agent. At the end of a player's turn, that player explores 1 planet." },
+  { faction: "The Naaz-Rokha Alliance", name: "Dart and Tai", type: "Commander leader", source: "pok", phaseId: "invasion", stepId: "after-control", stepName: "After gaining control", text: "Naaz-Rokha commander. After you gain control of a planet that belonged to another player, you may explore it." },
+  { faction: "The Nomad", name: "Artuno the Betrayer", type: "Agent leader", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Nomad agent. Stores trade goods for later payout." },
+  { faction: "The Nomad", name: "Field Marshal Mercer", type: "Agent leader", source: "pok", phaseId: "action", stepId: "end-your-turn", stepName: "End of your turn", text: "Nomad agent. Repositions ground forces at the end of a turn." },
+  { faction: "The Nomad", name: "The Thundarian", type: "Agent leader", source: "pok", phaseId: "combat", stepId: "roll-combat-dice", stepName: "Roll combat dice", text: "Nomad agent. Rewinds a combat round after Roll Dice so hits are not assigned." },
+  { faction: "The Nomad", name: "Navarch Feng", type: "Commander leader", source: "pok", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Nomad commander. You may produce your flagship without spending resources." },
+  { faction: "The Titans of Ul", name: "Tellurian", type: "Agent leader", source: "pok", phaseId: "combat", stepId: "assign-hits", stepName: "Assign hits and Sustain Damage", text: "Titans agent. When a hit is produced against a unit, cancel that hit." },
+  { faction: "The Titans of Ul", name: "Tungstantus", type: "Commander leader", source: "pok", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Titans commander. When your units use Production, gain 1 trade good." },
+  { faction: "The Vuil'Raith Cabal", name: "The Stillness of Stars", type: "Agent leader", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Cabal agent. After another player replenishes commodities, convert them to trade goods and capture a unit from reinforcements up to that commodity value." },
+  { faction: "The Vuil'Raith Cabal", name: "That Which Molds Flesh", type: "Commander leader", source: "pok", phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "Cabal commander. When producing fighters or infantry, up to 2 of those units do not count against your Production limit." },
+  { faction: "The Council Keleres", name: "Xander Alexin Victori III", type: "Agent leader", source: "codex", requiresPok: true, phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Keleres agent. At any time, allow any player to spend commodities as trade goods." },
+  { faction: "The Council Keleres", name: "Suffi An Keleres", type: "Commander leader", source: "codex", requiresPok: true, phaseId: "action", stepId: "end-your-turn", stepName: "End of your turn", text: "Keleres commander. After you perform a component action, you may perform an additional action." }
+];
+
+const heroFactionByName = {
+  "Adjudicator Ba'al": "The Embers of Muaat",
+  "Ahk-Syl Siven": "The Nomad",
+  "Airo Shir Aur": "The Mahact Gene-Sorcerers",
+  "Conservator Procyon": "The Empyrean",
+  "Dannel of the Tenth": "The Yin Brotherhood",
+  "Dannel of the Tenth Omega": "The Yin Brotherhood",
+  "Darktalon Treilla": "The Barony of Letnev",
+  "Gurno Aggero": "The Clan of Saar",
+  "Harka Leeds": "The Council Keleres",
+  "Harrugh Gefhara": "The Emirates of Hacan",
+  "Hesh and Prit": "The Naaz-Rokha Alliance",
+  "Ipswitch, Loose Cannon": "The Mentak Coalition",
+  "It Feeds on Carrion": "The Vuil'Raith Cabal",
+  "Jace X. 4th Air Legion": "The Federation of Sol",
+  "Kuuasi Aun Jalatai": "The Council Keleres",
+  "Kyver, Blade and Key": "The Yssaril Tribes",
+  "Letani Miasmiala": "The Arborec",
+  "Mathis Mathinus": "The Winnu",
+  "Mirik Aun Sissiri": "The Argent Flight",
+  "Odlynn Myrr": "The Council Keleres",
+  "Riftwalker Meian": "The Ghosts of Creuss",
+  "Rin, the Master's Legacy": "The Universities of Jol-Nar",
+  "Sh'val, Harbinger": "Sardakk N'orr",
+  "The Helmsman": "The L1Z1X Mindnet",
+  "The Oracle": "The Naalu Collective",
+  "Ul the Progenitor": "The Titans of Ul",
+  "UNIT.DSGN.FLAYESH": "The Nekro Virus",
+  "Xxekir Grom": "The Xxcha Kingdom",
+  "Xxekir Grom Omega": "The Xxcha Kingdom"
+};
+
+const cardVersionMeta = {
+  "AI Development Algorithm": { source: "pok" },
+  "Ancient Burial Sites": { source: "base" },
+  "Antimass Deflectors": { source: "base" },
+  "Assassinate Representative": { source: "base" },
+  "Assault Cannon": { source: "base" },
+  "Bribery": { source: "base" },
+  "Bunker": { source: "base" },
+  "Confusing Legal Text": { source: "base" },
+  "Confounding Legal Text": { source: "pok" },
+  "Conservator Procyon": { source: "pok" },
+  "Coup d'Etat": { source: "pok" },
+  "Adjudicator Ba'al": { source: "pok" },
+  "Ahk-Syl Siven": { source: "pok" },
+  "Airo Shir Aur": { source: "pok" },
+  "Dacxive Animators": { source: "base" },
+  "Dannel of the Tenth": { source: "pok", replacedByCodex: "Dannel of the Tenth Omega" },
+  "Dannel of the Tenth Omega": { source: "codex", replaces: "Dannel of the Tenth", requiresPok: true },
+  "Dark Energy Tap": { source: "pok" },
+  "Darktalon Treilla": { source: "pok" },
+  "Direct Hit": { source: "base" },
+  "Disable": { source: "base" },
+  "Distinguished Councilor": { source: "base" },
+  "Destroyer II": { source: "base" },
+  "Dreadnought II": { source: "base" },
+  "Emergency Repairs": { source: "base" },
+  "Experimental Battlestation": { source: "base" },
+  "Extreme Duress": { source: "te" },
+  "Fighter II": { source: "base" },
+  "Fighter Prototype": { source: "base" },
+  "Fleet Logistics": { source: "base" },
+  "Forward Supply Base": { source: "codex" },
+  "Ghost Squad": { source: "codex" },
+  "Gravity Drive": { source: "base" },
+  "Graviton Laser System": { source: "base" },
+  "Gurno Aggero": { source: "pok" },
+  "Hack Election": { source: "codex" },
+  "Harka Leeds": { source: "codex", requiresPok: true },
+  "Harrugh Gefhara": { source: "pok" },
+  "Hesh and Prit": { source: "pok" },
+  "Hyper Metabolism": { source: "base" },
+  "Infantry II": { source: "base" },
+  "Integrated Economy": { source: "base" },
+  "Ipswitch, Loose Cannon": { source: "pok" },
+  "It Feeds on Carrion": { source: "pok" },
+  "Jace X. 4th Air Legion": { source: "pok" },
+  "Kuuasi Aun Jalatai": { source: "codex", requiresPok: true },
+  "Kyver, Blade and Key": { source: "pok" },
+  "Light/Wave Deflector": { source: "base" },
+  "Letani Miasmiala": { source: "pok" },
+  "Magen Defense Grid": { source: "base", codexUpdated: true },
+  "Mathis Mathinus": { source: "pok" },
+  "Mirik Aun Sissiri": { source: "pok" },
+  "Neural Motivator": { source: "base" },
+  "Odlynn Myrr": { source: "codex", requiresPok: true },
+  "PDS II": { source: "base" },
+  "Plasma Scoring": { source: "base" },
+  "Predictive Intelligence": { source: "pok" },
+  "Public Disgrace": { source: "base" },
+  "Reveal Prototype": { source: "pok" },
+  "Reverse Engineer": { source: "pok" },
+  "Riftwalker Meian": { source: "pok" },
+  "Rin, the Master's Legacy": { source: "pok" },
+  "Rider cycle": { source: "base" },
+  "Rout": { source: "pok" },
+  "Sabotage": { source: "base" },
+  "Sarween Tools": { source: "base" },
+  "Scanlink Drone Network": { source: "pok" },
+  "Sh'val, Harbinger": { source: "pok" },
+  "Shields Holding": { source: "base" },
+  "Skilled Retreat": { source: "base" },
+  "Sling Relay": { source: "pok" },
+  "Solar Flare": { source: "codex" },
+  "Space Dock II": { source: "base" },
+  "Supercharge": { source: "pok" },
+  "The Helmsman": { source: "pok" },
+  "The Oracle": { source: "pok" },
+  "Transit Diodes": { source: "base" },
+  "Ul the Progenitor": { source: "pok" },
+  "UNIT.DSGN.FLAYESH": { source: "pok" },
+  "War Machine": { source: "codex" },
+  "War Sun": { source: "base" },
+  "Waylay": { source: "pok" },
+  "X-89 Bacterial Weapon": { source: "base", replacedByCodex: "X-89 Bacterial Weapon Omega" },
+  "X-89 Bacterial Weapon Omega": { source: "codex", replaces: "X-89 Bacterial Weapon" },
+  "Xxekir Grom": { source: "pok", replacedByCodex: "Xxekir Grom Omega" },
+  "Xxekir Grom Omega": { source: "codex", replaces: "Xxekir Grom", requiresPok: true }
+};
 
 const flows = [
   {
@@ -82,6 +266,16 @@ const flows = [
       {
         step: "Move ships",
         cards: [
+          {
+            name: "Adjudicator Ba'al",
+            type: "Hero leader",
+            text: "Embers of Muaat hero. After moving a War Sun into an eligible system, destroy all other units there and turn that system into the Muaat supernova, then purge the hero."
+          },
+          {
+            name: "Sh'val, Harbinger",
+            type: "Hero leader",
+            text: "Sardakk N'orr hero. After moving ships into the active system, skip directly to committing ground forces; after committing, purge and return those ships to reinforcements."
+          },
           {
             name: "Antimass Deflectors",
             type: "Technology",
@@ -155,6 +349,11 @@ const flows = [
         step: "Start of combat",
         cards: [
           {
+            name: "Ipswitch, Loose Cannon",
+            type: "Hero leader",
+            text: "Mentak Coalition hero. At the start of a space combat you are in, purge to replace destroyed ships from that combat with matching ships from your reinforcements in the active system."
+          },
+          {
             name: "Reveal Prototype",
             type: "Action card",
             text: "At the start of a combat: Spend 4 resources to research a unit upgrade that matches a participating unit type."
@@ -169,6 +368,11 @@ const flows = [
       {
         step: "Start of combat round",
         cards: [
+          {
+            name: "Kuuasi Aun Jalatai",
+            type: "Hero leader",
+            text: "Council Keleres Argent-branch hero. At the start of a space-combat round in a system with your planet, purge to deploy your flagship and up to 2 cruisers or destroyers there."
+          },
           {
             name: "Skilled Retreat",
             type: "Action card",
@@ -312,6 +516,11 @@ const flows = [
         step: "After Bombardment",
         cards: [
           {
+            name: "X-89 Bacterial Weapon",
+            type: "Technology",
+            text: "Action: Exhaust this card and choose 1 or more of your ships with Bombardment; destroy all infantry on one planet in that system."
+          },
+          {
             name: "X-89 Bacterial Weapon Omega",
             type: "Technology",
             text: "After Bombardment, if at least 1 infantry was destroyed, you may destroy all opponent infantry on that planet."
@@ -379,6 +588,11 @@ const flows = [
         step: "When units use Production",
         cards: [
           {
+            name: "Harrugh Gefhara",
+            type: "Hero leader",
+            text: "Emirates of Hacan hero. During one PRODUCTION use, purge to make the cost of your produced units 0 for that production window."
+          },
+          {
             name: "War Machine",
             type: "Action card",
             text: "When 1 or more of your units use Production, those units have +4 total production and the combined cost of the produced units is reduced by 1."
@@ -407,11 +621,6 @@ const flows = [
             name: "Sling Relay",
             type: "Technology",
             text: "Action: Exhaust this card to produce 1 ship in any system that contains 1 of your space docks."
-          },
-          {
-            name: "X-89 Bacterial Weapon",
-            type: "Technology",
-            text: "Action: Exhaust this card and choose 1 or more of your ships with Bombardment; destroy all infantry on one planet in that system."
           }
         ]
       }
@@ -461,6 +670,11 @@ const flows = [
             name: "Hyper Metabolism",
             type: "Technology",
             text: "During the status phase, gain 3 command tokens instead of 2."
+          },
+          {
+            name: "The Oracle",
+            type: "Hero leader",
+            text: "Naalu Collective hero. At the end of the status phase, force each other player to give you 1 promissory note; purge if you do."
           }
         ]
       }
@@ -498,6 +712,11 @@ const flows = [
             name: "Rider cycle",
             type: "Action card",
             text: "After an agenda is revealed: You cannot vote on this agenda. Predict aloud an outcome; if correct, resolve the rider reward."
+          },
+          {
+            name: "Odlynn Myrr",
+            type: "Hero leader",
+            text: "Council Keleres Xxcha-branch hero. After an agenda is revealed, purge to add votes, predict an outcome, and reward dissenting votes with trade goods and command tokens."
           }
         ]
       },
@@ -525,7 +744,12 @@ const flows = [
         step: "When elected or outcome resolves",
         cards: [
           {
-            name: "Confusing Legal Text / Confounding Legal Text",
+            name: "Confusing Legal Text",
+            type: "Action card",
+            text: "When you or another player is elected, redirect the elected-player outcome to you."
+          },
+          {
+            name: "Confounding Legal Text",
             type: "Action card",
             text: "When you or another player is elected, redirect the elected-player outcome to you."
           }
@@ -561,6 +785,116 @@ const flows = [
       {
         step: "During your turn",
         cards: [
+          {
+            name: "Letani Miasmiala",
+            type: "Hero leader",
+            text: "Arborec hero. As a component action, produce in any systems that contain your ground forces, then purge."
+          },
+          {
+            name: "Darktalon Treilla",
+            type: "Hero leader",
+            text: "Barony of Letnev hero. As a component action, ignore fleet-supply and law limits on your non-fighter ships in systems for the rest of the round, then purge later."
+          },
+          {
+            name: "Gurno Aggero",
+            type: "Hero leader",
+            text: "Clan of Saar hero. As a component action, destroy other players' infantry and fighters in a system adjacent to one of your space docks, then purge."
+          },
+          {
+            name: "Jace X. 4th Air Legion",
+            type: "Hero leader",
+            text: "Federation of Sol hero. As a component action, remove all your command tokens from the board back to reinforcements, then purge."
+          },
+          {
+            name: "Riftwalker Meian",
+            type: "Hero leader",
+            text: "Ghosts of Creuss hero. As a component action, swap 2 eligible systems that contain wormholes or your units, excluding Creuss and the Nexus, then purge."
+          },
+          {
+            name: "The Helmsman",
+            type: "Hero leader",
+            text: "L1Z1X Mindnet hero. As a component action, move your flagship and any number of dreadnoughts into a chosen system without enemy ships, then purge."
+          },
+          {
+            name: "UNIT.DSGN.FLAYESH",
+            type: "Hero leader",
+            text: "Nekro Virus hero. As a component action on a tech-specialty planet with your units, wipe other players there, gain trade goods from the planet values, gain a matching-color technology, then purge."
+          },
+          {
+            name: "Rin, the Master's Legacy",
+            type: "Hero leader",
+            text: "Universities of Jol-Nar hero. As a component action, exchange your non-unit-upgrade technologies for other technologies of matching colors, then purge."
+          },
+          {
+            name: "Mathis Mathinus",
+            type: "Hero leader",
+            text: "Winnu hero. As a component action, perform the primary ability of any strategy card and optionally let any number of other players resolve its secondary, then purge."
+          },
+          {
+            name: "Xxekir Grom",
+            type: "Hero leader",
+            text: "Xxcha Kingdom hero. As a component action, discard a law, inspect 5 agendas, resolve 2 as if you voted for chosen outcomes, discard the rest, block outside abilities, then purge."
+          },
+          {
+            name: "Xxekir Grom Omega",
+            type: "Hero leader",
+            text: "Xxcha Kingdom Codex hero. Passive replacement: when exhausting planets, combine resources and influence and treat that total as both values."
+          },
+          {
+            name: "Dannel of the Tenth",
+            type: "Hero leader",
+            text: "Yin Brotherhood hero. As a component action, for each planet with your infantry, either ready it or add matching infantry from reinforcements, then purge."
+          },
+          {
+            name: "Dannel of the Tenth Omega",
+            type: "Hero leader",
+            text: "Yin Brotherhood Codex hero. As a component action, land up to 3 infantry from reinforcements on non-home planets and resolve invasions without Space Cannon against them, then purge."
+          },
+          {
+            name: "Kyver, Blade and Key",
+            type: "Hero leader",
+            text: "Yssaril Tribes hero. As a component action, each opponent reveals 1 action card; for each, you either take it or force that player to discard 3 random action cards, then purge."
+          },
+          {
+            name: "Mirik Aun Sissiri",
+            type: "Hero leader",
+            text: "Argent Flight hero. As a component action, move any number of your ships into systems containing your command tokens and no enemy ships, then purge."
+          },
+          {
+            name: "Conservator Procyon",
+            type: "Hero leader",
+            text: "Empyrean hero. As a component action, place frontier tokens into eligible empty systems, then explore all such tokens where you have ships, then purge."
+          },
+          {
+            name: "Airo Shir Aur",
+            type: "Hero leader",
+            text: "Mahact Gene-Sorcerers hero. As a component action, force one fleet to move into an adjacent enemy fleet's system and fight without retreat or ship-movement abilities, then purge."
+          },
+          {
+            name: "Hesh and Prit",
+            type: "Hero leader",
+            text: "Naaz-Rokha Alliance hero. As a component action, gain 1 relic and resolve up to 2 strategy-card secondary abilities using tokens from reinforcements, then purge."
+          },
+          {
+            name: "Ahk-Syl Siven",
+            type: "Hero leader",
+            text: "Nomad hero. As a component action, your flagship and its transported units can move out of systems with your command tokens for the rest of the round, then purge at round end."
+          },
+          {
+            name: "Ul the Progenitor",
+            type: "Hero leader",
+            text: "Titans of Ul hero. As a component action, ready Elysium, increase its values, and make it behave like a Space Cannon unit through an attachment-like effect."
+          },
+          {
+            name: "It Feeds on Carrion",
+            type: "Hero leader",
+            text: "Vuil'Raith Cabal hero. As a component action, roll to capture other players' non-fighter ships near dimensional tears, including dependent units removed as a consequence, then purge."
+          },
+          {
+            name: "Harka Leeds",
+            type: "Hero leader",
+            text: "Council Keleres Mentak-branch hero. As a component action, search the action deck for 3 component-action cards, take them, then purge."
+          },
           {
             name: "Fleet Logistics",
             type: "Technology",
@@ -887,6 +1221,7 @@ const placementMap = {
 };
 
 const cardGroups = [
+  "Faction Leaders",
   "Action Cards",
   "Blue Technology",
   "Yellow Technology",
@@ -900,7 +1235,8 @@ const categoryByName = {
   "Assassinate Representative": "Action Cards",
   "Bribery": "Action Cards",
   "Bunker": "Action Cards",
-  "Confusing Legal Text / Confounding Legal Text": "Action Cards",
+  "Confusing Legal Text": "Action Cards",
+  "Confounding Legal Text": "Action Cards",
   "Coup d'Etat": "Action Cards",
   "Direct Hit": "Action Cards",
   "Disable": "Action Cards",
@@ -1024,6 +1360,7 @@ function createEmptySaveState() {
   return {
     version: saveVersion,
     pages: {},
+    pageSettings: {},
     lastSaved: ""
   };
 }
@@ -1045,6 +1382,7 @@ function readSaveState() {
     return {
       version: saveVersion,
       pages: parsedState.pages,
+      pageSettings: parsedState.pageSettings || {},
       lastSaved: parsedState.lastSaved || ""
     };
   } catch (error) {
@@ -1061,23 +1399,73 @@ function isValidSaveState(value) {
     return false;
   }
 
-  return Object.values(value.pages).every((pageState) => {
+  const pagesAreValid = Object.values(value.pages).every((pageState) => {
     if (!pageState || typeof pageState !== "object" || Array.isArray(pageState)) {
       return false;
     }
 
     return Object.values(pageState).every((checkboxValue) => typeof checkboxValue === "boolean");
   });
+
+  if (!pagesAreValid) {
+    return false;
+  }
+
+  if (value.pageSettings === undefined) {
+    return true;
+  }
+
+  if (!value.pageSettings || typeof value.pageSettings !== "object" || Array.isArray(value.pageSettings)) {
+    return false;
+  }
+
+  return Object.values(value.pageSettings).every((pageSettings) => {
+    return pageSettings
+      && typeof pageSettings === "object"
+      && !Array.isArray(pageSettings)
+      && ["base", "pok"].includes(pageSettings.gameVersion)
+      && typeof pageSettings.useCodexCards === "boolean";
+  });
+}
+
+function getCurrentVisibleCheckboxIds() {
+  return getChecklistCheckboxes().map((checkbox) => checkbox.id);
+}
+
+function getCurrentPageSettings() {
+  return {
+    gameVersion: gameVersionSelect?.value || "base",
+    useCodexCards: useCodexCardsInput?.checked || false
+  };
+}
+
+function applyPageSettings(pageSettings) {
+  if (!pageSettings) {
+    return;
+  }
+
+  if (gameVersionSelect && ["base", "pok"].includes(pageSettings.gameVersion)) {
+    gameVersionSelect.value = pageSettings.gameVersion;
+  }
+
+  if (useCodexCardsInput && typeof pageSettings.useCodexCards === "boolean") {
+    useCodexCardsInput.checked = pageSettings.useCodexCards;
+  }
+}
+
+function restorePageSettings() {
+  const state = readSaveState();
+  applyPageSettings(state.pageSettings[pageSaveId]);
+}
+
+function getChecklistCheckboxes() {
+  return [...document.querySelectorAll("#heroChecklist input[type='checkbox'], #cardChecklist input[type='checkbox']")];
 }
 
 function getCurrentPageCheckboxState() {
   const pageState = {};
 
-  if (!cardChecklist) {
-    return pageState;
-  }
-
-  cardChecklist.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
+  getChecklistCheckboxes().forEach((checkbox) => {
     if (checkbox.checked) {
       pageState[checkbox.id] = true;
     }
@@ -1089,11 +1477,11 @@ function getCurrentPageCheckboxState() {
 function applyPageCheckboxState(pageState) {
   selectedCards.clear();
 
-  if (!cardChecklist || !pageState) {
+  if (!pageState) {
     return;
   }
 
-  cardChecklist.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
+  getChecklistCheckboxes().forEach((checkbox) => {
     checkbox.checked = pageState[checkbox.id] === true;
 
     if (checkbox.checked) {
@@ -1107,7 +1495,16 @@ function applyPageCheckboxState(pageState) {
 
 function saveCurrentPageState(showFeedback = true) {
   const state = readSaveState();
-  state.pages[pageSaveId] = getCurrentPageCheckboxState();
+  const pageState = state.pages[pageSaveId] || {};
+  const visibleCheckboxIds = getCurrentVisibleCheckboxIds();
+
+  visibleCheckboxIds.forEach((checkboxId) => {
+    delete pageState[checkboxId];
+  });
+
+  Object.assign(pageState, getCurrentPageCheckboxState());
+  state.pages[pageSaveId] = pageState;
+  state.pageSettings[pageSaveId] = getCurrentPageSettings();
   state.lastSaved = new Date().toISOString();
 
   try {
@@ -1143,7 +1540,16 @@ function showAutosaveStatus(message) {
 
 function exportSaveState() {
   const state = readSaveState();
-  state.pages[pageSaveId] = getCurrentPageCheckboxState();
+  const pageState = state.pages[pageSaveId] || {};
+  const visibleCheckboxIds = getCurrentVisibleCheckboxIds();
+
+  visibleCheckboxIds.forEach((checkboxId) => {
+    delete pageState[checkboxId];
+  });
+
+  Object.assign(pageState, getCurrentPageCheckboxState());
+  state.pages[pageSaveId] = pageState;
+  state.pageSettings[pageSaveId] = getCurrentPageSettings();
   state.lastSaved = new Date().toISOString();
 
   try {
@@ -1183,8 +1589,11 @@ function importSaveState(file) {
       writeSaveState({
         version: saveVersion,
         pages: importedState.pages,
+        pageSettings: importedState.pageSettings || {},
         lastSaved: new Date().toISOString()
       });
+      restorePageSettings();
+      renderChecklist();
       restoreCurrentPageState();
       renderPhaseFlows();
       showAutosaveStatus("Save imported");
@@ -1212,6 +1621,7 @@ function resetCurrentPageSave() {
 
   const state = readSaveState();
   delete state.pages[pageSaveId];
+  delete state.pageSettings[pageSaveId];
   state.lastSaved = new Date().toISOString();
 
   try {
@@ -1228,6 +1638,65 @@ function resetCurrentPageSave() {
 
 function getColourLabel(value) {
   return playerColours.find((colour) => colour.value === value)?.label || value;
+}
+
+function getGameSettings() {
+  return {
+    version: gameVersionSelect?.value || "base",
+    useCodex: useCodexCardsInput?.checked || false
+  };
+}
+
+function getLeaderInfo(cardName) {
+  const supportEntry = factionLeaderEntries.find((entry) => entry.name === cardName);
+
+  if (supportEntry) {
+    return supportEntry;
+  }
+
+  if (heroFactionByName[cardName]) {
+    return {
+      faction: heroFactionByName[cardName]
+    };
+  }
+
+  return null;
+}
+
+function isCardAvailable(cardName) {
+  const settings = getGameSettings();
+  const leaderInfo = getLeaderInfo(cardName);
+  const meta = cardVersionMeta[cardName] || leaderInfo || { source: "base" };
+
+  if (meta.source === "te") {
+    return false;
+  }
+
+  if (meta.source === "pok" && settings.version !== "pok") {
+    return false;
+  }
+
+  if (meta.requiresPok && settings.version !== "pok") {
+    return false;
+  }
+
+  if (meta.source === "codex" && !settings.useCodex) {
+    return false;
+  }
+
+  if (meta.source === "codex" && meta.replaces) {
+    const replacedMeta = cardVersionMeta[meta.replaces];
+
+    if (replacedMeta?.source === "pok" && settings.version !== "pok") {
+      return false;
+    }
+  }
+
+  if (settings.useCodex && meta.replacedByCodex) {
+    return false;
+  }
+
+  return true;
 }
 
 function renderOwnerChips(ownerColours, playerColour) {
@@ -1272,15 +1741,38 @@ function getModifierEntries() {
       }
 
       step.cards.forEach((card) => {
+        if (!isCardAvailable(card.name)) {
+          return;
+        }
+
         entries.push({
           ...card,
-          category: categoryByName[card.name] || card.type,
+          category: categoryByName[card.name] || (card.type.includes("leader") ? "Faction Leaders" : card.type),
+          faction: getLeaderInfo(card.name)?.faction || "",
           flowTitle: flow.title,
           phaseId: placement[0],
           stepId: placement[1],
           stepName: step.step
         });
       });
+    });
+  });
+
+  factionLeaderEntries.forEach((leader) => {
+    if (!isCardAvailable(leader.name)) {
+      return;
+    }
+
+    entries.push({
+      name: leader.name,
+      type: leader.type,
+      text: leader.text,
+      category: "Faction Leaders",
+      faction: leader.faction,
+      flowTitle: "Faction Leaders",
+      phaseId: leader.phaseId,
+      stepId: leader.stepId,
+      stepName: leader.stepName
     });
   });
 
@@ -1295,7 +1787,9 @@ function getUniqueCards() {
       cardsByName.set(entry.name, {
         name: entry.name,
         category: entry.category,
-        type: entry.type
+        type: entry.type,
+        text: entry.text,
+        faction: entry.faction || getLeaderInfo(entry.name)?.faction || ""
       });
     }
   });
@@ -1311,22 +1805,24 @@ function getUniqueCards() {
   });
 }
 
+function renderFilteredViews() {
+  const activeFilter = document.querySelector(".filter-button.active")?.dataset.filter || "all";
+  renderChecklist();
+  restoreCurrentPageState();
+  renderPhaseFlows();
+  renderFlows(activeFilter);
+}
+
 function renderChecklist() {
-  if (!cardChecklist) {
+  if (!cardChecklist || !heroChecklist) {
     return;
   }
 
   const cards = getUniqueCards();
 
-  cardChecklist.innerHTML = cardGroups.map((group) => {
-    const groupCards = cards.filter((card) => card.category === group);
-
-    if (!groupCards.length) {
-      return "";
-    }
-
+  function renderChecklistGroup(group, groupCards, isOpen = false) {
     return `
-      <details class="checklist-group">
+      <details class="checklist-group" ${isOpen ? "open" : ""}>
         <summary>
           <span>${group}</span>
           <span>${groupCards.length}</span>
@@ -1341,6 +1837,7 @@ function renderChecklist() {
                 <span class="card-summary">
                   <strong>${card.name}</strong>
                   <span>${card.type}</span>
+                  ${card.category === "Faction Leaders" ? `<p class="card-description">${card.text}</p>` : ""}
                 </span>
                 <div class="colour-choice-group" aria-label="${card.name} owner colours">
                   ${playerColours.map((colour) => {
@@ -1366,9 +1863,39 @@ function renderChecklist() {
         </div>
       </details>
     `;
+  }
+
+  const leaderCards = cards.filter((card) => card.category === "Faction Leaders");
+
+  if (leaderCards.length) {
+    const factionNames = [...new Set(leaderCards.map((card) => card.faction || "Other Leaders"))].sort();
+    heroChecklistMessage.textContent = "Open a faction, read what each agent, commander, or hero does, then tick the player colours that have that leader. Selected effects appear in the matching phase flow.";
+    heroChecklist.innerHTML = factionNames.map((factionName) => {
+      const factionCards = leaderCards
+        .filter((card) => (card.faction || "Other Leaders") === factionName)
+        .sort((first, second) => first.type.localeCompare(second.type) || first.name.localeCompare(second.name));
+
+      return renderChecklistGroup(factionName, factionCards);
+    }).join("");
+  } else {
+    const settings = getGameSettings();
+    heroChecklistMessage.textContent = settings.version === "base"
+      ? "Faction leaders are introduced by Prophecy of Kings. Change Game version to Prophecy of Kings to pick agents, commanders, and heroes."
+      : "No faction leaders are available for the current version choices.";
+    heroChecklist.innerHTML = "";
+  }
+
+  cardChecklist.innerHTML = cardGroups.filter((group) => group !== "Faction Leaders").map((group) => {
+    const groupCards = cards.filter((card) => card.category === group);
+
+    if (!groupCards.length) {
+      return "";
+    }
+
+    return renderChecklistGroup(group, groupCards);
   }).join("");
 
-  cardChecklist.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
+  getChecklistCheckboxes().forEach((checkbox) => {
     checkbox.addEventListener("change", () => {
       const cardName = checkbox.dataset.cardName;
       const selectedColours = selectedCards.get(cardName) || new Set();
@@ -1467,9 +1994,23 @@ function renderFlows(filter = "all") {
     return;
   }
 
-  const visibleFlows = filter === "all"
+  const visibleFlows = (filter === "all"
     ? flows
-    : flows.filter((flow) => flow.id === filter);
+    : flows.filter((flow) => flow.id === filter))
+    .map((flow) => {
+      return {
+        ...flow,
+        steps: flow.steps
+          .map((step) => {
+            return {
+              ...step,
+              cards: step.cards.filter((card) => isCardAvailable(card.name))
+            };
+          })
+          .filter((step) => step.cards.length)
+      };
+    })
+    .filter((flow) => flow.steps.length);
 
   flowList.innerHTML = visibleFlows.map((flow) => `
     <article class="flow-card">
@@ -1511,15 +2052,27 @@ if (playerColourSelect) {
   playerColourSelect.addEventListener("change", renderPhaseFlows);
 }
 
+if (gameVersionSelect) {
+  gameVersionSelect.addEventListener("change", () => {
+    renderFilteredViews();
+    saveCurrentPageState();
+  });
+}
+
+if (useCodexCardsInput) {
+  useCodexCardsInput.addEventListener("change", () => {
+    renderFilteredViews();
+    saveCurrentPageState();
+  });
+}
+
 if (clearCardsButton) {
   clearCardsButton.addEventListener("click", () => {
     selectedCards.clear();
 
-    if (cardChecklist) {
-      cardChecklist.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
-        checkbox.checked = false;
-      });
-    }
+    getChecklistCheckboxes().forEach((checkbox) => {
+      checkbox.checked = false;
+    });
 
     renderPhaseFlows();
     saveCurrentPageState();
@@ -1548,6 +2101,7 @@ window.addEventListener("resize", () => {
 resizeCanvas();
 createStars();
 drawStarfield();
+restorePageSettings();
 renderChecklist();
 restoreCurrentPageState();
 renderPhaseFlows();
