@@ -2128,6 +2128,11 @@ function applyPageCheckboxState(pageState) {
       }
     }
 
+    if (!isChecked && checkbox.dataset.playerOnly === "true") {
+      const playerColour = playerColourSelect?.value || checkbox.value;
+      isChecked = pageState[`card-${checkbox.dataset.cardSlug}-${playerColour}`] === true;
+    }
+
     if (!isChecked && checkbox.dataset.factionTechnology === "true") {
       isChecked = pageState[`card-${checkbox.dataset.cardSlug}-${checkbox.value}`] === true;
     }
@@ -2459,7 +2464,7 @@ function isFactionPromissoryNoteCard(card) {
 }
 
 function isPlayerOnlyCard(card) {
-  return card.category === "Planets and Relics";
+  return card.category === "Planets and Relics" || card.category === "Action Cards";
 }
 
 function getModifierEntries() {
@@ -2754,7 +2759,7 @@ function renderChecklist() {
                         data-player-only="true"
                         ${selectedColours.has(playerColour) ? "checked" : ""}
                       >
-                      <span>Active (${getColourLabelWithPlayerMarker(playerColour)})</span>
+                      <span>Active</span>
                     </label>
                   </div>
                 ` : isFactionTechnology ? `
