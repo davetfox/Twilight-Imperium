@@ -1,0 +1,342 @@
+# Twilight Imperium IV planets and relics
+
+## Executive summary
+
+This report cross-references **planet cards** and **relic cards** across **Twilight Imperium Fourth Edition Base Game**, **Prophecy of Kings**, the official **Codex** line, and **Thunder’s Edge**. It prioritizes official rules for timing and phase structure, then uses the Twilight Imperium Wiki’s component tables where official PDFs were not directly parseable through the web tool. The Codex line is relevant here because Fantasy Flight Games’ official Codex publishes both **Omega replacements** and **Ixthian Artifacts** that add new components; for planets and relics, the important consequence is that Codex adds new relics and the special legendary planet **Custodia Vigilia**, while Omega-style replacement logic matters most for **Mecatol Rex Ω** and **Custodia Vigilia Ω** in the later component ecosystem. citeturn24view0turn36search1turn17view0
+
+A few high-level findings matter before the tables. **Base Game has no relics**; relics enter the game with **Prophecy of Kings**. **Legendary planets** were also introduced with Prophecy of Kings and grant a separate legendary-ability card when controlled. **Thunder’s Edge** is the second official expansion, adds new planets, new relics, new legendary planets, **space-station planet cards**, Fracture planets with relic icons, and also includes prior Codex material. citeturn11view0turn12view2turn36search1turn35search1
+
+A second structural point is crucial for phase mapping. Ordinary planets mostly affect phases through the core rules rather than via printed effect text: they are controlled during **Action Phase tactical actions**, exhausted/spent as **resources or influence**, readied during the **Status Phase**, and used for **Agenda Phase voting** if they have influence. Traits themselves have no inherent rules text, but they matter for **exploration** and objectives; tech specialties matter when researching technology. **Space stations** in Thunder’s Edge are a special case: they have planet cards and can be spent/readied like planets, but they are **not planets** for objectives, elect-planet agendas, or home-system-control checks. citeturn16view0turn12view3turn12view4turn19view2turn35search1
+
+## Scope and phase-coding
+
+The core rules baseline used throughout the tables is:
+
+- **Setup**: home planet cards are distributed in **Step 5**, and starting technologies/units are gained in **Step 11**. Planet cards and legendary planet ability cards are placed near the board during setup; the relic deck is shuffled in **Step 8**. citeturn13view0turn13view1turn13view3
+- **Action Phase**: tactical actions follow the quick-reference sequence **Activation → Movement → Space Combat → Invasion → Production**. Gaining control of an uncontrolled, traited planet triggers **exploration** in Prophecy of Kings rules. citeturn15view0turn12view4
+- **Status Phase**: the phase includes **Score Objectives**, **Reveal Public Objective**, **Ready Cards**, and other cleanup. citeturn14view2turn15view0
+- **Agenda Phase**: after Mecatol Rex is opened, the phase runs **Reveal Agenda → Vote → Resolve Outcome** twice, then **Ready Planets**. Influence is used to vote. citeturn14view3turn16view0
+
+To keep the report readable, the tables use short phase codes:
+
+**Planet codes**
+
+- **Setup**: card placed/gained in setup or via setup-side system rules
+- **A/Tac**: standard tactical-action control/invasion relevance
+- **A/Strat**: can be exhausted for resources or influence during strategic actions in the Action Phase
+- **Exp**: explored on first control if eligible
+- **Tech**: tech-specialty skip during research
+- **A/Pass**: specific pass / end-of-turn / after-activate timing
+- **Combat**: explicit combat-step hook
+- **Status**: explicit status-phase hook, or standard readying / objective relevance
+- **Agenda**: voting or explicit agenda hook
+- **Obj**: notable objective or public-objective lock interaction
+- **SS**: Thunder’s Edge space-station special rules
+- **Leg**: legendary-ability-card interaction
+
+**Timing-type codes**
+
+- **P** persistent
+- **T** triggered
+- **O** optional
+- **M** mandatory
+- **1x** one-time
+
+Where a planet has **no printed rules text**, the “effect” column says so plainly; those cards still affect phases through the rules above. That is especially important for this project because the user asked for **phase impact**, not just special text. All rules-text summaries below are paraphrased rather than quoted verbatim. citeturn16view0turn12view2turn12view4turn19view2
+
+## Rules baseline for planets and relics
+
+Planets matter to the game in a few global ways that repeat across almost every row. A controlled planet’s card stays in the player’s play area; readied planets may be spent for resources or influence, exhausted planets may not. Technology-specialty planets can be exhausted to ignore a matching prerequisite when researching a technology. Legendary planets grant a separate legendary-planet ability card when controlled. citeturn16view0turn12view3turn12view2
+
+For home systems specifically, losing control of one or more planets in your home system prevents you from scoring public objectives. Also, home planets and Mecatol Rex are not explored under the exploration rules. citeturn9view0turn12view4
+
+Relics are gained primarily by purging relic fragments, and relic fragments come from planet/frontier exploration. Relics sit faceup in a player’s play area, their abilities can be used from there, and relics themselves cannot be traded under standard Prophecy of Kings rules. Thunder’s Edge adds a notable exception by printing a relic that explicitly permits its own trading. citeturn16view1turn12view4turn11view0
+
+## Planet cards
+
+### Base Game planets
+
+#### Base Game home-system planets
+
+| Card | Faction | Source | Tile / setup location | Res / Inf | Trait / icons | Effect summary | Timing | Phase impact | Replacement map | Sources |
+|---|---|---:|---|---:|---|---|---|---|---|---|
+| Nestphar | The Arborec | Base | Tile 05, Arborec home system | 3 / 2 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Arc Prime | Barony of Letnev | Base | Tile 10, Letnev home system | 4 / 0 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Wren Terra | Barony of Letnev | Base | Tile 10, Letnev home system | 2 / 1 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Lisis II | Clan of Saar | Base | Tile 11, Saar home system | 1 / 0 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Ragh | Clan of Saar | Base | Tile 11, Saar home system | 2 / 1 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Muaat | Embers of Muaat | Base | Tile 04, Muaat home system | 4 / 1 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Hercant | Emirates of Hacan | Base | Tile 16, Hacan home system | 1 / 1 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Arretze | Emirates of Hacan | Base | Tile 16, Hacan home system | 2 / 0 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Kamdorn | Emirates of Hacan | Base | Tile 16, Hacan home system | 0 / 1 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Jord | Federation of Sol | Base | Tile 01, Sol home system | 4 / 2 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Creuss | Ghosts of Creuss | Base | Tile 51, Creuss special home tile | 4 / 2 | Home, delta wormhole | No special rules text on the planet card | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj; system also has special adjacency role | None | citeturn10view0turn32view0turn19view0turn13view0turn16view0turn9view0 |
+| [0.0.0] | L1Z1X Mindnet | Base | Tile 06, L1Z1X home system | 5 / 0 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Moll Primus | Mentak Coalition | Base | Tile 02, Mentak home system | 4 / 1 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | Reused by Council Keleres option in Codex III | citeturn10view0turn32view0turn9view0 |
+| Druaa | Naalu Collective | Base | Tile 09, Naalu home system | 3 / 1 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Maaluuk | Naalu Collective | Base | Tile 09, Naalu home system | 0 / 2 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Mordai II | Nekro Virus | Base | Tile 08, Nekro home system | 4 / 0 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Tren'Lak | Sardakk N'orr | Base | Tile 13, Sardakk home system | 1 / 0 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Quinarra | Sardakk N'orr | Base | Tile 13, Sardakk home system | 3 / 1 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Jol | Universities of Jol-Nar | Base | Tile 12, Jol-Nar home system | 1 / 2 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Nar | Universities of Jol-Nar | Base | Tile 12, Jol-Nar home system | 2 / 3 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Winnu | Winnu | Base | Tile 07, Winnu home system | 3 / 4 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Archon Ren | Xxcha Kingdom | Base | Tile 14, Xxcha home system | 2 / 3 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | Reused by Council Keleres option in Codex III | citeturn10view0turn32view0turn9view0 |
+| Archon Tau | Xxcha Kingdom | Base | Tile 14, Xxcha home system | 1 / 1 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | Reused by Council Keleres option in Codex III | citeturn10view0turn32view0turn9view0 |
+| Darien | Yin Brotherhood | Base | Tile 03, Yin home system | 4 / 4 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Retillion | Yssaril Tribes | Base | Tile 15, Yssaril home system | 2 / 3 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+| Shalloq | Yssaril Tribes | Base | Tile 15, Yssaril home system | 1 / 2 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn13view0turn16view0turn9view0 |
+
+#### Base Game non-home planets
+
+| Card | Source | Tile / location | Res / Inf | Trait / icons | Effect summary | Timing | Phase impact | Replacement map | Sources |
+|---|---:|---|---:|---|---|---|---|---|---|
+| Mecatol Rex | Base | Tile 18, center of galaxy | 1 / 6 | No trait | No printed ability on base planet card; Custodians token blocks landing until paid off; opening it adds Agenda Phase | T/M | Setup, A/Tac, Agenda, Obj | Replaced by Mecatol Rex Ω in Thunder’s Edge when TE rules/components are used | citeturn5view0turn13view3turn19view1 |
+| Wellon | Base | Tile 19 | 1 / 2 | Industrial, TS yellow | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn7view0turn32view0turn16view0turn12view3turn12view4 |
+| Vefut II | Base | Tile 20 | 2 / 2 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn16view0turn12view4 |
+| Thibah | Base | Tile 21 | 1 / 1 | Industrial, TS blue | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn7view0turn32view0turn12view3turn12view4 |
+| Tar'Mann | Base | Tile 22 | 1 / 1 | Industrial, TS green | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn7view0turn32view0turn12view3turn12view4 |
+| Saudor | Base | Tile 23 | 2 / 2 | Industrial | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Mehar Xull | Base | Tile 24 | 1 / 3 | Hazardous, TS red | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn7view0turn32view0turn12view3turn12view4 |
+| Quann | Base | Tile 25 | 2 / 1 | Cultural, beta wormhole | No special rules text on card | P | A/Tac, A/Strat, Status, Agenda, Exp; wormhole affects adjacency in tactical movement | None | citeturn7view0turn32view0turn19view0turn12view4 |
+| Lodor | Base | Tile 26 | 3 / 1 | Cultural, alpha wormhole | No special rules text on card | P | A/Tac, A/Strat, Status, Agenda, Exp; wormhole affects adjacency | None | citeturn7view0turn32view0turn19view0turn12view4 |
+| New Albion | Base | Tile 27 | 1 / 1 | Industrial, TS green | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn7view0turn32view0turn12view3turn12view4 |
+| Starpoint | Base | Tile 27 | 3 / 1 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Tequ'ran | Base | Tile 28 | 2 / 0 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Torkan | Base | Tile 28 | 0 / 3 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Qucen'n | Base | Tile 29 | 1 / 2 | Industrial | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Rarron | Base | Tile 29 | 0 / 3 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Mellon | Base | Tile 30 | 0 / 2 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Zohbat | Base | Tile 30 | 3 / 1 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Lazar | Base | Tile 31 | 1 / 0 | Industrial, TS yellow | No special rules text | P | A/Tac, A/Strat, Status, Exp, Tech | None | citeturn7view0turn32view0turn12view3turn12view4 |
+| Sakulag | Base | Tile 31 | 2 / 1 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Dal Bootha | Base | Tile 32 | 0 / 2 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Xxehan | Base | Tile 32 | 1 / 1 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Coorneeq | Base | Tile 33 | 1 / 2 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Resculon | Base | Tile 33 | 2 / 0 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Centauri | Base | Tile 34 | 1 / 3 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Gral | Base | Tile 34 | 1 / 1 | Industrial, TS blue | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn7view0turn32view0turn12view3turn12view4 |
+| Bereg | Base | Tile 35 | 3 / 1 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Lirta IV | Base | Tile 35 | 2 / 3 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Arnor | Base | Tile 36 | 2 / 1 | Industrial | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Lor | Base | Tile 36 | 1 / 2 | Industrial | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Arinam | Base | Tile 37 | 1 / 2 | Industrial | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Meer | Base | Tile 37 | 0 / 4 | Hazardous, TS red | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn7view0turn32view0turn12view3turn12view4 |
+| Abyz | Base | Tile 38 | 3 / 0 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Exp | None | citeturn7view0turn32view0turn12view4 |
+| Fria | Base | Tile 38 | 2 / 0 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Exp | None | citeturn7view0turn32view0turn12view4 |
+
+### Prophecy of Kings planets
+
+#### Prophecy of Kings home-system planets
+
+| Card | Faction | Source | Tile / setup location | Res / Inf | Trait / icons | Effect summary | Timing | Phase impact | Replacement map | Sources |
+|---|---|---:|---|---:|---|---|---|---|---|---|
+| Valk | Argent Flight | PoK | Tile 58, Argent home system | 2 / 0 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Obj | Reused by Council Keleres option in Codex III | citeturn10view0turn32view1turn9view0 |
+| Avar | Argent Flight | PoK | Tile 58, Argent home system | 1 / 1 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | Reused by Council Keleres option in Codex III | citeturn10view0turn32view1turn9view0 |
+| Ylir | Argent Flight | PoK | Tile 58, Argent home system | 0 / 2 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | Reused by Council Keleres option in Codex III | citeturn10view0turn32view1turn9view0 |
+| The Dark | Empyrean | PoK | Tile 56, Empyrean home system | 3 / 4 | Home, nebula system | No special rules text on the planet card | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0turn19view1 |
+| Ixth | Mahact Gene-Sorcerers | PoK | Tile 52, Mahact home system | 3 / 5 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0 |
+| Naazir | Naaz-Rokha Alliance | PoK | Tile 57, Naaz-Rokha home system | 2 / 1 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view1 |
+| Rokha | Naaz-Rokha Alliance | PoK | Tile 57, Naaz-Rokha home system | 1 / 2 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view1 |
+| Arcturus | The Nomad | PoK | Tile 53, Nomad home system | 4 / 4 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0 |
+| Elysium | Titans of Ul | PoK | Tile 55, Titans home system | 4 / 1 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn32view0 |
+| Acheron | Vuil’Raith Cabal | PoK | Tile 54, Cabal home system | 4 / 0 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Obj | None | citeturn10view0turn32view0 |
+
+#### Prophecy of Kings non-home and special planets
+
+| Card | Source | Tile / location | Res / Inf | Trait / icons | Effect summary | Timing | Phase impact | Replacement map | Sources |
+|---|---:|---|---:|---|---|---|---|---|---|
+| Archon Vail | PoK | Tile 59 | 1 / 3 | Hazardous, TS blue | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn7view0turn32view1turn12view3turn12view4 |
+| Perimeter | PoK | Tile 60 | 2 / 1 | Industrial | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view1turn12view4 |
+| Ang | PoK | Tile 61 | 2 / 0 | Industrial, TS red | No special rules text | P | A/Tac, A/Strat, Status, Exp, Tech | None | citeturn7view0turn32view1turn12view3turn12view4 |
+| Sem-Lore | PoK | Tile 62 | 3 / 2 | Cultural, TS yellow | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn7view0turn32view1turn12view3turn12view4 |
+| Vorhal | PoK | Tile 63 | 0 / 2 | Cultural, TS green | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn7view0turn32view1turn12view3turn12view4 |
+| Atlas | PoK | Tile 64 | 3 / 1 | Hazardous, beta wormhole | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp; wormhole adjacency | None | citeturn7view0turn32view1turn19view1turn12view4 |
+| Primor | PoK | Tile 65 | 2 / 1 | Cultural, Legendary | Legendary ability places up to 2 infantry at end of your turn | T/O | A/Tac, A/Strat, Status, Agenda, Exp, Leg, A/Pass, Obj | None | citeturn7view0turn32view1turn17view0turn12view2 |
+| Hope’s End | PoK | Tile 66 | 3 / 0 | Hazardous, Legendary | Legendary ability places a mech at end of turn or draws 1 action card | T/O | A/Tac, A/Strat, Status, Exp, Leg, A/Pass, Obj | None | citeturn7view0turn32view1turn17view0turn12view2 |
+| Cormund | PoK | Tile 67 | 2 / 0 | Hazardous, gravity-rift system | No card text; anomaly affects movement risk | P | A/Tac, A/Strat, Status, Exp; system changes movement | None | citeturn7view0turn32view1turn15view0 |
+| Everra | PoK | Tile 68 | 3 / 1 | Cultural, nebula system | No card text; anomaly affects movement/combat in system | P | A/Tac, A/Strat, Status, Agenda, Exp; system modifies movement/combat | None | citeturn7view0turn32view1turn15view0 |
+| Accoen | PoK | Tile 69 | 2 / 3 | Industrial | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view1turn12view4 |
+| Jeol Ir | PoK | Tile 69 | 2 / 3 | Industrial | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view1turn12view4 |
+| Kraag | PoK | Tile 70 | 2 / 1 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view1turn12view4 |
+| Siig | PoK | Tile 70 | 0 / 2 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view1turn12view4 |
+| Ba’kal | PoK | Tile 71 | 3 / 2 | Industrial | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view1turn12view4 |
+| Alio Prima | PoK | Tile 71 | 1 / 1 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view1turn12view4 |
+| Lisis | PoK | Tile 72 | 2 / 2 | Industrial | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view1turn12view4 |
+| Velnor | PoK | Tile 72 | 2 / 1 | Industrial, TS red | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn7view0turn32view1turn12view3turn12view4 |
+| Cealdri | PoK | Tile 73 | 0 / 2 | Cultural, TS yellow | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn7view0turn32view1turn12view3turn12view4 |
+| Xanhact | PoK | Tile 73 | 0 / 1 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn7view0turn32view1turn12view4 |
+| Vega Major | PoK | Tile 74 | 2 / 1 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn6view0turn32view1turn12view4 |
+| Vega Minor | PoK | Tile 74 | 1 / 2 | Cultural, TS blue | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn6view0turn32view1turn12view3turn12view4 |
+| Abaddon | PoK | Tile 75 | 1 / 0 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Exp | None | citeturn6view0turn32view1turn12view4 |
+| Ashtroth | PoK | Tile 75 | 2 / 0 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Exp | None | citeturn6view0turn32view1turn12view4 |
+| Loki | PoK | Tile 75 | 1 / 2 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn6view0turn32view1turn12view4 |
+| Rigel I | PoK | Tile 76 | 0 / 1 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn6view0turn32view1turn12view4 |
+| Rigel II | PoK | Tile 76 | 1 / 2 | Industrial | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn6view0turn32view1turn12view4 |
+| Rigel III | PoK | Tile 76 | 1 / 1 | Industrial, TS green | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn6view0turn32view1turn12view3turn12view4 |
+| Mallice | PoK | Tile 82A/82B, Wormhole Nexus | 0 / 3 | Cultural, Legendary, special tile | Legendary ability gains 2 trade goods or converts all commodities at end of turn | T/O | A/Tac, A/Strat, Status, Agenda, Leg, A/Pass, Obj | None | citeturn6view0turn32view1turn17view0turn12view2 |
+| Mirage | PoK | Special frontier-card planet | 1 / 2 | Cultural, Legendary | Legendary ability places up to 2 fighters at end of turn in a system with your ships | T/O | A/Tac, A/Strat, Status, Agenda, Leg, A/Pass, Obj | None | citeturn6view0turn17view0turn12view4 |
+
+### Codex planets and planet-print replacements
+
+| Card | Source | Tile / location | Res / Inf | Trait / icons | Effect summary | Timing | Phase impact | Replacement map | Sources |
+|---|---:|---|---:|---|---|---|---|---|---|
+| Custodia Vigilia | Codex III | No system tile; gained via Keleres faction technology I.I.H.Q. Modernization | 2 / 3 | Legendary | While you control Mecatol Rex, Custodia gives Mecatol SPACE CANNON 5 and PRODUCTION 3; it also grants 2 command tokens when another player scores with Imperial | P/T | A/Tac only indirectly; Combat through Mecatol’s space cannon; Action/Imperial timing; Leg; Obj relevance as a planet | Replaced by Custodia Vigilia Ω in Thunder’s Edge | citeturn17view0turn23search5turn10view0 |
+
+**Codex III reuse note.** The Council Keleres does **not** add new home planets besides Custodia Vigilia; it chooses an unplayed **Mentak**, **Xxcha**, or **Argent** home system. Those reused home planets are therefore already listed above under Base or Prophecy of Kings. citeturn10view0
+
+### Thunder’s Edge planets
+
+#### Thunder’s Edge home-system and faction-specific planets
+
+| Card | Faction | Source | Tile / setup location | Res / Inf | Trait / icons | Effect summary | Timing | Phase impact | Replacement map | Sources |
+|---|---|---:|---|---:|---|---|---|---|---|---|
+| Ordinian | Last Bastion | TE | Tile 92, Last Bastion home system | 0 / 0 | Legendary home planet | Legendary ability: when you pass, draw 1 action card and gain 1 command token | T/O | Setup, A/Tac, Leg, A/Pass, Obj | None | citeturn10view0turn31view1turn17view0turn35search1 |
+| Revelation | Last Bastion | TE | Tile 92, space station in home system | 1 / 2 | SS, nebula system | Space-station card: spent/readied like a planet; +1 commodity value while controlled; may convert commodities; not a planet for objectives/agenda/home control | P/O | Setup, A/Strat, Status, Agenda-spend only, SS | None | citeturn31view1turn19view2turn35search1 |
+| Mez Lo Orz Fei Zsha | Ral Nel Consortium | TE | Tile 93, Ral Nel home system | 2 / 1 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn31view1 |
+| Rep Lo Orz Qet | Ral Nel Consortium | TE | Tile 93, Ral Nel home system | 1 / 3 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn31view1 |
+| Ahk Creuxx | Crimson Rebellion | TE | Tile 118, Crimson home system | 4 / 2 | Home, epsilon wormhole | No special rules text on card | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj; wormhole matters to movement | None | citeturn10view0turn31view2turn19view1 |
+| Ikatena | Deepwrought Scholarate | TE | Tile 95, Deepwrought home system | 4 / 4 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | None | citeturn10view0turn31view1 |
+| Cronos | Firmament | TE | Tile 96A, Firmament side | 2 / 1 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | Alternate with Obsidian side | citeturn10view0turn31view1 |
+| Tallin | Firmament | TE | Tile 96A, Firmament side | 1 / 2 | Home | No special rules text | P | Setup, A/Tac, A/Strat, Status, Agenda, Obj | Alternate with Obsidian side | citeturn10view0turn31view1 |
+| Cronos Hollow | The Obsidian | TE | Tile 96B, Obsidian side | 3 / 0 | Home | No special rules text | P | Setup when Obsidian side is chosen; A/Tac, A/Strat, Status, Obj | Variant side of 96 | citeturn10view0turn31view1 |
+| Tallin Hollow | The Obsidian | TE | Tile 96B, Obsidian side | 3 / 0 | Home | No special rules text | P | Setup when Obsidian side is chosen; A/Tac, A/Strat, Status, Obj | Variant side of 96 | citeturn10view0turn31view1 |
+| Avernus | Embers of Muaat-associated | TE | No standard setup tile; unlocked by Muaat breakthrough | 2 / 0 | Hazardous, Legendary | Component action lets you use Star Forge without spending a strategy token | T/O | A/Comp, Leg, A/Tac indirectly through produced ships/fighters | New TE legendary planet; no earlier card | citeturn6view0turn17view0turn35search1 |
+| Custodia Vigilia Ω | Council Keleres | TE | No system tile; updated legendary-planet printing | 2 / 2 | Legendary, Ω | Updated Custodia: still buffs Mecatol’s SPACE CANNON / PRODUCTION; updated Imperial trigger text; also tied to Keleres breakthrough | P/T | Action/Imperial timing, Combat through Mecatol, Leg, Obj | Replaces Codex III Custodia Vigilia | citeturn17view0turn35search0 |
+
+#### Thunder’s Edge normal, legendary, space-station, expedition, and Fracture planets
+
+| Card | Source | Tile / location | Res / Inf | Trait / icons | Effect summary | Timing | Phase impact | Replacement map | Sources |
+|---|---:|---|---:|---|---|---|---|---|---|
+| Faunus | TE | Tile 97 | 1 / 3 | Industrial, TS green, Legendary | On pass, may take control of an empty non-home non-legendary unattached planet | T/O | A/Tac, A/Strat, Status, Agenda, Leg, A/Pass, Obj, Tech | None | citeturn6view0turn31view1turn17view0turn35search1 |
+| Garbozia | TE | Tile 98 | 2 / 1 | Hazardous, Legendary | On pass, stash an action card from discard here; later purge stored cards to play them | T/O | A/Tac, A/Strat, Status, Agenda, Leg, A/Pass, Obj | None | citeturn6view0turn31view1turn17view0turn35search1 |
+| Emelpar | TE | Tile 99 | 0 / 2 | Cultural, Legendary | At end of turn, ready another non-strategy component | T/O | A/Tac, A/Strat, Status, Agenda, Leg, A/Pass, Obj | None | citeturn6view0turn31view1turn17view0turn35search1 |
+| Tempesta | TE | Tile 100 | 1 / 1 | Hazardous, TS blue, Legendary | After you activate a system, one ship gets +1 move for that tactical action | T/O | A/Tac, Movement substep, Leg, Tech | None | citeturn6view0turn31view1turn17view0turn35search1 |
+| Olergodt | TE | Tile 101 | 2 / 1 | Cultural + Hazardous, TS yellow + red | No special rules text; dual-trait exploration choice; dual tech skip | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech, Obj | None | citeturn6view0turn31view1turn4view2turn12view4 |
+| Andeara | TE | Tile 102 | 1 / 1 | Industrial, TS blue, alpha wormhole | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech; wormhole adjacency | None | citeturn6view0turn31view1turn12view3turn19view1 |
+| Vira-Pics III | TE | Tile 103 | 2 / 3 | Cultural + Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Obj | None | citeturn6view0turn31view1turn12view4 |
+| Lesab | TE | Tile 104 | 2 / 1 | Industrial + Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Obj | None | citeturn6view0turn31view1turn12view4 |
+| New Terra | TE | Tile 105 | 1 / 1 | Industrial, TS green | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn6view0turn31view1turn12view3turn12view4 |
+| Tinnes | TE | Tile 105 | 2 / 1 | Industrial + Hazardous, TS green | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech, Obj | None | citeturn6view0turn31view1turn12view3turn12view4 |
+| Cresius | TE | Tile 106 | 0 / 1 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn6view0turn31view2turn12view4 |
+| Lazul Rex | TE | Tile 106 | 2 / 2 | Cultural + Industrial | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Obj | None | citeturn6view0turn31view2turn12view4 |
+| Tiamat | TE | Tile 107 | 1 / 2 | Cultural, TS yellow + yellow | No special rules text; double yellow tech skip | P | A/Tac, A/Strat, Status, Agenda, Exp, Tech | None | citeturn6view0turn31view2turn12view3 |
+| Hercalor | TE | Tile 107 | 1 / 0 | Industrial | No special rules text | P | A/Tac, A/Strat, Status, Exp | None | citeturn6view0turn31view2turn12view4 |
+| Kostboth | TE | Tile 108 | 0 / 1 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn6view0turn31view2turn12view4 |
+| Capha | TE | Tile 108 | 3 / 0 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Exp | None | citeturn6view0turn31view2turn12view4 |
+| Bellatrix | TE | Tile 109 | 1 / 2 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn6view0turn31view2turn12view4 |
+| Tsion Station | TE | Tile 109 | 1 / 1 | SS | Space-station card: +1 commodity, long-range transactions with other SS owners, may exhaust to convert commodities; not a planet for objectives/agendas/home control | P/O | A/Strat, Status, SS | None | citeturn31view2turn19view2turn35search1 |
+| Horizon | TE | Tile 110 | 1 / 2 | Cultural | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn6view0turn31view2turn12view4 |
+| El’Nath | TE | Tile 110 | 2 / 0 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Exp | None | citeturn6view0turn31view2turn12view4 |
+| Luthien VI | TE | Tile 110 | 3 / 1 | Hazardous | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp | None | citeturn6view0turn31view2turn12view4 |
+| Tarana | TE | Tile 111 | 1 / 2 | Cultural + Industrial | No special rules text | P | A/Tac, A/Strat, Status, Agenda, Exp, Obj | None | citeturn6view0turn31view2turn12view4 |
+| Oluz Station | TE | Tile 111 | 1 / 1 | SS | Space-station card with same global SS rules as above | P/O | A/Strat, Status, SS | None | citeturn31view2turn19view2turn35search1 |
+| Mecatol Rex Ω | TE | Tile 112 | 1 / 6 | Legendary, Ω | New legendary Mecatol ability: end of turn, discard 1 secret objective to draw 1 secret objective | T/O | A/Tac, Agenda global unlock through Custodians, Leg, A/Pass, Obj | Replaces base Mecatol Rex when TE used | citeturn5view0turn31view2turn17view0turn35search1 |
+| Industrex | TE | Tile 115 | 2 / 0 | Industrial, TS red, Legendary, asteroid-field system | On pass, place a ship from reinforcements matching a unit upgrade you own into a system with your ships | T/O | A/Tac, A/Pass, Leg, Tech, anomaly-adjacent implications | New TE legendary planet | citeturn6view0turn31view2turn17view0turn35search1 |
+| Lemox | TE | Tile 116 | 0 / 3 | Industrial, entropic-scar system | No printed planet effect; anomaly suppresses unit abilities in system and matters at status-phase strategy-pool spend under TE rules | P | A/Tac, A/Strat, Status, Agenda, Exp; system anomaly modifies play | None | citeturn6view0turn31view2turn35search1 |
+| The Watchtower | TE | Tile 117 | 1 / 1 | SS, gravity-rift + asteroid-field system | Space-station card with SS rules; system is doubly anomalous | P/O | A/Strat, Status, SS; movement/combat affected by system anomalies | None | citeturn6view0turn31view2turn19view2turn35search1 |
+| Thunder’s Edge | TE | Expedition reward; placed later in a legal no-planet/non-supernova/non-printed-wormhole system after expedition completes | 5 / 1 | Legendary, special expedition planet | Gain breakthrough upon gaining it if you do not already have it; at end of turn may perform one additional action | T/O | Setup-late via expedition system placement, A/Tac, Leg, A/Pass, Obj | New TE legendary planet; exact tile-row not located online in accessible tile list | citeturn17view0turn36search0turn35search1 |
+| Cocytus | TE | Tile 125, Fracture | 3 / 0 | Relic icon | First time controlled, controller gains a relic; must defeat neutral units before control | T/M | A/Tac, Combat, Relic acquisition, Obj edge-board relevance via Fracture | None | citeturn6view0turn31view2turn26search0 |
+| Lethe | TE | Tile 126, Fracture | 0 / 2 | Relic icon | First-time control grants a relic; neutral defenders present | T/M | A/Tac, Combat, Agenda value if later spent for votes, Relic acquisition | None | citeturn6view0turn31view2turn26search0 |
+| Phlegethon | TE | Tile 126, Fracture | 1 / 2 | Relic icon | First-time control grants a relic; paired in Fracture system with Lethe | T/M | A/Tac, Combat, Agenda value, Relic acquisition | None | citeturn6view0turn31view2turn26search0 |
+| Styx | TE | Tile 127, Fracture | 4 / 0 | Legendary, relic icon | Gain 1 VP when gained; lose 1 VP when lost; first-time Fracture control also yields relic by Fracture rules | T/M | A/Tac, Combat, Leg, VP timing, Relic acquisition, Obj | New TE legendary planet | citeturn6view0turn17view0turn31view2turn26search0 |
+
+## Relic cards
+
+### Base Game
+
+| Card | Source | Effect summary | Timing | Phase impact | Setup / gain | Replacement map | Sources |
+|---|---:|---|---|---|---|---|---|
+| None | Base | The Base Game has no relic deck | — | — | — | — | citeturn11view0 |
+
+### Prophecy of Kings relics
+
+| Card | Source | Effect summary | Timing | Phase impact | Setup / gain | Replacement map | Sources |
+|---|---:|---|---|---|---|---|---|
+| Dominus Orb | PoK | One-time redeploy from tokened systems before movement in a tactical action | 1x/O | A/Tac, Movement | Gained from relic deck after fragment purge | None | citeturn11view0turn16view1 |
+| Maw of Worlds | PoK | At start of agenda, exhaust all planets and purge this to gain any 1 technology | 1x/O | Agenda, Tech | Relic deck | None | citeturn11view0turn14view3 |
+| Scepter of Emelpar | PoK | Exhaust to spend a reinforcement token instead of a strategy-pool token | O/P | Usually Action Phase strategic actions; any effect that spends strategy-pool tokens | Relic deck | None | citeturn11view0turn36search5 |
+| Shard of the Throne | PoK | Gain 1 VP on gain; lose it when the card changes hands after relevant planet capture | T/P | VP state, A/Tac control transfers | Relic deck; can move when a home or legendary planet is taken | None | citeturn11view0 |
+| Stellar Converter | PoK | Component action destroys an adjacent eligible planet, purges its card/attachments, then purges itself | 1x/O | A/Comp, A/Tac, Planet-state destruction | Relic deck | None | citeturn11view0turn18search6 |
+| The Codex | PoK | Component action recovers up to 3 chosen action cards from discard | 1x/O | A/Comp | Relic deck | None | citeturn11view0 |
+| Crown of Emphidia | PoK | After a tactical action, may exhaust to explore 1 planet; if you control Tomb of Emphidia at end of status, may purge for 1 VP | O/T | A/Tac post-action, Status end-step, Obj/VP | Relic deck | None | citeturn11view0turn12view4 |
+| Crown of Thalnos | PoK | During each combat round, reroll any number of dice at +1; rerolling units that miss are destroyed | O/P | Combat, Space/Ground combat rounds | Relic deck | None | citeturn11view0turn16view1 |
+| The Obsidian | PoK | On gain, draw 1 secret objective and raise your secret-objective hand/score cap by 1 | T/P | Gain timing, Objective management | Relic deck | None | citeturn11view0turn16view0 |
+| The Prophet’s Tears | PoK | When researching technology, exhaust to ignore 1 prerequisite or draw 1 action card | O/P | A/Strat during Technology timing, Tech | Relic deck | None | citeturn11view0turn12view3 |
+
+### Codex II relics
+
+| Card | Source | Effect summary | Timing | Phase impact | Setup / gain | Replacement map | Sources |
+|---|---:|---|---|---|---|---|---|
+| Dynamis Core | Codex II | Commodity value +2 while held; purge for trade goods based on printed commodity value +2 | P + 1x/O | Economy, usually Action Phase component timing if used then | Ixthian Artifact; relic deck if included | Thunder’s Edge appears to include a revised reprint with updated action wording | citeturn25view1turn18search1turn23search3 |
+| JR-XS455-0 | Codex II | Exhaust this agent; chosen player spends 3 resources to place a structure or gains 1 trade good | O | A/Comp | Ixthian Artifact | None located | citeturn25view1 |
+| Nano-Forge | Codex II | Attach to a non-home, non-legendary planet you control; that planet gets +2/+2 and becomes legendary | 1x/O | A/Comp, Obj, Leg-state change | Ixthian Artifact | Thunder’s Edge appears to include a revised reprint adding a one-use clarification | citeturn25view1turn23search2turn23search3 |
+
+### Codex IV relics
+
+| Card | Source | Effect summary | Timing | Phase impact | Setup / gain | Replacement map | Sources |
+|---|---:|---|---|---|---|---|---|
+| Circlet of the Void | Codex IV | Ignore gravity-rift rolls and other anomaly movement penalties; exhaust to explore a frontier token in an uncontested system | P + O | A/Tac movement; A/Comp frontier explore | Ixthian Artifact / relic deck if used | Included in Thunder’s Edge component pool | citeturn25view2turn20search0turn35search1 |
+| Book of Latvinia | Codex IV | On gain, research up to 2 no-prerequisite techs; later purge for 1 VP if you control all 4 tech-specialty colors, otherwise gain speaker | T + 1x/O | Gain timing, Tech, A/Comp, Obj, Speaker | Ixthian Artifact / relic deck if used | Included in Thunder’s Edge component pool | citeturn25view2turn21search0turn35search1 |
+| Neuraloop | Codex IV | When a public objective is revealed, you may purge a relic to replace that objective with a random one from any objective deck | T/O | Status, Reveal Public Objective | Ixthian Artifact / relic deck if used | Included in Thunder’s Edge component pool | citeturn25view2turn25view3turn14view2turn35search1 |
+
+### Thunder’s Edge relics
+
+| Card | Source | Effect summary | Timing | Phase impact | Setup / gain | Replacement map | Sources |
+|---|---:|---|---|---|---|---|---|
+| Metali Void Armaments | TE | Grants a strong anti-fighter barrage during the Anti-Fighter Barrage step of space combat | P/O | Combat, specifically AFB step | Relic deck | None | citeturn11view0turn35search1 |
+| The Quantumcore | TE | On gain, gain your breakthrough; while held, you have synergy for all tech types | T/P | Gain timing, Technology-color synergies | Relic deck | None | citeturn11view0turn35search1 |
+| The Silver Flame | TE | May itself be traded; action rolls a die for a VP and on failure purges your home system and puts the Fracture into play if needed | 1x/O | A/Comp, VP, Home-system state, Fracture entry | Relic deck | Overrides standard “relics cannot be traded” rule for itself | citeturn11view0turn35search1 |
+| Lightrail Ordnance | TE | Your space docks gain SPACE CANNON 5x2 and may shoot adjacent systems | P | Combat, Space Cannon Offense / defense geometry | Relic deck | None | citeturn11view0turn16view1turn35search1 |
+| Metali Void Shielding | TE | When hits are produced against one of your non-fighter ships, one such ship may sustain as if it had Sustain Damage | P/O | Combat, Assign Hits / Sustain Damage | Relic deck | None | citeturn11view0turn35search1 |
+| The Triad | TE | Behaves like a planet card with resource/influence equal to 3 plus the number of different relic-fragment types you own | P | A/Strat, Status readying, Agenda if spent as influence | Relic deck | None | citeturn11view0turn35search1 |
+| Heart of Ixth | TE | After any die is rolled, may exhaust to add or subtract 1 from the result | O/P | Combat and other die-roll timings | Relic deck | None | citeturn11view0turn35search1 |
+
+## Synthesis and appendix
+
+The card network below shows the main entity relationships that matter most for the scope of this report: ordinary planets feed economy and voting, legendary planets branch into ability-card play, relic fragments feed relic acquisition, and Thunder’s Edge adds expedition and Fracture pipelines. These relationships come directly from the rules reference, the legendary-planets page, the relics page, and the expedition/fracture summaries. citeturn16view0turn12view2turn16view1turn36search0turn36search7
+
+```mermaid
+graph LR
+  HomePlanets[Home planet cards] --> Setup[Setup Step 5 distribution]
+  HomePlanets --> ObjLock[Home-system public-objective lock]
+
+  Planets[Ordinary planets] --> Economy[Resources / Influence]
+  Planets --> Explore[Explore on first control if eligible]
+  Planets --> TechSkip[Tech specialty skip]
+  Planets --> Vote[Agenda voting]
+
+  LegendaryPlanets[Legendary planets] --> LegCard[Legendary ability card]
+  LegCard --> ActionHooks[Action-phase pass / activate / component hooks]
+  LegCard --> CombatHooks[Combat / space-cannon hooks]
+  LegCard --> ObjectiveHooks[Legendary-planet objective hooks]
+
+  Fragments[Relic fragments] -->|purge fragments| RelicDeck[Relic deck]
+  RelicDeck --> Relics[Relics]
+  Fracture[Fracture planets] -->|first control| RelicDeck
+
+  Expedition[Thunder's Edge expedition] --> ThunderEdge[Thunder's Edge planet]
+  ThunderEdge --> Breakthrough[Breakthrough gain]
+```
+
+For a compact phase-view, the chart below counts **relics by primary phase hook** rather than by every possible interaction. This prevents persistent/economy relics from being overcounted across many timings. The classification is a synthesis of the relic table above, using the relic text plus the core phase structure in the rules reference. citeturn11view0turn25view1turn25view2turn35search1turn15view0turn14view2turn14view3
+
+```mermaid
+xychart-beta
+    title "Relics by primary phase hook"
+    x-axis ["Action", "Combat", "Status/Reveal", "Agenda", "Persistent/Acquisition"]
+    y-axis "Count" 0 --> 12
+    bar [12, 5, 1, 1, 4]
+```
+
+### Replacement and deprecation appendix
+
+The cleanest replacement/deprecation mappings in scope are the planet-print updates. **Base Mecatol Rex** is superseded by **Mecatol Rex Ω** in Thunder’s Edge play, and **Codex III Custodia Vigilia** is superseded by **Custodia Vigilia Ω**. The Codex line itself explains that Omega Initiative content is intended to replace originals, while Ixthian Artifacts are additive; for planets/relics specifically, most additions are additive, but these two planet printings are genuine replacement-style updates. citeturn24view0turn17view0
+
+The relic situation is slightly messier. The community database shows **two text versions** of **Dynamis Core** and **Nano-Forge**: the original Codex II wording and newer Thunder’s Edge-icon printings. I did **not** locate a directly openable official PDF line that explicitly labels these as Ω replacements, so the safest characterization is: **revised Thunder’s Edge reprints / wording updates**, not confirmed Omega replacements. citeturn23search3turn35search1
+
+### Ambiguities and items not fully located online
+
+A few component names appear with small spelling drift across the accessible online sources: **Ylir/Yur**, **Naazir/Naaz**, **Ba’kal/Bakal**, **Mez Lo Orz Fei Zsha / Pei Zsha**, **Rep Lo Orz Qet / Oet**, and **El’Nath/Elnath**. I used the fuller faction/home-system spellings where available and treated tile-list variants as orthographic discrepancies rather than separate cards. citeturn10view0turn30view0turn31view1turn31view2
+
+One exact tile-row detail was **not fully located online** in the accessible text capture: the dedicated **Thunder’s Edge planet-side tile row** in the tile list. The expedition rules clearly explain how the Thunder’s Edge planet is unlocked and placed, but the visible tile-list capture truncates before labeling that final tile as a normal row. I therefore marked its exact tile-row as “not located online” while still documenting the official-ish placement method from the expedition source. citeturn36search0turn33view0

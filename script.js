@@ -6,6 +6,7 @@ const flowList = document.querySelector("#flowList");
 const phaseFlowList = document.querySelector("#phaseFlowList");
 const cardChecklist = document.querySelector("#cardChecklist");
 const actionCardChecklist = document.querySelector("#actionCardChecklist");
+const planetsRelicsChecklist = document.querySelector("#planetsRelicsChecklist");
 const heroChecklist = document.querySelector("#heroChecklist");
 const heroChecklistMessage = document.querySelector("#heroChecklistMessage");
 const factionSelectors = document.querySelector("#factionSelectors");
@@ -289,6 +290,36 @@ const factionAbilityEntries = [
   { faction: "The Council Keleres", name: "Law's Order", source: "codex", requiresPok: true, phaseId: "action", stepId: "start-your-turn", stepName: "Start of turn", text: "You may spend influence at the start of your turn to treat all laws as blank until the end of your turn." }
 ];
 
+const planetRelicEntries = [
+  { name: "Mecatol Rex", type: "Planet", source: "base", phaseId: "invasion", stepId: "start-invasion", stepName: "Start of invasion", text: "Before committing ground forces to Mecatol Rex while the custodians token is present, spend 6 influence to remove that token. Controlling Mecatol Rex also unlocks the agenda phase." },
+  { name: "Primor", type: "Legendary planet", source: "pok", phaseId: "action", stepId: "end-your-turn", stepName: "End of your turn", text: "At the end of your turn, place up to 2 infantry from your reinforcements on any planet you control." },
+  { name: "Hope's End", type: "Legendary planet", source: "pok", phaseId: "action", stepId: "end-your-turn", stepName: "End of your turn", text: "At the end of your turn, exhaust this legendary planet to place 1 mech from your reinforcements on a planet you control or draw 1 action card." },
+  { name: "Mallice", type: "Legendary planet", source: "pok", phaseId: "action", stepId: "end-your-turn", stepName: "End of your turn", text: "At the end of your turn, gain 2 trade goods or convert all your commodities to trade goods." },
+  { name: "Mirage", type: "Legendary planet", source: "pok", phaseId: "action", stepId: "end-your-turn", stepName: "End of your turn", text: "At the end of your turn, place up to 2 fighters from your reinforcements in a system that contains your ships." },
+  { name: "Custodia Vigilia", type: "Legendary planet", source: "codex", requiresPok: true, phaseId: "tactical", stepId: "space-cannon-offense", stepName: "Space Cannon Offense", text: "While you control Mecatol Rex, Mecatol Rex has Space Cannon 5." },
+  { name: "Custodia Vigilia", type: "Legendary planet", source: "codex", requiresPok: true, phaseId: "production", stepId: "units-use-production", stepName: "When units use Production", text: "While you control Mecatol Rex, Mecatol Rex has Production 3." },
+  { name: "Custodia Vigilia", type: "Legendary planet", source: "codex", requiresPok: true, phaseId: "action", stepId: "strategic-action", stepName: "Imperial strategy card", text: "While you control Mecatol Rex, gain 2 command tokens when another player scores points with the Imperial strategy card." },
+  { name: "Dominus Orb", type: "Relic", source: "pok", phaseId: "tactical", stepId: "move-ships", stepName: "Before movement", text: "Before moving ships during a tactical action, purge this card to move ships out of systems that contain your command tokens." },
+  { name: "Maw of Worlds", type: "Relic", source: "pok", phaseId: "agenda", stepId: "start-agenda", stepName: "Start of agenda phase", text: "At the start of the agenda phase, exhaust all your planets and purge this card to gain any 1 technology." },
+  { name: "Scepter of Emelpar", type: "Relic", source: "pok", phaseId: "action", stepId: "strategic-action", stepName: "Strategy-pool spend", text: "Exhaust this card to spend 1 token from your reinforcements instead of your strategy pool." },
+  { name: "Shard of the Throne", type: "Relic", source: "pok", phaseId: "invasion", stepId: "after-control", stepName: "After gaining control", text: "Gain 1 victory point while you have this relic; it can transfer when a player gains control of your home planet or a legendary planet you control." },
+  { name: "Stellar Converter", type: "Relic", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Action: Purge this card to destroy an adjacent eligible non-home planet and purge its planet card and attachments." },
+  { name: "The Codex", type: "Relic", source: "pok", phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Action: Purge this card to take up to 3 action cards of your choice from the action-card discard pile." },
+  { name: "Crown of Emphidia", type: "Relic", source: "pok", phaseId: "tactical", stepId: "end-tactical-action", stepName: "End of tactical action", text: "After you resolve a tactical action, exhaust this card to explore 1 planet you control." },
+  { name: "Crown of Emphidia", type: "Relic", source: "pok", phaseId: "status", stepId: "end-status", stepName: "End of status phase", text: "At the end of the status phase, if you control Tomb of Emphidia, purge this card to gain 1 victory point." },
+  { name: "Crown of Thalnos", type: "Relic", source: "pok", phaseId: "combat", stepId: "roll-combat-dice", stepName: "Roll combat dice", text: "During each combat round, you may reroll any number of dice at +1; rerolled units that do not produce hits are destroyed." },
+  { name: "The Obsidian", type: "Relic", source: "pok", phaseId: "status", stepId: "draw-secret-objectives", stepName: "Secret objective management", text: "When gained, draw 1 secret objective and increase your secret objective hand and scoring limit by 1." },
+  { name: "The Prophet's Tears", type: "Relic", source: "pok", phaseId: "research", stepId: "research-unit-upgrade", stepName: "When researching technology", text: "When you research technology, exhaust this card to ignore 1 prerequisite or draw 1 action card." },
+  { name: "Dynamis Core", type: "Relic", source: "codex", requiresPok: true, phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Your commodity value is increased by 2. As an action, purge this card to gain trade goods equal to your printed commodity value plus 2." },
+  { name: "JR-XS455-0", type: "Relic", source: "codex", requiresPok: true, phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Exhaust this relic to choose a player; that player either spends 3 resources to place 1 structure or gains 1 trade good." },
+  { name: "Nano-Forge", type: "Relic", source: "codex", requiresPok: true, phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Purge this card to attach it to a non-home, non-legendary planet you control; that planet gains +2 resources, +2 influence, and becomes legendary." },
+  { name: "Circlet of the Void", type: "Relic", source: "codex", requiresPok: true, phaseId: "tactical", stepId: "move-ships", stepName: "Move ships", text: "Ignore gravity-rift rolls and other anomaly movement penalties." },
+  { name: "Circlet of the Void", type: "Relic", source: "codex", requiresPok: true, phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Exhaust this card to explore a frontier token in an uncontested system." },
+  { name: "Book of Latvinia", type: "Relic", source: "codex", requiresPok: true, phaseId: "research", stepId: "research-unit-upgrade", stepName: "When gained", text: "When gained, research up to 2 technologies that have no prerequisites." },
+  { name: "Book of Latvinia", type: "Relic", source: "codex", requiresPok: true, phaseId: "action", stepId: "during-your-turn", stepName: "During your turn", text: "Purge this card to gain 1 victory point if you control all 4 technology specialty colors; otherwise, gain the speaker token." },
+  { name: "Neuraloop", type: "Relic", source: "codex", requiresPok: true, phaseId: "status", stepId: "reveal-public-objective", stepName: "When a public objective is revealed", text: "When a public objective is revealed, you may purge a relic to replace that objective with a random one from any objective deck." }
+];
+
 const heroFactionByName = {
   "Adjudicator Ba'al": "The Embers of Muaat",
   "Ahk-Syl Siven": "The Nomad",
@@ -346,6 +377,7 @@ const cardVersionMeta = {
   "Direct Hit": { source: "base" },
   "Disable": { source: "base" },
   "Distinguished Councilor": { source: "base" },
+  "Duranium Armor": { source: "base" },
   "Destroyer II": { source: "base" },
   "Dreadnought II": { source: "base" },
   "Emergency Repairs": { source: "base" },
@@ -721,6 +753,11 @@ const flows = [
             name: "Direct Hit",
             type: "Action card",
             text: "After another player's ship uses Sustain Damage to cancel a hit produced by your units or abilities: Destroy that ship."
+          },
+          {
+            name: "Duranium Armor",
+            type: "Technology",
+            text: "During each combat round, after you assign hits to your units, repair 1 of your damaged units that did not use Sustain Damage during that combat round."
           },
           {
             name: "Dreadnought II",
@@ -1486,6 +1523,16 @@ const basePhases = [
     title: "Status Phase",
     steps: [
       {
+        id: "reveal-public-objective",
+        title: "Reveal public objective",
+        text: "Reveal the next public objective and resolve replacement effects."
+      },
+      {
+        id: "draw-secret-objectives",
+        title: "Secret objective management",
+        text: "Resolve effects tied to drawing, holding, or scoring secret objectives."
+      },
+      {
         id: "draw-action-cards",
         title: "Draw step",
         text: "Resolve the normal draw step."
@@ -1494,6 +1541,11 @@ const basePhases = [
         id: "gain-command-tokens",
         title: "Gain and redistribute command tokens",
         text: "Gain command tokens, then redistribute command tokens among your pools."
+      },
+      {
+        id: "end-status",
+        title: "End of status phase",
+        text: "Resolve effects that trigger at the end of the status phase."
       }
     ]
   },
@@ -1567,6 +1619,7 @@ const placementMap = {
 const cardGroups = [
   "Faction Cards",
   "Action Cards",
+  "Planets and Relics",
   "Blue Technology",
   "Yellow Technology",
   "Red Technology",
@@ -1637,6 +1690,7 @@ const categoryByName = {
   "Transit Diodes": "Yellow Technology",
   "AI Development Algorithm": "Red Technology",
   "Assault Cannon": "Red Technology",
+  "Duranium Armor": "Red Technology",
   "Magen Defense Grid": "Red Technology",
   "Plasma Scoring": "Red Technology",
   "Supercharge": "Faction Cards",
@@ -1989,7 +2043,7 @@ function restorePageSettings() {
 }
 
 function getChecklistCheckboxes() {
-  return [...document.querySelectorAll("#heroChecklist input[type='checkbox'], #actionCardChecklist input[type='checkbox'], #cardChecklist input[type='checkbox']")];
+  return [...document.querySelectorAll("#heroChecklist input[type='checkbox'], #actionCardChecklist input[type='checkbox'], #planetsRelicsChecklist input[type='checkbox'], #cardChecklist input[type='checkbox']")];
 }
 
 function updateSingleOwnerChoiceStyle(checkbox, ownerColour, recommendedColour = ownerColour) {
@@ -2404,6 +2458,10 @@ function isFactionPromissoryNoteCard(card) {
   return card.category === "Faction Cards" && card.type === "Faction promissory note";
 }
 
+function isPlayerOnlyCard(card) {
+  return card.category === "Planets and Relics";
+}
+
 function getModifierEntries() {
   const entries = [];
   const selectedFactionNames = getSelectedFactionNames();
@@ -2490,6 +2548,24 @@ function getModifierEntries() {
     });
   }
 
+  planetRelicEntries.forEach((entry) => {
+    if (!isVersionedEntryAvailable(entry)) {
+      return;
+    }
+
+    entries.push({
+      name: entry.name,
+      type: entry.type,
+      text: entry.text,
+      category: "Planets and Relics",
+      faction: "",
+      flowTitle: "Planets and Relics",
+      phaseId: entry.phaseId,
+      stepId: entry.stepId,
+      stepName: entry.stepName
+    });
+  });
+
   return entries;
 }
 
@@ -2509,6 +2585,12 @@ function getUniqueCards() {
         text: entry.text,
         faction: entry.faction || getLeaderInfo(entry.name)?.faction || ""
       });
+    } else if (entry.category === "Planets and Relics") {
+      const existingCard = cardsByName.get(entry.name);
+
+      if (!existingCard.text.includes(entry.text)) {
+        existingCard.text = `${existingCard.text} ${entry.text}`;
+      }
     }
   });
 
@@ -2532,7 +2614,7 @@ function renderFilteredViews() {
 }
 
 function renderChecklist() {
-  if (!cardChecklist || !actionCardChecklist || !heroChecklist) {
+  if (!cardChecklist || !actionCardChecklist || !planetsRelicsChecklist || !heroChecklist) {
     return;
   }
 
@@ -2556,6 +2638,7 @@ function renderChecklist() {
             const isFactionPromissoryNote = isFactionPromissoryNoteCard(card);
             const isSingleOwner = isSingleOwnerCard(card);
             const isFactionTechnology = isFactionTechnologyCard(card);
+            const isPlayerOnly = isPlayerOnlyCard(card);
             const factionOwnerColour = getFactionOwnerColour(card.faction) || "";
             const recommendedColour = factionOwnerColour || playerColour;
             const nekroColour = getFactionOwnerColour("The Nekro Virus");
@@ -2572,6 +2655,7 @@ function renderChecklist() {
               && nekroColour
               && nekroColour !== recommendedColour;
             const singleOwnerCheckboxId = `card-${cardSlug}-owner`;
+            const playerOnlyCheckboxId = `card-${cardSlug}-active-player`;
             const commanderOtherCheckboxId = `card-${cardSlug}-other`;
             const promissoryHolderCheckboxId = `card-${cardSlug}-holder`;
             const nekroTechnologyCheckboxId = `card-${cardSlug}-nekro`;
@@ -2581,7 +2665,7 @@ function renderChecklist() {
                 <span class="card-summary">
                   <strong>${card.name}</strong>
                   <span>${card.type}</span>
-                  ${card.category === "Faction Cards" ? `<p class="card-description">${card.text}</p>` : ""}
+                  ${card.category === "Faction Cards" || card.category === "Planets and Relics" ? `<p class="card-description">${card.text}</p>` : ""}
                 </span>
                 ${isCommander ? `
                   <div class="commander-choice-group" aria-label="${card.name} commander assignment">
@@ -2656,6 +2740,21 @@ function renderChecklist() {
                         ${selectedColours.size ? "checked" : ""}
                       >
                       <span>In play (${getColourLabelWithPlayerMarker(recommendedColour)})</span>
+                    </label>
+                  </div>
+                ` : isPlayerOnly ? `
+                  <div class="single-owner-control" aria-label="${card.name} active player assignment">
+                    <label class="colour-choice single-owner-choice colour-${playerColour} recommended-colour-choice" for="${playerOnlyCheckboxId}">
+                      <input
+                        id="${playerOnlyCheckboxId}"
+                        type="checkbox"
+                        value="${playerColour}"
+                        data-card-name="${card.name}"
+                        data-card-slug="${cardSlug}"
+                        data-player-only="true"
+                        ${selectedColours.has(playerColour) ? "checked" : ""}
+                      >
+                      <span>Active (${getColourLabelWithPlayerMarker(playerColour)})</span>
                     </label>
                   </div>
                 ` : isFactionTechnology ? `
@@ -2756,7 +2855,16 @@ function renderChecklist() {
     true
   );
 
-  cardChecklist.innerHTML = cardGroups.filter((group) => !["Faction Cards", "Action Cards"].includes(group)).map((group) => {
+  const planetRelicCards = cards.filter((card) => card.category === "Planets and Relics");
+  const planetCards = planetRelicCards.filter((card) => card.type.toLowerCase().includes("planet"));
+  const relicCards = planetRelicCards.filter((card) => card.type.toLowerCase() === "relic");
+
+  planetsRelicsChecklist.innerHTML = [
+    renderChecklistGroup("Planets", planetCards, true),
+    renderChecklistGroup("Relics", relicCards, true)
+  ].join("");
+
+  cardChecklist.innerHTML = cardGroups.filter((group) => !["Faction Cards", "Action Cards", "Planets and Relics"].includes(group)).map((group) => {
     const groupCards = cards.filter((card) => card.category === group);
 
     if (!groupCards.length) {
@@ -2796,6 +2904,8 @@ function renderChecklist() {
           }
         } else if (checkbox.dataset.singleOwner === "true") {
           selectedCards.set(cardName, new Set([getFactionOwnerColour(factionName) || checkbox.value]));
+        } else if (checkbox.dataset.playerOnly === "true") {
+          selectedCards.set(cardName, new Set([playerColourSelect?.value || checkbox.value]));
         } else if (checkbox.dataset.factionTechnology === "true") {
           selectedColours.add(checkbox.value);
           selectedCards.set(cardName, selectedColours);
@@ -2823,6 +2933,8 @@ function renderChecklist() {
         } else if (checkbox.dataset.promissoryHolder === "true") {
           selectedCards.delete(cardName);
         } else if (checkbox.dataset.singleOwner === "true") {
+          selectedCards.delete(cardName);
+        } else if (checkbox.dataset.playerOnly === "true") {
           selectedCards.delete(cardName);
         } else if (checkbox.dataset.factionTechnology === "true") {
           selectedColours.delete(checkbox.value);
