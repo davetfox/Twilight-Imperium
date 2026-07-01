@@ -2853,8 +2853,7 @@ function renderChecklist() {
 
   actionCardChecklist.innerHTML = renderChecklistGroup(
     "Action Cards",
-    cards.filter((card) => card.category === "Action Cards"),
-    true
+    cards.filter((card) => card.category === "Action Cards")
   );
 
   const planetRelicCards = cards.filter((card) => card.category === "Planets and Relics");
@@ -2862,8 +2861,8 @@ function renderChecklist() {
   const relicCards = planetRelicCards.filter((card) => card.type.toLowerCase() === "relic");
 
   planetsRelicsChecklist.innerHTML = [
-    renderChecklistGroup("Planets", planetCards, true),
-    renderChecklistGroup("Relics", relicCards, true)
+    renderChecklistGroup("Planets", planetCards),
+    renderChecklistGroup("Relics", relicCards)
   ].join("");
 
   cardChecklist.innerHTML = cardGroups.filter((group) => !["Faction Cards", "Action Cards", "Planets and Relics"].includes(group)).map((group) => {
