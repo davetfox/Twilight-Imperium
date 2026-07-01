@@ -1,0 +1,344 @@
+# Twilight Imperium Fourth Edition Phase-Mapped Card Catalogue
+
+## Executive summary
+
+This report maps the **phase-relevant card ecosystem** of *Twilight Imperium Fourth Edition* across the **Base Game**, **Prophecy of Kings**, **Codex Volumes I–IV**, and **Thunder’s Edge**, with special attention to **replacement logic** and **Omega versions**. The core pattern is stable: the base game establishes the eight strategy cards, public/basic technologies, faction technologies, promissory notes, and the original action-card timing windows; *Prophecy of Kings* adds leaders, legendary planets, more technologies and promissory notes, and revises the **Diplomacy** and **Construction** strategy cards; the Codices introduce **Omega / replacement** content and new factions; and *Thunder’s Edge* further expands the card pool while also replacing some earlier materials again, including strategy-card and technology updates. citeturn7view0turn24search3turn19search0turn24search8turn24search0
+
+Two practical conclusions matter most for rules work. First, **phase mapping is best done by timing window**, not by component category: most relevant cards hook into one of these windows—**strategy selection**, **strategic action**, **activation**, **movement**, **space cannon offense**, **start of combat round**, **after rolls**, **invasion substeps**, **production**, **status start/end**, and **agenda reveal/vote/outcome**. Second, **version control matters**: if you are using all current official material, you should treat **PoK Diplomacy/Construction**, **Codex Omega cards**, **Codex III leader Omegas**, and the **Thunder’s Edge updates** as the live versions where they replace older cards. citeturn20view0turn20view1turn21view0turn21view1turn19search1turn35view0turn24search0
+
+For source quality, I prioritized **Fantasy Flight / official rules PDFs and product-document pages** for set identity, phase structure, and replacement statements. I used **Twilight Imperium Wiki** and, where helpful, **TI Rules** and **TI4 Kiosk** as secondary catalogues for card-level text summaries, Omega markings, and phase tagging, because the official sources do not provide one single parsed, machine-readable database for every card across all sets. Where a card’s latest text is only clearly exposed in secondary catalogues, I flag that explicitly. citeturn9view0turn24search3turn24search8turn19search0turn19search1turn12search0turn11search6
+
+## Scope and source model
+
+The official rules reference defines the four main phases—**Strategy, Action, Status, Agenda**—and the tactical-action substructure used during the Action Phase. In particular, the rules identify **movement**, **space cannon offense**, **invasion**, **bombardment**, **commit ground forces**, **space cannon defense**, **ground combat**, and **production** as distinct timing steps or related windows. Those are the anchors used in the phase tags throughout this report. citeturn20view0turn20view1turn20view4turn20view5turn21view0turn21view1
+
+The base rules also establish that players begin with faction technologies and promissory notes, and that promissory notes themselves are timing-text components. *Prophecy of Kings* then adds **leaders**, **24 promissory notes**, **128 technology cards**, **40 planet cards**, and **4 legendary planet ability cards**, while also revising **Diplomacy** and **Construction** and instructing players to integrate the new components into the base game. citeturn9view0turn21view2turn4view0turn7view0turn7view1
+
+For version control, the community-maintained **Version Tracking** and **Omegas** catalogues are especially useful because they summarize the official Omega convention: **Ω** marks an updated card, and the updated card **replaces** the earlier printing of the same name/type. Those secondary catalogues also track later **ΩΩ** styling where Thunder’s Edge or later Codices supersede earlier Omega revisions. I treat those pages as secondary but highly useful indexing tools, cross-checked against the official Codex and Thunder’s Edge document archive. citeturn19search1turn19search0turn24search3turn24search0
+
+## Version and replacement framework
+
+The table below is the practical replacement map for live rules work.
+
+| Component family | Original live set | Later official replacement path | Current live guidance |
+|---|---|---|---|
+| **Diplomacy** strategy card | Base | PoK revised version; also indexed as **Diplomacy Ω** in later all-expansions catalogues | Use the **PoK/Codex-indexed Diplomacy Ω** version in full-expansion play |
+| **Construction** strategy card | Base | PoK **Construction Ω**; then TE **Construction ΩΩ** | Use the **Thunder’s Edge** Construction when TE is in use |
+| **Warfare** strategy card | Base | TE **Warfare Ω** | Use the **Thunder’s Edge** Warfare when TE is in use |
+| **Magen Defense Grid** | Base | Codex I **Ω**; later updated again in later official products / TE replacement context | Use the latest official version present in your card set; TE explicitly instructs replacement of earlier copies |
+| **X-89 Bacterial Weapon** | Base | Codex I **Ω**; Codex IV **ΩΩ**; TE also instructs replacement of earlier copies | Use the latest official version present in your card set |
+| **Wormhole Generator** | Base | Codex I **Ω** | Use **Ω** |
+| **Yin Spinner** | Base | Codex I **Ω** | Use **Ω** |
+| **Magmus Reactor** | Base | Codex I **Ω** | Use **Ω** |
+| **Stymie / War Funding / Cybernetic Enhancements / Acquiescence / Greyfire Mutagen** promissory notes | Base | Codex I **Ω** promissory replacements | Use **Ω** versions |
+| **Naalu leaders** | PoK | Codex III **Ω** agent/commander adjustments | Use **Codex III Ω** versions |
+| **Yin leaders** | PoK | Codex III **Ω** full leader pass | Use **Codex III Ω** versions |
+| **Xxcha hero** | PoK | Codex III **Ω** hero rework | Use **Codex III Ω** version |
+| **Council Keleres I.I.H.Q. Modernization** | Codex III faction tech | TE moves it to a **Breakthrough** according to the faction-tech catalogue | Treat the TE state as superseding Codex III when TE is in use |
+
+These replacement relationships are directly supported by the official PoK integration instructions, the official FFG document archive listing all Codices and TE support files, the TE rulebook snippets that describe replacement of earlier tech copies, and the secondary strategy/Omega/faction-tech catalogues that track which version is current in all-expansion play. citeturn7view0turn24search3turn24search0turn19search0turn35view0turn31view2
+
+The most important version caveat is that *Thunder’s Edge* is not just additive. The official rulebook snippet states that, if you have previous versions, you replace card sets including **eight copies each of Magen Defense Grid and X-89 Bacterial Weapon**, and the strategy-card catalogue shows **Construction ΩΩ** and **Warfare Ω** in full-expansion play. That means any database that mixes base, Codex I, Codex IV, and Thunder’s Edge tech texts without version tagging will produce false timing calls. citeturn24search0turn35view0turn35view1turn35view3
+
+## Phase map used in this catalogue
+
+```mermaid
+flowchart LR
+    SP[Strategy Phase]
+    AP[Action Phase]
+    ST[Status Phase]
+    AG[Agenda Phase]
+
+    SP --> AP
+    AP --> TA[Tactical Action]
+    AP --> SA[Strategic Action]
+    AP --> CA[Component Action]
+    AP --> PASS[Pass]
+
+    TA --> ACT[Activation]
+    ACT --> MOV[Movement]
+    MOV --> SCO[Space Cannon Offense]
+    SCO --> SC[Space Combat]
+    SC --> INV[Invasion]
+    INV --> BOMB[Bombardment]
+    INV --> CGF[Commit Ground Forces]
+    INV --> SCD[Space Cannon Defense]
+    INV --> GC[Ground Combat]
+    INV --> EC[Establish Control]
+    INV --> PROD[Production]
+
+    AP --> ST
+    ST --> AG
+```
+
+This map follows the official rules reference entries for **Strategy Phase**, **Action Phase**, **Strategic Action**, **Movement**, **Space Cannon**, and **Invasion**. It is the basis for all phase tags below: **Strategy**, **Action**, **Activation**, **Movement**, **Space Cannon Offense**, **Space Combat**, **Invasion**, **Bombardment**, **Commit Ground Forces**, **Space Cannon Defense**, **Ground Combat**, **Production**, **Status**, **Agenda**, and a catch-all **Persistent / multi-phase** tag for cards that continuously modify one or more windows rather than triggering at a single printed step. citeturn20view0turn20view1turn20view4turn20view5turn21view0turn21view1turn21view3
+
+## Card catalogues
+
+### Strategy cards and officially replaced versions
+
+The strategy-card pool is small enough to catalogue cleanly. The main version-sensitive cards are **Diplomacy**, **Construction**, and **Warfare**; the others remain functionally stable in the all-expansions catalogues. citeturn35view0turn35view1turn35view2turn35view3
+
+| Card | Type | Source set | Version tag | Replaces / replaced by | Main phase window | Effect summary | Notes |
+|---|---|---:|---|---|---|---|---|
+| Leadership | Strategy | Base | Original | — | Strategy; Strategic Action | Gains command tokens; others may buy command tokens | Stable across current catalogues |
+| Diplomacy | Strategy | Base | Deprecated in full-expansion play | Replaced by **Diplomacy Ω** | Strategy; Strategic Action | Readies / protects a system depending on version set | Use PoK/Codex-indexed live version |
+| Politics | Strategy | Base | Original | — | Strategy; Strategic Action; Agenda setup | Speaker manipulation, action cards, agenda control | Stable |
+| Construction | Strategy | Base | Deprecated | Replaced by **Construction Ω**, then **Construction ΩΩ** | Strategy; Strategic Action | Structure placement and PDS/space-dock development | TE version is live when TE is used |
+| Trade | Strategy | Base | Original | — | Strategy; Strategic Action | Replenishes commodities, unlocks transactions | Stable |
+| Warfare | Strategy | Base | Deprecated in TE | Replaced by **Warfare Ω** in TE | Strategy; Strategic Action | Token removal / fleet redeployment logic | Use TE version when TE is used |
+| Technology | Strategy | Base | Original | — | Strategy; Strategic Action | Research window for primary and secondary users | Stable |
+| Imperial | Strategy | Base | Original | — | Strategy; Strategic Action; Status/score tempo | Public objective reveal / VP acceleration | Stable |
+
+The strategy-card catalogue also explicitly documents card and effect interactions that can interrupt or modify the Strategy Phase, including **Political Stability**, **Public Disgrace**, **Manipulate Investments**, and the base-vs-PoK difference on **Acquiescence**. That matters because some “phase-affecting cards” are not strategy cards themselves, but exist precisely to alter strategy-card timing. citeturn35view4
+
+### Technology cards
+
+The technology tables below use **authoritative summaries**, not full verbatim text, to stay readable. I include the set, color, version, faction if applicable, major timing window, and the most important phase/substep hook. Public/basic techs are listed individually; faction techs are grouped by faction; unit upgrades are listed only where the text does more than simply change a statline. Source identity and Omega status come from the relevant technology catalogue pages. citeturn17view0turn17view1turn17view3turn17view4turn17view5turn17view6turn17view7turn32view0turn31view0turn31view1turn31view2turn31view3
+
+#### Public and general technologies
+
+| Card | Color | Set | Version | Faction | Phase / substep | Effect summary | Notes |
+|---|---|---|---|---|---|---|---|
+| Neural Motivator | Green | Base | Original | Neutral | Status | Draw 2 action cards instead of 1 during Status | Action-card economy engine |
+| Dacxive Animators | Green | Base | Original | Neutral | Ground Combat / Establish Control | After winning ground combat, place infantry | Planet-capture extender |
+| Hyper Metabolism | Green | Base | Original | Neutral | Status | Gain 3 command tokens instead of 2 | Status-only tempo boost |
+| X-89 Bacterial Weapon | Green | Base | Deprecated | Neutral | Bombardment / Invasion | Exhaust-action original version to wipe infantry on a bombarded planet | Superseded by Ω / ΩΩ |
+| X-89 Bacterial Weapon Ω | Green | Codex I | Replacement | Neutral | Bombardment / Invasion | If bombardment kills at least one infantry, may wipe the rest | Codex replacement |
+| X-89 Bacterial Weapon ΩΩ | Green | Codex IV | Replacement | Neutral | Bombardment / Invasion | Latest later-official version; use newest printed official text in live sets | TE also references replacement context |
+| Psychoarchaeology | Green | PoK | Original | Neutral | Action; Technology spending | Tech specialties can be used without exhausting; Action-Phase exhaust-for-trade-good rider | Strong multi-phase economy card |
+| Bio-Stims | Green | PoK | Original | Neutral | End of turn | Ready a tech-specialty planet or another technology | End-of-turn refresh timing |
+| Antimass Deflectors | Blue | Base | Original | Neutral | Movement; Space Cannon Offense | Move through asteroid fields; enemy space cannon vs your units gets -1 | Persistent movement/combat modifier |
+| Gravity Drive | Blue | Base | Original | Neutral | Activation / Movement | +1 move to one ship during a tactical action | Core movement tech |
+| Fleet Logistics | Blue | Base | Original | Neutral | Action Phase | Perform 2 actions on your turns instead of 1 | Changes turn structure |
+| Light/Wave Deflector | Blue | Base | Original | Neutral | Movement | Move through systems containing other players’ ships | Persistent movement override |
+| Dark Energy Tap | Blue | PoK | Original | Neutral | Action / Frontier / Retreat space | Frontier exploration / retreat flexibility | PoK blue-tech addition referenced in PoK materials |
+| Sling Relay | Blue | PoK | Original | Neutral | Action; Production | Exhaust to produce a ship in any system with production | Component-action production effect |
+| Scanlink Drone Network | Yellow | PoK | Original | Neutral | Activation / Explore | After activating a system, explore one planet you control there | Exploration timing hook |
+| Sarween Tools | Yellow | Base | Original | Neutral | Production | Reduce produced units’ cost by 1 | Persistent production modifier |
+| Graviton Laser System | Yellow | Base | Original | Neutral | Space Cannon Offense / Defense | Exhaust before space cannon to force hits onto non-fighters if able | Step-specific targeting override |
+| Transit Diodes | Yellow | Base | Original | Neutral | Start of turn | Rebase up to 4 ground forces among your planets | Start-of-turn logistics |
+| Integrated Economy | Yellow | Base | Original | Neutral | Establish Control / Production | On planet capture, immediately produce there | Invasion-to-production bridge |
+| Predictive Intelligence | Yellow | PoK | Original | Neutral | Action / Status / token economy | Pool-shifting and command-token efficiency | Multi-phase command-sheet support |
+| Plasma Scoring | Red | Base | Original | Neutral | Bombardment; Space Cannon | One bombardment/space-cannon die gets +1 extra die | Core substep amplifier |
+| Magen Defense Grid | Red | Base | Deprecated | Neutral | Start of Ground Combat | Original “lock out enemy combat rolls” if you have planetary shield | Superseded by Ω / later replacements |
+| Magen Defense Grid Ω | Red | Codex I | Replacement | Neutral | Invasion / Ground Combat | Later official update to soften and rebalance original | Use latest official replacement |
+| Duranium Armor | Red | Base | Original | Neutral | Space Combat / Ground Combat rounds | Repairs one sustain-damaged unit if not damaged again in round | End-of-round sustain tool |
+| Assault Cannon | Red | Base | Original | Neutral | Start of Space Combat | If large enough fleet, destroy an opponent ship before combat | One of the cleanest substep hooks |
+| AI Development Algorithm | Red | PoK | Original | Neutral | Technology; Production | Helps research unit upgrades / reduce production by upgrade count | Mid-tech and production bridge |
+| Self-Assembly Routines | Red | PoK | Original | Neutral | Production; unit destruction | After production, place mech; after mech dies, gain trade good | Multi-window mech economy |
+
+#### Faction technologies
+
+| Faction | Card | Color | Set | Version | Phase / substep | Effect summary | Notes |
+|---|---|---|---|---|---|---|---|
+| Arborec | Bioplasmosis | Green | Base | Original | End of Status | Reposition infantry among same/adjacent systems | Status logistics |
+| Letnev | L4 Disruptors | Yellow | Base | Original | Invasion / Space Cannon Defense | Opponent cannot use space cannon against your invading units | Clean invasion tech |
+| Letnev | Non-Euclidean Shielding | Red | Base | Original | Sustain Damage | Each sustain cancels 2 hits | Persistent combat modifier |
+| Saar | Chaos Mapping | Blue | Base | Original | Start of turn; asteroid activation | Protected asteroid systems plus start-of-turn production | Strong action-phase hook |
+| Muaat | Magmus Reactor | Red | Base | Deprecated | Movement; Production | Supernova movement plus TG near war suns/supernovas | Replaced by Ω |
+| Muaat | Magmus Reactor Ω | Red | Codex I | Replacement | Movement; Production | Supernovas with your units gain PRODUCTION 5 | Live replacement |
+| Hacan | Production Biomes | Green | Base | Original | Component Action | Spend strategy token to gain TGs and fund another player | Economy action |
+| Hacan | Quantum Datahub Node | Yellow | Base | Original | End of Strategy | Pay TGs/token to swap strategy cards | Direct Strategy-Phase manipulation |
+| Creuss | Wormhole Generator | Blue | Base | Deprecated | Start of Status | Place/move Creuss wormhole | Replaced by Ω |
+| Creuss | Wormhole Generator Ω | Blue | Codex I | Replacement | Component Action | Exhaust-action version of wormhole placement | Live replacement |
+| Creuss | Dimensional Splicer | Red | Base | Original | Start of Space Combat | Auto-hit in systems with wormholes and your ships | Classic start-of-combat timing |
+| L1Z1X | Inheritance Systems | Yellow | Base | Original | Technology research | Exhaust + pay resources to ignore prerequisites | Tech-window modifier |
+| Mentak | Salvage Operations | Yellow | Base | Original | After Space Combat | Gain TG; if victorious, produce a destroyed ship type there | Post-combat production |
+| Mentak | Mirror Computing | Yellow | Base | Original | Spending windows | Trade goods count as 2 resources/influence | Persistent economy modifier |
+| Naalu | Neuroglaive | Green | Base | Original | After enemy activation | Enemy removes fleet token when activating your-ship system | Activation punishment |
+| Nekro | Valefar Assimilator X / Y | — | Base | Original | Tech gain | Assimilates other factions’ faction tech text | Persistent technology-copy engine |
+| Sardakk | Valkyrie Particle Weave | Red | Base | Original | Ground Combat round | If opponent produced hits, you produce +1 hit | Ground-combat timing |
+| Jol-Nar | E-Res Siphons | Yellow | Base | Original | After enemy activation | Gain 4 TGs when enemy activates your-ship system | Activation punishment |
+| Jol-Nar | Spacial Conduit Cylinder | Blue | Base | Original | After activation / movement | Exhaust to make active system adjacent to all your-unit systems | Massive movement extension |
+| Winnu | Lazax Gate Folding | Blue | Base | Original | Tactical Action / Component Action | Mecatol becomes wormhole if uncontrolled; if controlled, exhaust to reinforce Mecatol | Action-phase positional tool |
+| Winnu | Hegemonic Trade Policy | Yellow | Base | Original | Production | Swap one planet’s resource/influence values during production | Production-window economy |
+| Xxcha | Nullification Field | Yellow | Base | Original | After enemy activation | Exhaust + spend token to end that player’s turn | Hard action-phase stop |
+| Xxcha | Instinct Training | Green | Base | Original | When action card played | Exhaust + spend token to cancel action card | Sabotage-like counter-window |
+| Yin | Yin Spinner | Green | Base | Deprecated | After Production | Place infantry in produced system | Replaced by Ω |
+| Yin | Yin Spinner Ω | Green | Codex I | Replacement | After Production | Place up to 2 infantry on planets/space with your ships | Live replacement |
+| Yssaril | Transparasteel Plating | Green | Base | Original | Agenda / transactions / targeting | Defensive hand/privacy utility | Persistent |
+| Yssaril | Mageon Implants | Green | Base | Original | Action / neighbors | Hand theft from neighbors | Timing depends on active use |
+| Argent | Aerie Hololattice | — | PoK | Original | Persistent / structure control | Positional-defense modifier | Mainly persistent |
+| Argent | unspecified second non-unit tech | — | PoK | Original | unspecified | See official card images / kiosk catalogue | Secondary-source gap |
+| Empyrean | Voidwatch | Green | PoK | Original | After activation / frontier warfare | Space cannon-like deterrence | Activation/anti-move hook |
+| Mahact | Genetic Recombination | Green | PoK | Original | Before votes | Force vote or fleet-pool loss | Agenda timing |
+| Naaz-Rokha | Supercharge | Red | PoK | Original | Start of combat round | +1 combat rolls this round | Combat-round pump |
+| Naaz-Rokha | Pre-Fab Arcologies | Green | PoK | Original | After explore | Ready explored planet | Explore/status economy |
+| Nomad | Temporal Command Suite | Yellow | PoK | Original | After agent exhausts | Ready that agent; maybe transact | Leader-timing support |
+| Vuil’Raith | Vortex | Red | PoK | Original | Component Action | Capture adjacent non-structure unit type | Action-phase removal |
+| Keleres | I.I.H.Q. Modernization | Yellow | Codex III | Superseded in TE | Persistent | Neighbors near Mecatol; grants Custodia Vigilia card | Moved to Breakthrough in TE catalogue |
+| Crimson Rebellion | Subatomic Splicer | Yellow | TE | Original | When ship destroyed | Produce same-type ship at home dock | Destruction-response timing |
+| Deepwrought | Radical Advancement | Green | TE | Original | Start of Status | Upgrade a non-unit tech to one with exactly one more prerequisite | Status-phase tech ladder |
+| Deepwrought | Hydrothermal Mining | Green | TE | Original | Start of Status | Gain TG per ocean card in play | Status economy |
+| Firmament | Plane Splitter | Yellow | TE | Original | On gain / transformation | Puts The Fracture into play; flips on transformation | State-transition tech |
+| Firmament / Obsidian | Neural Parasite | Green | TE | Original / transformed | Start of Status or start of turn | Firmament: home-system infantry growth; Obsidian: kill adjacent enemy infantry | Transformation-sensitive |
+| Last Bastion | Proxima Targeting VI | Red | TE | Original | Combat / targeting | Secondary catalogue identifies as TE warfare tech | Full text best checked in TE cards |
+| Ral Nel | unspecified faction tech | Red | TE | Original | unspecified | Present in faction-tech catalogue; use TE cards for exact live text | Secondary-source gap |
+
+#### Unit-upgrade technologies with textual phase hooks
+
+| Card | Set | Faction | Phase relevance | Summary |
+|---|---|---|---|---|
+| Destroyer II | Base | Neutral | Anti-Fighter Barrage | Improves AFB dramatically |
+| Strike Wing Alpha II | PoK | Argent | Anti-Fighter Barrage / infantry in space | 9–10 AFB results also kill infantry in space |
+| Dreadnought II | Base | Neutral | Space Combat / Bombardment | Cannot be destroyed by **Direct Hit** |
+| Super-Dreadnought II | Base | L1Z1X | Space Combat / Bombardment | Better bombardment and capacity; Direct Hit immunity |
+| Exotrireme II | Base | Sardakk | After a round of Space Combat | May self-destruct to kill up to 2 ships |
+| Fighter II | Base | Neutral | Movement / fleet-pool check | Can move without transport |
+| Hybrid Crystal Fighter II | Base | Naalu | Movement / fleet-pool check | Same, but excess fighters count as half ship |
+| Spec Ops II | Base | Sol | Destruction / next turn | On destruction, can return to home system next turn |
+| Letani Warrior II | Base | Arborec | Destruction / next turn; Production | Similar return loop plus **Production 2** |
+| Crimson Legionnaire II | PoK | Mahact | Destruction / next turn | Commodity/TG trigger, then returns next turn |
+| PDS II | Base | Neutral | Space Cannon Offense | Fires into adjacent systems |
+| Hel Titan II | PoK | Titans | Space Cannon Offense / Defense; Production | Adjacent fire, sustain, production, ground-force/structure hybrid |
+| Floating Factory II | Base | Saar | Movement / retreat / Production | Mobile space-dock logic in space area |
+| Dimensional Tear II | PoK | Vuil’Raith | Movement / gravity-rift / fighter capacity | System becomes gravity rift you ignore |
+| War Sun | Base | Neutral | Bombardment / Planetary Shield | Removes enemy planetary shield in system |
+| Prototype War Sun II | Base | Muaat | Bombardment / Movement | Same shield-bypass, but better move/cost |
+| Memoria II | PoK | Nomad | Adjacency / anti-fighter barrage | Treat as adjacent to systems with your mechs |
+
+### Promissory notes
+
+Promissory notes are inherently phase-indexed because the rules reference describes them as timing-text components, and the promissory-note catalogue cleanly separates general notes, base-faction notes, PoK notes, Codex III, and Thunder’s Edge notes. The table below is intentionally complete for currently exposed phase-relevant notes. citeturn21view2turn23view2turn23view3turn29view0turn29view1turn29view2turn29view3turn29view4turn30view0turn30view1turn30view2turn30view3
+
+| Card | Type | Set | Version | Faction | Phase / substep | Effect summary | Notes |
+|---|---|---|---|---|---|---|---|
+| Ceasefire | General | Base | Original | Neutral/color | After activation | Stops movement into active system, then returns | Pure tactical stop |
+| Trade Agreement | General | Base | Original | Neutral/color | Commodity refresh | Receive all that player’s commodities, then return | Trade timing |
+| Political Secret | General | Base | Original | Neutral/color | When agenda revealed | Player cannot vote/play ACs/use chosen faction abilities on that agenda | FAQ says passive/mandatory abilities still function |
+| Support for the Throne | General | Base | Original | Neutral/color | Persistent scoring | Face-up VP note | Not a phase trigger, but score-state modifier |
+| Alliance | General | PoK | Original | Neutral/color | On receipt / until activation condition | Grants commander ability while face-up | Added by PoK |
+| Stymie | Faction PN | Base | Deprecated | Arborec | Action / persistent lock | Original production lockout | Replaced by Ω |
+| Stymie Ω | Faction PN | Codex I | Replacement | Arborec | After enemy movement | Place enemy token in non-home system | Live version |
+| War Funding | Faction PN | Base | Deprecated | Letnev | Start of space combat round | Rerolls; cost to Letnev | Replaced by Ω |
+| War Funding Ω | Faction PN | Codex I | Replacement | Letnev | After both sides roll dice in space combat | Reroll all enemy dice, then any of yours | Live version |
+| Ragh’s Call | Faction PN | Base | Original | Saar | After commit to land | Saar evacuates ground forces from invaded planet | Invasion trick |
+| Fires of the Gashlai | Faction PN | Base | Original | Muaat | Component Action | Gain War Sun tech by costing Muaat fleet token | Action-phase tech jump |
+| Trade Convoys | Faction PN | Base | Original | Hacan | Action / persistent transaction state | Transact with non-neighbors until broken | Diplomatic timing |
+| Military Support | Faction PN | Base | Original | Sol | Start of Sol turn | Spend Sol strategy token; place 2 infantry | Start-of-turn timing |
+| Creuss Iff | Faction PN | Base | Original | Creuss | Start of your turn in Action Phase | Place/move Creuss wormhole token | Turn-start movement setup |
+| Cybernetic Enhancements | Faction PN | Base | Deprecated | L1Z1X | Start of turn | Convert L1 strategy token into your strategy token | Replaced by Ω |
+| Cybernetic Enhancements Ω | Faction PN | Codex I | Replacement | L1Z1X | When gaining command tokens in Status | Gain 1 additional token | Live version |
+| Promise of Protection | Faction PN | Base | Original | Mentak | Action / persistent | Mentak cannot pillage you until broken | Economy shield |
+| Gift of Prescience | Faction PN | Base | Original | Naalu | End of Strategy; end of Status | Gives Naalu 0 token to you for round | Initiative-order manipulation |
+| Antivirus | Faction PN | Base | Original | Nekro | Start of combat | Blocks Nekro tech theft against you while face-up | Often space/ground combat relevant |
+| Tekklar Legion | Faction PN | Base | Original | Sardakk | Start of invasion combat | +1 your rolls; -1 if fighting N’orr | Ground-combat swing |
+| Research Agreement | Faction PN | Base | Original | Jol-Nar | After Jol-Nar researches non-faction tech | Gain that tech, then return | Tech-window trigger |
+| Acquiescence | Faction PN | Base | Deprecated | Winnu | End of Strategy | Swap strategy cards with Winnu | Replaced by Ω |
+| Acquiescence Ω | Faction PN | Codex I / PoK-era live | Replacement | Winnu | When Winnu resolves strategic action | Free secondary on that card | Much cleaner timing |
+| Political Favor | Faction PN | Base | Original | Xxcha | When agenda revealed | Spend Xxcha token, discard revealed agenda, reveal another | Agenda replacement |
+| Greyfire Mutagen | Faction PN | Base | Deprecated | Yin | After system activated | Shuts off Yin faction abilities/tech for that tactical action | Replaced by Ω |
+| Greyfire Mutagen Ω | Faction PN | Codex I | Replacement | Yin | Start of ground combat | Replace enemy infantry with yours | Live version |
+| Spy Net | Faction PN | Base | Original | Yssaril | Start of your turn | Take selected Yssaril action card | Turn-start hand theft |
+| Strike Wing Ambuscade | Faction PN | PoK | Original | Argent | Unit-ability roll window | Additional die for one unit ability roll | AFB / bombardment / cannon synergy |
+| Dark Pact | Faction PN | PoK | Original | Empyrean | Action / commodity transfer cadence | Face-up mutual TG engine | Deal-state modifier |
+| Blood Pact | Faction PN | PoK | Original | Empyrean | Voting | +4 shared votes for same outcome | Agenda amplifier |
+| Scepter of Dominion | Faction PN | PoK | Original | Mahact | Start of Strategy | Forces command-token placement in your chosen non-home system | Strategy-phase coercion |
+| Black Market Forgery | Faction PN | PoK | Original | Naaz-Rokha | Component Action | Purge two same-type fragments to gain relic | Action-phase relic acceleration |
+| The Cavalry | Faction PN | PoK | Original | Nomad | Start of space combat | One non-fighter temporarily mimics flagship defenses/offense | Space-combat spike |
+| Terraform | Faction PN | PoK | Original | Titans | Component Action; persistent planet state | Attach to planet, +1/+1 and all traits | Phase-relevant via explore/objective economy |
+| Crucible | Faction PN | PoK | Original | Vuil’Raith | After activation / movement | Ignore gravity-rift rolls and gain extra movement through/out of rifts | Movement tech-note hybrid |
+| Keleres Rider | Faction PN | Codex III | Original | Council Keleres | After agenda revealed | Rider prediction; if right, draw AC + gain 2 TG | Agenda rider |
+| Sever | Faction PN | TE | Original | Crimson Rebellion | Component Action; until Status end | Disable wormhole movement in a tokened system | Strong positional denial |
+| Share Knowledge | Faction PN | TE | Original | Deepwrought | Component Action; until Status end | Borrow a non-faction, non-unit-upgrade tech | Temporary technology lease |
+| Black Ops | Faction PN | TE | Original | Firmament | On receipt | Sets plot interaction, grants 2 CC + 2 TG, purges | Immediate-state note |
+| Malevolency | Faction PN | TE | Original | Obsidian | End of tactical action; end of Status | Passes curse-like note; later strips fleet token | Delayed-status penalty |
+| Raise the Standard | Faction PN | TE | Original | Last Bastion | End of combat | Galvanize one participating unit | Combat aftermath |
+| Nano-Link Permit | Faction PN | TE | Original | Ral Nel | After activation | Move adjacent structures into the active system | Activation / structure reposition |
+
+### Planet cards and legendary planet ability cards
+
+Only a subset of planet cards have text that directly changes phase flow. For phase work, the critical planet-family components are **legendary planet ability cards** and special revised legendary planets such as the TE version of **Mecatol Rex**. Regular planet resource/influence cards still matter during Production, Leadership-command gain, Technology payment, and Agenda voting, but the table below focuses on planet-family cards with explicit text abilities. citeturn19search8turn25search0turn25search1turn25search3turn25search9turn25search12
+
+| Planet / ability card | Set | Version | Type | Phase / substep | Effect summary | Notes |
+|---|---|---|---|---|---|---|
+| Hope’s End | PoK | Original | Legendary planet ability | Action / ground-force deployment | Spend commodity/TG or gain commodity; place mech on planet | Mech tempo |
+| Primor | PoK | Original | Legendary planet ability | Action / reinforcements | Place infantry from reinforcements | Ground-force burst |
+| Mallice | PoK | Original | Legendary planet ability | Action / TG economy | Resource-rich legendary / trade leverage | Often strategy-economy relevant |
+| Mirage | PoK | Original | Legendary planet ability | After frontier exploration / control | Hidden planet enters play | Exploration-to-control bridge |
+| Custodia Vigilia | Codex III | Original | Legendary planet ability | Persistent / Mecatol adjacency | Tied to Keleres package | Granted via Keleres tech in Codex III |
+| Mecatol Rex Ω | TE | Replacement | Legendary planet ability | End of turn | May exhaust and discard 1 SO to draw 1 SO | TE makes Mecatol legendary |
+| Thunder’s Edge | TE | Original | Legendary planet ability | End of turn | Grants breakthrough if needed; may exhaust to perform 1 action | One of the strongest turn-extenders |
+| Styx | TE | Original | Legendary planet ability | Persistent / factional interaction | Secondary catalogue lists as legendary | Full text best checked in TE cards |
+| Ordinian / “Hyperion VI” | TE | Original | Legendary planet ability | When you pass | Draw 1 action card and gain 1 command token | Explicitly identified on Last Bastion page |
+| Avernus | TE | Original | Legendary planet ability | Muaat-associated | Muaat breakthrough-linked legendary | Check TE planet cards for exact live wording |
+| Emelpar | TE | Original | Legendary planet ability | Legendary | Phase-relevant card exists | Secondary-catalogue identification only |
+| Faunus | TE | Original | Legendary planet ability | Legendary | Phase-relevant card exists | Secondary-catalogue identification only |
+| Garbozia | TE | Original | Legendary planet ability | Legendary | Phase-relevant card exists | Secondary-catalogue identification only |
+| Industrex | TE | Original | Legendary planet ability | Legendary | Phase-relevant card exists | Secondary-catalogue identification only |
+| Tempesta | TE | Original | Legendary planet ability | Legendary | Phase-relevant card exists | Secondary-catalogue identification only |
+
+### Leader cards
+
+Each faction has an **agent**, **commander**, and **hero** (with the Nomad gaining extra agents), and all leaders are timing-sensitive by construction. The table is organized **one row per faction** to keep the catalogue readable while still naming every leader card. The most important version-sensitive rows are **Naalu**, **Yin**, and **Xxcha**, which have Codex III Omega updates. citeturn11search1turn22view0turn27view0turn27view1turn27view2turn28view0turn24search1
+
+| Faction | Set | Version notes | Agent | Commander | Hero | Principal phase hooks |
+|---|---|---|---|---|---|---|
+| Arborec | Base | Original | **Letani Ospha** — action/exhaust, upgrades a chosen non-fighter ship | **Dirzuga Rophal** — after enemy activates your production system, produce 1 unit there | **Letani Miasmiala** — action, produce in any systems with your ground forces | Action; Activation; Production |
+| Argent Flight | PoK | Original | **Trillossa Aun Mirik** — when a player produces ground forces, extend placement | **Trrakan Aun Zulok** — extra die on a unit-ability roll | **Mirik Aun Sissiri** — action, relocate ships among your tokened systems | Production; unit-ability rolls; Action |
+| Letnev | Base | Original | **Viscount Unlenn** — start of space-combat round buff | **Rear Admiral Farran** — TG after sustain damage | **Darktalon Treilla** — action, fleet-cap/fleet-law exemption for round | Space Combat; Sustain Damage; round-state |
+| Saar | Base | Original | **Captain Mendosa** — after activation, boost a ship’s move | **Rowl Sarrig** — distribute produced fighters/infantry among docks | **Gurno Aggero** — action, wipe infantry/fighters in adjacent-dock system | Activation; Production; Action |
+| Muaat | Base | Original | **Umbat** — action, let a player produce up to 2 units near war sun/flagship | **Magmus** — TG after spending strategy token | **Adjudicator Ba’al** — war sun move triggers Nova Seed system destruction | Action; Production; Movement |
+| Hacan | Base | Original | **Carth of Golden Sands** — Action-Phase commodities / refresh another | **Gila the Silvertongue** — trade goods become extra votes | **Harrugh Gefhara** — production burst reducing all produced unit costs to 0 | Action; Agenda voting; Production |
+| Sol | Base | Original | **Claire Gibson / equivalent row omitted in snippet** | **Commander unlock via infantry presence** | **Sol hero** — faction table best checked on leaders page | Action / combat / production |
+| Creuss | Base | Original | **Emissary Taivra** — after activation in wormhole system, adjacency bloom | **Sai Seravus** — post-move fighter placement through wormholes | **Riftwalker Meian** — action, swap systems with wormholes/your units | Activation; Movement; Action |
+| L1Z1X | Base | Original | **I48S** — after activation, replace infantry with mech | **2RAM** — planetary shield no longer stops your bombardment | **The Helmsman** — action, reposition flagship and dreadnoughts | Activation; Bombardment; Action |
+| Mentak | Base | Original | **Suffi An** — after Pillage, both draw action card | **S’Ula Mentarion** — after winning space combat, take promissory note | **Ipswitch** — start of space combat, copy destroyed ship types into system | Post-ability; Space Combat |
+| Naalu | PoK | **Codex III Ω** for agent and commander | **Z’eu / Z’eu Ω** — original agenda peek vs Ω free tactical action | **M’aban / M’aban Ω** — original fighter-production boost vs Ω information/control package | **The Oracle** — end of Status, take PNs from each player | Agenda; Action; Status |
+| Nekro Virus | Base | Original | **Nekro Malleon** — Action Phase coercion for TGs | **Nekro Acidos** — draw AC after gaining tech | **FLAYESH** — action, kill units on tech-skip planet and gain matching tech | Action; Technology; planet control |
+| Sardakk N’orr | Base | Original | **T’ro** — end of tactical action, place infantry | **G’hom Sek’kus** — commit from active/adjacent planets during CGF step | **Sh’val** — after moving in, skip to commit ground forces and purge after landing | End of tactical action; Commit Ground Forces |
+| Jol-Nar | Base | Original | **Doctor Sucaban** — reduce research spend by removing infantry | **Ta-Zern** — reroll unit-ability dice | **Rin** — action, swap owned non-upgrade techs for same-color deck techs | Research; die-roll windows; Action |
+| Winnu | Base | Original | **Berekar Berekon** — production discount | **Rickar Rickani** — +2 combat rolls in Mecatol/home/legendary systems | **Mathis Mathinus** — action, perform any strategy primary and let others second it | Production; Combat; Strategic Action |
+| Xxcha | PoK | **Hero Ω in Codex III** | **Ggrucoto Rinn** — action, ready any planet; maybe remove infantry | **Elder Qanoj** — extra votes, cannot be prevented from voting | **Political Data Nexus / Ω** — original agenda-law manipulation vs Ω planetary-value merge | Agenda; planet exhaustion |
+| Yin | PoK | **All three updated in Codex III Ω set** | **Brother Milor / Ω** — from destroyer-cruiser death trigger to any unit death fighter/infantry replacement | **Brother Omar / Ω** — green prerequisite + production bonus; Ω also prerequisite-ignoring tech research rider | **Dannel of the Tenth / Ω** — action, commit infantry from reinforcements to invasions without space cannon | Destruction windows; Technology; Invasion |
+| Yssaril | Base | Original | **Clever Clever Ssruu** — copies each other player’s agent text | **So Ata** — after enemy activation in your system, inspect hidden cards | **Kyver, Blade and Key** — action, extort action cards from all players | Activation; hand disruption |
+| Empyrean | PoK | Original | **Empyrean agent** — secondary catalogue needed for exact name | **Empyrean commander** — interaction timing via voidspace state | **Conservator Procyon** — action, frontier-token seeding and exploration | Exploration; Action |
+| Mahact | PoK | Original | **Jae Mir Kan** — use active player token instead of your own for secondary | **Il Na Viroset** — activate systems containing your own tokens during tactical actions | **Airo Shir Aur** — action, force battle by moving all units from one system to another | Strategic secondary; Tactical Action |
+| Naaz-Rokha | PoK | Original | **Garv and Gunn** — end of turn, allow explore | **Dart and Tai** — after taking enemy planet, explore it | **Hesh and Prit** — action, gain relic and perform two strategy secondaries | End of turn; Explore; Strategic secondary |
+| Nomad | PoK | Original | **Artuno**, **Field Marshal Mercer**, **The Thundarian** — TG banking, troop redeploy, rewind-esque combat step | **Navarch Feng** — build flagship for free once unlocked | **Ahk-Syl Siven** — round-long flagship move-out-of-tokened-systems effect | End of turn; combat roll loop; Action |
+| Titans of Ul | PoK | Original | **Tellurian** — cancel hit | **Tungstantus** — TG on production | **Ul the Progenitor** — action, geoform Elysium into giant cannon planet | Hit assignment; Production; Action |
+| Vuil’Raith Cabal | PoK | Original | **Stillness of Stars** — after commodity replenish, convert and capture | **That Which Molds Flesh** — fighter/infantry production-limit relief | **It Feeds on Carrion** — action, capture nearby ships by die rolls | Commodity window; Production; Action |
+| Keleres | Codex III | Original | Keleres agent/commander/hero are present in faction package | Use current official Keleres set | PoK-style leader timing plus Keleres-specific Mecatol hooks | See Keleres faction package |
+| Crimson Rebellion | TE | Original | TE faction leaders present | TE commander present | TE hero present | TE-only; check official fan-pack / TE cards for latest text |
+| Deepwrought Scholarate | TE | Original | TE faction leaders present | TE commander present | TE hero present | TE-only |
+| Firmament | TE | Original / transforms | **Myru Vos / Captain Aroz / Sharsis** before transformation | Transformation-sensitive commander | Plot-card / plot-token timing | TE-only transformed-state faction |
+| Obsidian | TE | Transformed state | **Vos Hollow / Aroz Hollow / Sharsiss Hollow** | Fracture combat modifier | Hero readies all planets | Combat; planet readying |
+| Last Bastion | TE | Original | **Dame Briar** — destruction response | **Nip and Tuck** — Sabotage immunity / anti-Nekro protection | **Apollo** — destruction-trigger purge attack | Destruction; action-card cancellation |
+| Ral Nel Consortium | TE | Original | TE faction leaders present | TE commander present | TE hero present | TE-only |
+
+### Action cards
+
+The action-card universe is the largest moving part. TI4 Kiosk describes the all-expansion card pool as **140 action cards across every expansion**, while the Fandom action-card catalogue remains the best parsed secondary source for timings and Omega notes. Because the official/public sources do not expose a stable per-card parsed index across all 140 in one place, the table below is intentionally **phase-family oriented**: it identifies the action-card timing windows that materially affect phase flow and lists the clearly exposed cards in those windows, with emphasis on changed/additional Codex-era cards. citeturn12search0turn12search1turn2view0turn10view5
+
+| Timing family | Representative / explicitly exposed cards | Main phase/substep impact | Notes |
+|---|---|---|---|
+| Strategy selection | **Public Disgrace**, **Political Stability**, **Manipulate Investments** | Strategy Phase | Interrupt picks, keep cards, place TGs on strategy cards |
+| Agenda reveal / pre-vote riders | **Ancient Burial Sites**, **Assassinate Representative**, **Diplomacy Ride**r, **Leadership Rider**, **Hack Election**, **Diplomatic Pressure**, **Keleres Rider** analogues in PN space | Agenda Phase | Alters voters, initiative, or predicated effects |
+| Vote / outcome windows | **Bribery**, **Confusing Legal Text**, **Confounding Legal Text**, **Distinguished Councilor**, **Veto** | Agenda Phase | Changes vote totals or election target / agenda resolution |
+| Activation | **Signal Jamming**, **Lost Star Chart**, **Forward Supply Base**, **Harness Energy**, **Rally**, **Unexpected Action**, **Counterstroke** | Tactical Action — Activation / Movement | Command-token denial, adjacency change, economy on activation |
+| Movement | **In the Silence of Space**, **Flank Speed**, **Ghost Ship**, **Solar Flare**, **Rescue** | Tactical Action — Movement | Changes move, adjacency, or entry |
+| Space Cannon Offense / Defense | **Maneuvering Jets**, **Experimental Battlestation**, **Scramble Frequency** | Movement → Space Cannon; Invasion defense | Directly modifies space-cannon windows |
+| Start of space combat / start of combat round | **Morale Boost**, **Shields Holding**, **Direct Hit**, **Skilled Retreat**, **Intercept**, **Courageous to the End** | Space Combat | Classic combat sequence manipulators |
+| After combat rolls / sustain windows | **Reflective Shielding**, **Direct Hit**, **Fire Team** | Space / Ground Combat | Often the most rules-sensitive interactions |
+| Invasion / Bombardment / ground combat | **Bunker**, **Parley**, **Ghost Squad**, **Plague**, **Tactical Bombardment**, **Blitz** | Invasion substeps | Bombardment suppression, landing control, infantry kills |
+| Production / resource conversion | **War Machine**, **Industrial Initiative**, **Mining Initiative**, **Divert Funding**, **Focused Research**, **Plagiarize**, **Impersonation** | Production; Technology; Action | Economy or tech tempo |
+| Post-turn / pass / extra action | **Master Plan**, **Puppets on a String**, **Overrule / Strategize**-style effects | Action Phase turn structure | Changes number of actions or strategic access |
+| Codex I named additions | **Insider Information**, **Plagiarize**, **Master Plan**, **Rally**, **Scramble Frequency**, **Forward Supply Base**, **Fighter Conscription**, **Blitz**, **Harness Energy**, **Hack Election**, **Reflective Shielding**, **Impersonation**, **Solar Flare**, **Sanction**, **Counterstroke**, **Ghost Squad**, **War Machine** | Multi-phase | Official Codex I “Ixthian Artifacts” action-card additions |
+| Thunder’s Edge named additions visible in secondary catalogues | **Mercenary Contract**, **Pirate Contract**, **Pirate Fleet**, **Puppets on a String**, **Diplomatic Pressure**, **Divert Funding**, **Manipulate**, **Meddle**, **Meld**, **Meteor**, **Mutate**, **Pax** | Multi-phase | Secondary-source only in parsed web results; use TE card files for exact live text |
+
+Three edge-case timing notes are worth preserving in any database. **Sabotage** is played after targets are chosen but before effects resolve, votes are cast, or dice are rolled; **Direct Hit** can follow hits produced by abilities such as **Ambush**, **Dimensional Splicer**, or **Devotion**; and **Experimental Battlestation** occupies the same timing window as **Space Cannon Offense**, meaning it requires actual ship movement into the active system and only affects the active player’s ships. citeturn10view5turn11search6
+
+## Interaction notes and edge cases
+
+The rules reference matters whenever card text crosses phases. A few examples illustrate the point. **Space Cannon** exists in **two different timing windows**—once after movement as **Space Cannon Offense**, and once during **Invasion** as **Space Cannon Defense**—so cards like **Graviton Laser System**, **Plasma Scoring**, **Maneuvering Jets**, **Experimental Battlestation**, **L4 Disruptors**, and **Dannel of the Tenth Ω** have to be tagged to the correct step. Treating them as one generic “space cannon” bucket loses rules accuracy. citeturn21view1turn21view0turn17view6turn17view7turn32view0turn28view0
+
+Likewise, several cards bridge multiple phases. **Integrated Economy** converts **Establish Control** into an immediate **Production** window. **Acquiescence Ω** is not a Strategy-Phase swap effect anymore; it now triggers when the Winnu player **resolves a strategic action**. **Cybernetic Enhancements Ω** moved from **start of turn** to **Status Phase command-token gain**, and **Wormhole Generator Ω** moved from **start of status** to an **action/exhaust** timing. Those are exactly the kinds of changes that phase-mapped databases need to model explicitly instead of treating as cosmetic balance patches. citeturn30view1turn29view1turn32view0
+
+A final caution concerns *Thunder’s Edge*. The official announcement and rulebook excerpts make clear that the expansion adds not only five factions and many new cards, but also **breakthroughs**, revised strategy cards, revised tech components, a legendary **Mecatol Rex**, and additional legendary planets. So if your end goal is a “single source of truth” rules engine or timing assistant, you should store **set identity**, **version tag**, **replacement chain**, and **phase tags** as separate fields rather than deriving timing only from card names. citeturn24search8turn24search0turn25search1turn25search3
+
+## Source notes and unresolved items
+
+The **most authoritative phase structure** comes from the official Rules Reference and PoK/TE integration documents. The **most complete card-by-card indexing** in accessible parsed web form comes from the Twilight Imperium Wiki, with TI Rules used sparingly for FAQ-grade timing clarifications and TI4 Kiosk used as a secondary confirmation of all-expansion card-pool scope. citeturn9view0turn7view0turn24search3turn24search8turn2view0turn14view4turn2view2turn2view3turn25search0turn11search6turn12search0
+
+A small number of **Thunder’s Edge faction techs, leaders, and some legendary-planet full texts** are identifiable in secondary catalogues but not fully exposed in stable parsed official web snippets. Those entries are marked **unspecified** or **secondary-source gap** above, and the correct place to resolve them is the official Thunder’s Edge rulebook / card files listed in the FFG document archive and rulebook pages. citeturn24search3turn24search8turn24search0

@@ -1,0 +1,132 @@
+# Twilight Imperium Starting Technologies by Faction
+
+## What this appendix adds
+
+This appendix adds the missing **faction-by-faction starting technology table** to the earlier card-and-phase research. It covers the current official product line for **Twilight Imperium Fourth Edition** as it exists across the **base game**, **Prophecy of Kings**, **Codex content**, and **Thunder’s Edge**. Fantasy Flight’s current product page lists the four Codex volumes, the separate **Alternate Technology Cards** file, and the **Codex 4.5 Technology Card Updates** file as official support resources, while the Thunder’s Edge announcement states that the expansion adds **five new factions**, gives **all factions** new reference cards that show their starting units and technology, and compiles previously print-and-play Codex material into the official line. citeturn11view0turn12view0
+
+For the faction-by-faction entries themselves, the best publicly indexed source is the current **Starting Technology** reference page on the Twilight Imperium Wiki. That page explicitly says the information “can be found on the back of the faction sheet,” and that players place those technology cards during **“Gather Starting Components.”** I use that page as the line-by-line faction source, and I cross-reference the timing framework against the official **Rules Reference**. citeturn2view0turn3view0turn16view0
+
+## Rules framework for setup and phase mapping
+
+The official setup rule is straightforward: in **Step 11 — Gather Starting Components**, each player gains the **starting technologies** listed on the back of their faction sheet and places those cards faceup near that sheet. That means starting technologies are fundamentally **setup metadata** that then continue to matter for the rest of the game. citeturn3view0turn16view0
+
+The official technology rules also matter for how to store and interpret this data. The Rules Reference says that a non-upgrade technology has one of four colors—**Biotic, Warfare, Propulsion, or Cybernetic**—and that those colors have no inherent effect by themselves, but they **do satisfy prerequisites** when researching future technologies. It also says **unit upgrade technologies do not have a color and do not satisfy prerequisites**. The main way players research technology is through the **Technology strategy card**, whose primary and secondary abilities resolve during the **Action Phase**. citeturn5view0
+
+For phase mapping, I use the following rule anchors. Technologies that say “during the status phase” map to the **Status Phase**. Technologies that begin with **ACTION:** map to a **component action in the Action Phase**. Technologies that modify movement, bombardment, production, space cannon, or ground combat map to the exact tactical-action substeps described in the Rules Reference, such as **Movement**, **Space Cannon Offense**, **Bombardment**, **Ground Combat**, and **Production**. citeturn3view0
+
+## Starting technology reference by card
+
+All timing references in the matrix below are drawn from the current consolidated **Technology** and **Faction Technologies** references, using the action-phase substep structure from the official Rules Reference. citeturn9view0turn19view0turn3view0
+
+| Starting technology | Color or category | Current version note | Setup acquisition | Main phase or substep impact |
+|---|---|---|---|---|
+| **Neural Motivator** | Biotic | Original basic tech; no Ω replacement shown in current tech index | Step 11 | **Status Phase**: draw 2 action cards instead of 1. Also immediately counts as a green prerequisite for future research. citeturn9view0turn5view0 |
+| **Dacxive Animators** | Biotic | Original basic tech; no Ω replacement shown | Step 11 | **Action Phase → Tactical Action → Invasion / Ground Combat resolution**: after you win ground combat, place 1 infantry from reinforcements on that planet. Also a green prerequisite. citeturn9view0turn5view0 |
+| **Psychoarchaeology** | Biotic | PoK basic tech; no Ω replacement shown | Step 11 | **Action Phase**: technology specialties can be used without exhausting those planets, and you can exhaust tech-specialty planets for 1 trade good. Also a green prerequisite for research. citeturn9view0turn5view0 |
+| **Bio-Stims** | Biotic | PoK basic tech; no Ω replacement shown | Step 11 | **Action Phase → end of your turn**: ready a tech-specialty planet or another technology. Also a green prerequisite. citeturn9view0turn5view0 |
+| **Antimass Deflectors** | Propulsion | Original basic tech; no Ω replacement shown | Step 11 | **Action Phase → Tactical Action → Movement**: move into and through asteroid fields. Also reduces enemy **Space Cannon** rolls against your units by 1. Blue prerequisite for research. citeturn9view0turn3view0turn5view0 |
+| **Gravity Drive** | Propulsion | Original basic tech; no Ω replacement shown | Step 11 | **Action Phase → Tactical Action → after activation / Movement**: apply +1 move to 1 ship during that tactical action. Blue prerequisite. citeturn9view0turn3view0turn5view0 |
+| **Dark Energy Tap** | Propulsion | PoK basic tech; no Ω replacement shown | Step 11 | **Action Phase → after tactical action in a frontier-token system**: explore that token; also expands legal retreat destinations in **Space Combat**. Blue prerequisite. citeturn9view0turn3view0turn5view0 |
+| **Sling Relay** | Propulsion | PoK basic tech; no Ω replacement shown | Step 11 | **Action Phase → component action**: exhaust to produce 1 ship at a space dock. Blue prerequisite. citeturn9view0turn3view0turn5view0 |
+| **Sarween Tools** | Cybernetic | Original basic tech; no Ω replacement shown | Step 11 | **Action Phase → Tactical Action → Production** and other production windows: reduce combined production cost by 1. Yellow prerequisite. citeturn9view0turn3view0turn5view0 |
+| **Graviton Laser System** | Cybernetic | Original basic tech; no Ω replacement shown | Step 11 | **Action Phase → Space Cannon Offense / Defense**: exhaust before your units use Space Cannon so hits must be assigned to non-fighters if able. Yellow prerequisite. citeturn9view0turn3view0turn5view0 |
+| **Scanlink Drone Network** | Cybernetic | PoK basic tech; no Ω replacement shown | Step 11 | **Action Phase → when you activate a system**: explore 1 planet there that contains your units. Yellow prerequisite. citeturn9view0turn3view0turn5view0 |
+| **Predictive Intelligence** | Cybernetic | PoK basic tech; no Ω replacement shown | Step 11 | **Action Phase → end of your turn**: redistribute command tokens; **Agenda Phase**: cast 3 extra votes, with an exhaust condition if your preferred outcome fails. Yellow prerequisite. citeturn9view0turn5view0 |
+| **Plasma Scoring** | Warfare | Original basic tech; no Ω replacement shown | Step 11 | **Action Phase → Space Cannon Offense / Defense** or **Invasion → Bombardment**: one unit rolls 1 additional die. Red prerequisite. citeturn9view0turn3view0turn5view0 |
+| **Magen Defense Grid** | Warfare | **Affected by Codex**. Current public tech index shows original **Magen Defense Grid**, **Magen Defense Grid Ω**, and current **Magen Defense Grid ΩΩ** from **Codex 4.5**. | Step 11 | Current form impacts **Action Phase → when any player activates a system with your structures** and **Ground Combat start** on planets with your structures. Red prerequisite. citeturn9view0turn11view0 |
+| **AI Development Algorithm** | Warfare | PoK basic tech; no Ω replacement shown | Step 11 | **Action Phase → Technology research windows**: ignore 1 prerequisite when researching a unit upgrade; **Production**: can reduce cost based on number of unit upgrades owned. Red prerequisite. citeturn9view0turn5view0 |
+| **Self-Assembly Routines** | Warfare | PoK basic tech; no Ω replacement shown | Step 11 | **Action Phase → after Production**: place 1 mech; also **whenever one of your mechs is destroyed**, gain 1 trade good. Red prerequisite. citeturn9view0turn5view0 |
+| **Valefar Assimilator X / Y** | Faction technology; no printed prerequisites | Original faction tech; no Ω replacement shown | Step 11 | Special Nekro timing: **when you would gain another player’s technology using a faction ability**, X or Y can instead copy a faction technology. These are not presented as normal colored prerequisite techs in the public faction-tech index. citeturn19view0 |
+| **None** | No tech | Not applicable | Step 11 | No starting prerequisite color, no immediate phase effect until later research. citeturn2view0 |
+
+A practical Codex note belongs here. The official resource page confirms that Fantasy Flight provides both **Alternate Technology Cards** and **Codex 4.5 Technology Card Updates** as separate resources. In the current public technology index, **Magen Defense Grid** is the only fixed starting basic technology that is visibly marked with live replacement versions. I therefore treat **Arborec’s starting Magen Defense Grid as using the newest update**, while the other fixed starting basic technologies remain on their current non-Ω text unless a later official update names them specifically. That is an inference from the current public tech index and official resource list, and I am flagging it as such. citeturn11view0turn9view0
+
+## Faction-by-faction starting technology table
+
+The entries below use the current **Starting Technology** reference, which explicitly states that these technologies are listed on the backs of faction sheets, and the official **Step 11 — Gather Starting Components** rule for timing. citeturn2view0turn3view0turn16view0
+
+### Base game factions
+
+| Faction | Source | Starting technologies | Color or category | Choice-based or none | Version note | Later phase relevance |
+|---|---|---|---|---|---|---|
+| **The Arborec** | Base | Magen Defense Grid | Warfare | Fixed | **Use current Magen Defense Grid ΩΩ text** from current public tech index | Defensive activation trigger plus ground-combat trigger; also immediate red prerequisite. |
+| **The Barony of Letnev** | Base | Antimass Deflectors; Plasma Scoring | Propulsion; Warfare | Fixed | Original/current | Early movement through asteroid fields, anti-space-cannon protection, and stronger space cannon or bombardment lines. |
+| **The Clan of Saar** | Base | Antimass Deflectors | Propulsion | Fixed | Original/current | Mobility-focused opening and safer movement through asteroid fields; immediate blue prerequisite. |
+| **The Embers of Muaat** | Base | Plasma Scoring | Warfare | Fixed | Original/current | Better bombardment and space cannon from round 1; immediate red prerequisite. |
+| **The Emirates of Hacan** | Base | Antimass Deflectors; Sarween Tools | Propulsion; Cybernetic | Fixed | Original/current | Safer movement plus an early production discount. |
+| **The Federation of Sol** | Base | Neural Motivator; Antimass Deflectors | Biotic; Propulsion | Fixed | Original/current | Extra action-card flow in the Status Phase plus mobility protection in the Action Phase. |
+| **The Ghosts of Creuss** | Base | Gravity Drive | Propulsion | Fixed | Original/current | Immediate tactical-action reach upgrade; immediate blue prerequisite. |
+| **The L1Z1X Mindnet** | Base | Neural Motivator; Plasma Scoring | Biotic; Warfare | Fixed | Original/current | Status-phase card draw plus better bombardment/space-cannon output. |
+| **The Mentak Coalition** | Base | Sarween Tools; Plasma Scoring | Cybernetic; Warfare | Fixed | Original/current | Early production efficiency plus bombardment or space-cannon support. |
+| **The Naalu Collective** | Base | Neural Motivator; Sarween Tools | Biotic; Cybernetic | Fixed | Original/current | Status-phase action-card acceleration plus cheaper production. |
+| **The Nekro Virus** | Base | Dacxive Animators; Valefar Assimilator X; Valefar Assimilator Y | Biotic; faction tech; faction tech | Fixed | Original/current | Ground-combat snowballing plus dynamic faction-tech copying windows. |
+| **Sardakk N’orr** | Base | None | — | **No starting technology** | Not applicable | No starting prerequisite colors and no immediate tech-phase leverage. |
+| **The Universities of Jol-Nar** | Base | Neural Motivator; Antimass Deflectors; Sarween Tools; Plasma Scoring | Biotic; Propulsion; Cybernetic; Warfare | Fixed | Original/current | The broadest setup position in the official roster: immediate access to all four color classes and several early phase effects. |
+| **The Winnu** | Base | Any **one** level-0 technology from the current legal pool shown on the reference card: Neural Motivator, Psychoarchaeology, Antimass Deflectors, Dark Energy Tap, Sarween Tools, Scanlink Drone Network, Plasma Scoring, or AI Development Algorithm | Variable | **Choice-based** | Inherits the current printed text of the chosen card | Phase impact depends on the chosen tech; the key setup value is that Winnu can start with whichever level-0 card best matches its round-1 plan. |
+| **The Xxcha Kingdom** | Base | Graviton Laser System | Cybernetic | Fixed | Original/current | Early **Space Cannon Offense/Defense** skew and an immediate yellow prerequisite. |
+| **The Yin Brotherhood** | Base | Sarween Tools | Cybernetic | Fixed | Original/current | Opens with cheaper production and an immediate yellow prerequisite. |
+| **The Yssaril Tribes** | Base | Neural Motivator | Biotic | Fixed | Original/current | Faster action-card accumulation from the first Status Phase onward. |
+
+For the base-game entries above, the faction-to-tech mapping comes from the current starting-technology reference, and the phase summaries come from the consolidated technology text and core rules. citeturn2view0turn9view0turn19view0turn3view0
+
+### Prophecy of Kings and Codex factions
+
+| Faction | Source | Starting technologies | Color or category | Choice-based or none | Version note | Later phase relevance |
+|---|---|---|---|---|---|---|
+| **The Argent Flight** | PoK | Choose **two** of: Neural Motivator, Sarween Tools, Plasma Scoring | Biotic; Cybernetic; Warfare | **Choice-based** | Current printed text of chosen cards | Flexible opening between Status Phase card draw, cheaper production, and stronger bombardment/space cannon. |
+| **The Empyrean** | PoK | Dark Energy Tap | Propulsion | Fixed | Original/current | Frontier exploration and expanded retreat lines from the first Action Phase. |
+| **The Mahact Gene-Sorcerers** | PoK | Bio-Stims; Predictive Intelligence | Biotic; Cybernetic | Fixed | Original/current | End-of-turn ready effects, command-token redistribution, and extra Agenda Phase voting leverage. |
+| **The Naaz-Rokha Alliance** | PoK | Psychoarchaeology; AI Development Algorithm | Biotic; Warfare | Fixed | Original/current | Technology-specialty economy plus easier unit-upgrade research and production scaling. |
+| **The Nomad** | PoK | Sling Relay | Propulsion | Fixed | Original/current | Immediate component-action ship production during the Action Phase. |
+| **The Titans of Ul** | PoK | Antimass Deflectors; Scanlink Drone Network | Propulsion; Cybernetic | Fixed | Original/current | Mobile opening plus planet exploration on activation. |
+| **The Vuil’Raith Cabal** | PoK | Self-Assembly Routines | Warfare | Fixed | Original/current | Production-to-mech acceleration and trade-good generation when mechs die. |
+| **The Council Keleres** | Codex III | Any **two non-faction technologies owned by other players** | Variable | **Choice-based and table-dependent** | Inherits whatever current text those borrowed technologies use | Entirely dynamic. Keleres’ round-1 phase profile depends on what the table’s other factions start with. |
+
+These PoK and Codex III entries come from the current faction-starting reference page, while their phase mappings come from the current technology rules text. citeturn2view0turn9view0turn19view0
+
+### Thunder’s Edge factions
+
+Fantasy Flight’s Thunder’s Edge article says the expansion includes **five new factions**, adds **new faction reference cards** for all factions showing their starting technology, and also introduces faction **breakthroughs** whose color-pair synergy can matter later when researching technology or scoring technology-related objectives. That synergy does **not** replace starting technologies, but it does change the long-term value of the colors you start with. citeturn12view0
+
+| Faction | Source | Starting technologies | Color or category | Choice-based or none | Version note | Later phase relevance |
+|---|---|---|---|---|---|---|
+| **The Crimson Rebellion** | Thunder’s Edge | Choose **one red or blue technology with no prerequisites** | Variable | **Choice-based** | Inherits current text of chosen card | Current no-prereq pool means a round-1 choice among **Antimass Deflectors**, **Dark Energy Tap**, **Plasma Scoring**, or **AI Development Algorithm**; so the opening can skew toward mobility, exploration, bombardment/space cannon, or upgrade research. |
+| **The Deepwrought Scholarate** | Thunder’s Edge | **During setup, research technology twice** | Variable | **Choice-based** | Inherits current text of chosen cards | The most open-ended starting-tech profile in the current game: the faction begins with two researched technologies of its choice, which immediately shape prerequisites and phase abilities for round 1 onward. |
+| **The Firmament / The Obsidian** | Thunder’s Edge | Choose **one green or yellow technology with no prerequisites** | Variable | **Choice-based** | Inherits current text of chosen card | Current no-prereq pool means a round-1 choice among **Neural Motivator**, **Psychoarchaeology**, **Sarween Tools**, or **Scanlink Drone Network**. |
+| **Last Bastion** | Thunder’s Edge | Choose **one blue or yellow technology with no prerequisites** | Variable | **Choice-based** | Inherits current text of chosen card | Current no-prereq pool means a choice among **Antimass Deflectors**, **Dark Energy Tap**, **Sarween Tools**, or **Scanlink Drone Network**. |
+| **The Ral Nel Consortium** | Thunder’s Edge | Choose **one red or green technology with no prerequisites** | Variable | **Choice-based** | Inherits current text of chosen card | Current no-prereq pool means a choice among **Neural Motivator**, **Psychoarchaeology**, **Plasma Scoring**, or **AI Development Algorithm**. |
+
+The Thunder’s Edge faction starts above are taken from the current starting-technology reference page, while the broader official status of Thunder’s Edge and its breakthrough color-synergy system comes from Fantasy Flight’s announcement article. citeturn2view0turn12view0
+
+## Codex and Thunder’s Edge version notes
+
+The official support page shows that Fantasy Flight treats technology updates as a live part of the game line, with the Codex volumes plus separate **Alternate Technology Cards** and **Codex 4.5 Technology Card Updates** resources. citeturn11view0
+
+In the current public technology index, **Magen Defense Grid** is the only fixed starting technology that is explicitly shown with multiple replacement generations: original base-game text, **Magen Defense Grid Ω**, and **Magen Defense Grid ΩΩ**. That makes **Arborec** the clearest faction whose fixed starting technology should be flagged as having a Codex-era deprecation chain. citeturn9view0
+
+By contrast, the current public technology index does **not** attach Ω markers to the other fixed starting basic technologies such as **Antimass Deflectors**, **Neural Motivator**, **Sarween Tools**, **Plasma Scoring**, **Gravity Drive**, **Graviton Laser System**, **Dark Energy Tap**, **Sling Relay**, **Predictive Intelligence**, **Psychoarchaeology**, **AI Development Algorithm**, or **Self-Assembly Routines**. I therefore treat those as **current/original** in this appendix unless a later official update names them specifically. Again, that is an inference from the current published index, not a quote from an official errata line. citeturn9view0turn11view0
+
+Thunder’s Edge affects starting-tech interpretation in a different way. It does not mainly deprecate old starting technologies; instead, it adds **five more factions**, gives every faction a **breakthrough** with a two-color synergy for technology requirements, and ships **reference cards** that explicitly summarize starting technology. In database terms, Thunder’s Edge should therefore be modeled as both **new faction-starting-tech data** and a **new modifier on how tech colors can matter later in the game**. citeturn12view0
+
+## Integration notes for the site database
+
+If you want this appended cleanly to the larger card-and-phase dataset, the most robust model is to store starting technologies as **setup data that also points forward into later phases**. The rules basis for that approach is Step 11 of setup, where players gain those technologies before round 1 begins. citeturn3view0turn16view0
+
+A build-friendly structure would look like this conceptually:
+
+```text
+faction
+sourceSet
+startingTechMode
+startingTechs
+choicePool
+hasNoStartingTech
+setupTiming
+currentVersionNotes
+laterPhaseImpacts
+sourceCitation
+```
+
+The fields that matter most for correctness are **startingTechMode** and **currentVersionNotes**. Those let you distinguish a fixed start like **Sol = Neural Motivator + Antimass Deflectors**, a null start like **Sardakk N’orr = none**, a bounded choice like **Argent Flight = choose 2 of 3**, and a fully dynamic start like **Council Keleres** or **Deepwrought Scholarate**. citeturn2view0turn12view0
+
+If you would like, I can turn this appendix into a **normalized JSON or CSV schema** next, with one row per faction and a second lookup table for the individual starting technology cards and their phase windows.

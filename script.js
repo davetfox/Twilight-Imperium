@@ -5,6 +5,7 @@ const starCount = 120;
 const flowList = document.querySelector("#flowList");
 const phaseFlowList = document.querySelector("#phaseFlowList");
 const cardChecklist = document.querySelector("#cardChecklist");
+const actionCardChecklist = document.querySelector("#actionCardChecklist");
 const heroChecklist = document.querySelector("#heroChecklist");
 const heroChecklistMessage = document.querySelector("#heroChecklistMessage");
 const factionSelectors = document.querySelector("#factionSelectors");
@@ -327,6 +328,7 @@ const cardVersionMeta = {
   "Antimass Deflectors": { source: "base" },
   "Assassinate Representative": { source: "base" },
   "Assault Cannon": { source: "base" },
+  "Bio-Stims": { source: "pok" },
   "Bribery": { source: "base" },
   "Bunker": { source: "base" },
   "Confusing Legal Text": { source: "base" },
@@ -349,11 +351,15 @@ const cardVersionMeta = {
   "Emergency Repairs": { source: "base" },
   "Experimental Battlestation": { source: "base" },
   "Extreme Duress": { source: "te" },
+  "Fire Team": { source: "base" },
   "Fighter II": { source: "base" },
   "Fighter Prototype": { source: "base" },
+  "Flank Speed": { source: "base" },
   "Fleet Logistics": { source: "base" },
+  "Focused Research": { source: "base" },
   "Forward Supply Base": { source: "codex" },
   "Ghost Squad": { source: "codex" },
+  "Ghost Ship": { source: "base" },
   "Gravity Drive": { source: "base" },
   "Graviton Laser System": { source: "base" },
   "Gurno Aggero": { source: "pok" },
@@ -362,6 +368,8 @@ const cardVersionMeta = {
   "Harrugh Gefhara": { source: "pok" },
   "Hesh and Prit": { source: "pok" },
   "Hyper Metabolism": { source: "base" },
+  "In The Silence Of Space": { source: "base" },
+  "Industrial Initiative": { source: "base" },
   "Infantry II": { source: "base" },
   "Integrated Economy": { source: "base" },
   "Ipswitch, Loose Cannon": { source: "pok" },
@@ -371,39 +379,55 @@ const cardVersionMeta = {
   "Kyver, Blade and Key": { source: "pok" },
   "Light/Wave Deflector": { source: "base" },
   "Letani Miasmiala": { source: "pok" },
+  "Lost Star Chart": { source: "base" },
   "Magen Defense Grid": { source: "base", codexUpdated: true },
+  "Maneuvering Jets": { source: "base" },
+  "Manipulate Investments": { source: "pok" },
+  "Master Plan": { source: "codex" },
   "Mathis Mathinus": { source: "pok" },
+  "Mining Initiative": { source: "base" },
   "Mirik Aun Sissiri": { source: "pok" },
+  "Morale Boost": { source: "base" },
   "Neural Motivator": { source: "base" },
   "Odlynn Myrr": { source: "codex", requiresPok: true },
   "PDS II": { source: "base" },
+  "Parley": { source: "base" },
+  "Plague": { source: "base" },
   "Plasma Scoring": { source: "base" },
   "Predictive Intelligence": { source: "pok" },
+  "Psychoarchaeology": { source: "pok" },
+  "Political Stability": { source: "base" },
   "Public Disgrace": { source: "base" },
   "Reveal Prototype": { source: "pok" },
   "Reverse Engineer": { source: "pok" },
   "Riftwalker Meian": { source: "pok" },
   "Rin, the Master's Legacy": { source: "pok" },
   "Rider cycle": { source: "base" },
+  "Rise of a Messiah": { source: "base" },
   "Rout": { source: "pok" },
   "Sabotage": { source: "base" },
   "Sarween Tools": { source: "base" },
   "Scanlink Drone Network": { source: "pok" },
+  "Self-Assembly Routines": { source: "pok" },
   "Sh'val, Harbinger": { source: "pok" },
   "Shields Holding": { source: "base" },
   "Skilled Retreat": { source: "base" },
   "Sling Relay": { source: "pok" },
+  "Signal Jamming": { source: "base" },
   "Solar Flare": { source: "codex" },
   "Space Dock II": { source: "base" },
+  "Summit": { source: "base" },
   "Supercharge": { source: "pok" },
   "The Helmsman": { source: "pok" },
   "The Oracle": { source: "pok" },
   "Transit Diodes": { source: "base" },
+  "Tactical Bombardment": { source: "base" },
   "Ul the Progenitor": { source: "pok" },
   "UNIT.DSGN.FLAYESH": { source: "pok" },
   "War Machine": { source: "codex" },
   "War Sun": { source: "base" },
   "Waylay": { source: "pok" },
+  "Unexpected Action": { source: "base" },
   "X-89 Bacterial Weapon": { source: "base", replacedByCodex: "X-89 Bacterial Weapon Omega" },
   "X-89 Bacterial Weapon Omega": { source: "codex", replaces: "X-89 Bacterial Weapon" },
   "Xxekir Grom": { source: "pok", replacedByCodex: "Xxekir Grom Omega" },
@@ -423,6 +447,16 @@ const flows = [
             name: "Public Disgrace",
             type: "Action card",
             text: "When another player chooses a strategy card during the strategy phase, they must choose a different strategy card if able."
+          },
+          {
+            name: "Political Stability",
+            type: "Action card",
+            text: "During the strategy phase, keep your current strategy card instead of choosing a new one."
+          },
+          {
+            name: "Manipulate Investments",
+            type: "Action card",
+            text: "During strategy-card selection, place trade goods on strategy cards to shape later picks."
           }
         ]
       }
@@ -440,6 +474,11 @@ const flows = [
             name: "Scanlink Drone Network",
             type: "Technology",
             text: "When you activate a system, you may explore 1 planet in that system that contains 1 or more of your units."
+          },
+          {
+            name: "Psychoarchaeology",
+            type: "Technology",
+            text: "You can use technology specialties without exhausting their planets; during the action phase, exhaust a technology-specialty planet to gain 1 trade good."
           },
           {
             name: "Solar Flare",
@@ -460,6 +499,16 @@ const flows = [
             name: "Forward Supply Base",
             type: "Action card",
             text: "After another player activates a system that contains your units, gain 3 trade goods; another player gains 1 trade good."
+          },
+          {
+            name: "Signal Jamming",
+            type: "Action card",
+            text: "After another player activates a system, place one of their command tokens in an eligible adjacent system."
+          },
+          {
+            name: "Lost Star Chart",
+            type: "Action card",
+            text: "After a system is activated, treat the active system as adjacent to a chosen system during this tactical action."
           }
         ]
       },
@@ -490,6 +539,21 @@ const flows = [
             name: "Fighter II",
             type: "Unit upgrade",
             text: "This unit may move without being transported; excess fighters count against fleet pool."
+          },
+          {
+            name: "Flank Speed",
+            type: "Action card",
+            text: "After you activate a system, apply +1 to the move value of your ships during this tactical action."
+          },
+          {
+            name: "In The Silence Of Space",
+            type: "Action card",
+            text: "After you activate a system, your ships can move through systems that contain other players' ships during this movement."
+          },
+          {
+            name: "Ghost Ship",
+            type: "Action card",
+            text: "After you activate a system, place a cruiser from reinforcements into an eligible empty system."
           }
         ]
       },
@@ -525,6 +589,11 @@ const flows = [
             name: "PDS II",
             type: "Unit upgrade",
             text: "You may use this unit's Space Cannon against ships that are adjacent to this unit's system."
+          },
+          {
+            name: "Maneuvering Jets",
+            type: "Action card",
+            text: "After your ships are targeted by Space Cannon, apply -4 to those Space Cannon rolls."
           }
         ]
       },
@@ -562,6 +631,11 @@ const flows = [
             name: "Assault Cannon",
             type: "Technology",
             text: "At the start of a space combat in a system that contains 3 or more of your non-fighter ships, your opponent must destroy 1 of their non-fighter ships."
+          },
+          {
+            name: "Morale Boost",
+            type: "Action card",
+            text: "At the start of a combat round, apply +1 to your combat rolls during that round."
           }
         ]
       },
@@ -652,6 +726,11 @@ const flows = [
             name: "Dreadnought II",
             type: "Unit upgrade",
             text: "This unit cannot be destroyed by Direct Hit."
+          },
+          {
+            name: "Fire Team",
+            type: "Action card",
+            text: "After you roll dice during ground combat, reroll any number of your dice."
           }
         ]
       },
@@ -662,6 +741,11 @@ const flows = [
             name: "Infantry II",
             type: "Unit upgrade",
             text: "After this unit is destroyed, roll 1 die; on a result of 6 or greater, place the unit card and return it on your next turn."
+          },
+          {
+            name: "Self-Assembly Routines",
+            type: "Technology",
+            text: "After 1 of your mechs is destroyed, gain 1 trade good."
           }
         ]
       }
@@ -689,6 +773,11 @@ const flows = [
             name: "War Sun",
             type: "Unit upgrade",
             text: "Other players' units in this system lose Planetary Shield."
+          },
+          {
+            name: "Parley",
+            type: "Action card",
+            text: "At the start of an invasion, prevent another player's units from landing on a planet you control."
           }
         ]
       },
@@ -724,6 +813,11 @@ const flows = [
             name: "X-89 Bacterial Weapon Omega",
             type: "Technology",
             text: "After Bombardment, if at least 1 infantry was destroyed, you may destroy all opponent infantry on that planet."
+          },
+          {
+            name: "Tactical Bombardment",
+            type: "Action card",
+            text: "After Bombardment, destroy infantry on a bombarded planet according to the card effect."
           }
         ]
       },
@@ -764,6 +858,11 @@ const flows = [
             name: "Dacxive Animators",
             type: "Technology",
             text: "After you win a ground combat, you may place 1 infantry from your reinforcements on that planet."
+          },
+          {
+            name: "Plague",
+            type: "Action card",
+            text: "After you win ground combat, destroy infantry on the invaded planet according to the card effect."
           }
         ]
       },
@@ -808,9 +907,24 @@ const flows = [
             text: "When units use Production, reduce the combined cost by the number of unit upgrades you own."
           },
           {
+            name: "Self-Assembly Routines",
+            type: "Technology",
+            text: "After you use Production, exhaust this card to place 1 mech from reinforcements on a planet you control in that system."
+          },
+          {
             name: "Space Dock II",
             type: "Unit upgrade",
             text: "Increases Production and allows up to 3 fighters in this system to not count against your ships' capacity."
+          },
+          {
+            name: "Industrial Initiative",
+            type: "Action card",
+            text: "When producing, gain trade goods or resources according to the card effect."
+          },
+          {
+            name: "Mining Initiative",
+            type: "Action card",
+            text: "When producing or spending planetary economy, gain extra value from an industrial planet."
           }
         ]
       },
@@ -843,6 +957,11 @@ const flows = [
             name: "Reveal Prototype",
             type: "Action card",
             text: "At the start of a combat: Spend 4 resources to research a unit upgrade that matches a participating unit type."
+          },
+          {
+            name: "Focused Research",
+            type: "Action card",
+            text: "During a research window, spend trade goods to research an additional technology."
           }
         ]
       }
@@ -875,6 +994,16 @@ const flows = [
             name: "The Oracle",
             type: "Hero leader",
             text: "Naalu Collective hero. At the end of the status phase, force each other player to give you 1 promissory note; purge if you do."
+          },
+          {
+            name: "Rise of a Messiah",
+            type: "Action card",
+            text: "During the status phase, place infantry on planets you control according to the card effect."
+          },
+          {
+            name: "Summit",
+            type: "Action card",
+            text: "During the status phase, gain command tokens according to the card effect."
           }
         ]
       }
@@ -1099,6 +1228,11 @@ const flows = [
             name: "Fleet Logistics",
             type: "Technology",
             text: "During each of your turns of the action phase, you may perform 2 actions instead of 1."
+          },
+          {
+            name: "Unexpected Action",
+            type: "Action card",
+            text: "As an action-phase effect, remove one of your command tokens from the board."
           }
         ]
       },
@@ -1134,6 +1268,16 @@ const flows = [
             name: "Predictive Intelligence",
             type: "Technology",
             text: "At the end of your turn, you may exhaust this card to redistribute command tokens."
+          },
+          {
+            name: "Bio-Stims",
+            type: "Technology",
+            text: "At the end of your turn, exhaust this card to ready 1 of your planets with a technology specialty or 1 of your other technologies."
+          },
+          {
+            name: "Master Plan",
+            type: "Action card",
+            text: "At the end of your turn, perform an additional action if the card condition is met."
           }
         ]
       }
@@ -1444,19 +1588,39 @@ const categoryByName = {
   "Emergency Repairs": "Action Cards",
   "Experimental Battlestation": "Action Cards",
   "Extreme Duress": "Action Cards",
+  "Fire Team": "Action Cards",
   "Fighter Prototype": "Action Cards",
+  "Flank Speed": "Action Cards",
+  "Focused Research": "Action Cards",
   "Forward Supply Base": "Action Cards",
   "Ghost Squad": "Action Cards",
+  "Ghost Ship": "Action Cards",
   "Hack Election": "Action Cards",
+  "In The Silence Of Space": "Action Cards",
+  "Industrial Initiative": "Action Cards",
+  "Lost Star Chart": "Action Cards",
+  "Maneuvering Jets": "Action Cards",
+  "Manipulate Investments": "Action Cards",
+  "Master Plan": "Action Cards",
+  "Mining Initiative": "Action Cards",
+  "Morale Boost": "Action Cards",
+  "Parley": "Action Cards",
+  "Plague": "Action Cards",
+  "Political Stability": "Action Cards",
   "Public Disgrace": "Action Cards",
   "Reveal Prototype": "Action Cards",
   "Reverse Engineer": "Action Cards",
   "Rider cycle": "Action Cards",
+  "Rise of a Messiah": "Action Cards",
   "Rout": "Action Cards",
   "Sabotage": "Action Cards",
   "Shields Holding": "Action Cards",
+  "Signal Jamming": "Action Cards",
   "Skilled Retreat": "Action Cards",
   "Solar Flare": "Action Cards",
+  "Summit": "Action Cards",
+  "Tactical Bombardment": "Action Cards",
+  "Unexpected Action": "Action Cards",
   "War Machine": "Action Cards",
   "Waylay": "Action Cards",
   "Antimass Deflectors": "Blue Technology",
@@ -1476,9 +1640,12 @@ const categoryByName = {
   "Magen Defense Grid": "Red Technology",
   "Plasma Scoring": "Red Technology",
   "Supercharge": "Faction Cards",
+  "Bio-Stims": "Green Technology",
   "Dacxive Animators": "Green Technology",
   "Hyper Metabolism": "Green Technology",
   "Neural Motivator": "Green Technology",
+  "Psychoarchaeology": "Green Technology",
+  "Self-Assembly Routines": "Red Technology",
   "X-89 Bacterial Weapon": "Green Technology",
   "X-89 Bacterial Weapon Omega": "Green Technology",
   "Destroyer II": "Unit Upgrades",
@@ -1488,6 +1655,30 @@ const categoryByName = {
   "PDS II": "Unit Upgrades",
   "Space Dock II": "Unit Upgrades",
   "War Sun": "Unit Upgrades"
+};
+
+const fixedStartingTechByFaction = {
+  "The Arborec": ["Magen Defense Grid"],
+  "The Barony of Letnev": ["Antimass Deflectors", "Plasma Scoring"],
+  "The Clan of Saar": ["Antimass Deflectors"],
+  "The Embers of Muaat": ["Plasma Scoring"],
+  "The Emirates of Hacan": ["Antimass Deflectors", "Sarween Tools"],
+  "The Federation of Sol": ["Neural Motivator", "Antimass Deflectors"],
+  "The Ghosts of Creuss": ["Gravity Drive"],
+  "The L1Z1X Mindnet": ["Neural Motivator", "Plasma Scoring"],
+  "The Mentak Coalition": ["Sarween Tools", "Plasma Scoring"],
+  "The Naalu Collective": ["Neural Motivator", "Sarween Tools"],
+  "The Nekro Virus": ["Dacxive Animators", "Valefar Assimilator X", "Valefar Assimilator Y"],
+  "The Universities of Jol-Nar": ["Neural Motivator", "Antimass Deflectors", "Sarween Tools", "Plasma Scoring"],
+  "The Xxcha Kingdom": ["Graviton Laser System"],
+  "The Yin Brotherhood": ["Sarween Tools"],
+  "The Yssaril Tribes": ["Neural Motivator"],
+  "The Empyrean": ["Dark Energy Tap"],
+  "The Mahact Gene-Sorcerers": ["Bio-Stims", "Predictive Intelligence"],
+  "The Naaz-Rokha Alliance": ["Psychoarchaeology", "AI Development Algorithm"],
+  "The Nomad": ["Sling Relay"],
+  "The Titans of Ul": ["Antimass Deflectors", "Scanlink Drone Network"],
+  "The Vuil'Raith Cabal": ["Self-Assembly Routines"]
 };
 
 function resizeCanvas() {
@@ -1661,6 +1852,8 @@ function getCurrentVisibleCheckboxIds() {
       return;
     }
 
+    visibleIds.push(`card-${checkbox.dataset.cardSlug}-owner`);
+
     if (checkbox.dataset.singleOwner === "true" || checkbox.dataset.factionTechnology === "true") {
       visibleIds.push(`card-${checkbox.dataset.cardSlug}-owner-colour`);
     }
@@ -1728,6 +1921,7 @@ function renderFactionSelectors() {
     return;
   }
 
+  const existingSelections = getPlayerFactionSelections();
   const factionOptions = getFactionNames().map((factionName) => {
     return `<option value="${factionName}">${factionName}</option>`;
   }).join("");
@@ -1736,16 +1930,22 @@ function renderFactionSelectors() {
     <label class="faction-colour-control faction-colour-${colour.value}" for="faction-${colour.value}">
       <span>
         <span class="colour-dot colour-${colour.value}" aria-hidden="true"></span>
-        ${colour.label}
+        ${getColourLabelWithPlayerMarker(colour.value)}
       </span>
       <select id="faction-${colour.value}" data-player-colour="${colour.value}">
-        <option value="">No faction</option>
+        <option value="">No faction (${getColourLabelWithPlayerMarker(colour.value)})</option>
         ${factionOptions}
       </select>
     </label>
   `).join("");
 
   getFactionColourSelects().forEach((select) => {
+    const existingSelection = existingSelections[select.dataset.playerColour] || "";
+
+    if ([...select.options].some((option) => option.value === existingSelection)) {
+      select.value = existingSelection;
+    }
+
     select.addEventListener("change", () => {
       renderChecklist();
       restoreCurrentPageState();
@@ -1789,7 +1989,7 @@ function restorePageSettings() {
 }
 
 function getChecklistCheckboxes() {
-  return [...document.querySelectorAll("#heroChecklist input[type='checkbox'], #cardChecklist input[type='checkbox']")];
+  return [...document.querySelectorAll("#heroChecklist input[type='checkbox'], #actionCardChecklist input[type='checkbox'], #cardChecklist input[type='checkbox']")];
 }
 
 function updateSingleOwnerChoiceStyle(checkbox, ownerColour, recommendedColour = ownerColour) {
@@ -1813,7 +2013,9 @@ function getCurrentPageCheckboxState() {
 
   getChecklistCheckboxes().forEach((checkbox) => {
     if (checkbox.checked) {
-      pageState[checkbox.id] = true;
+      pageState[checkbox.id] = checkbox.dataset.commanderOther === "true" || checkbox.dataset.promissoryHolder === "true"
+        ? checkbox.value
+        : true;
     }
   });
 
@@ -1824,11 +2026,43 @@ function applyPageCheckboxState(pageState) {
   selectedCards.clear();
 
   if (!pageState) {
-    return;
+    pageState = {};
   }
 
   getChecklistCheckboxes().forEach((checkbox) => {
     let isChecked = pageState[checkbox.id] === true;
+
+    if (checkbox.dataset.commanderOther === "true") {
+      const savedColour = pageState[checkbox.id];
+      const colourSelect = document.querySelector(`#${checkbox.id}-colour`);
+      const factionName = getLeaderInfo(checkbox.dataset.cardName)?.faction || "";
+      const ownerColour = getFactionOwnerColour(factionName);
+
+      if (getVisiblePlayerColours().some((colour) => colour.value === savedColour) && savedColour !== ownerColour) {
+        checkbox.value = savedColour;
+        isChecked = true;
+
+        if (colourSelect) {
+          colourSelect.value = savedColour;
+        }
+      }
+    }
+
+    if (checkbox.dataset.promissoryHolder === "true") {
+      const savedColour = pageState[checkbox.id];
+      const colourSelect = document.querySelector(`#${checkbox.id}-colour`);
+      const factionName = getLeaderInfo(checkbox.dataset.cardName)?.faction || "";
+      const ownerColour = getFactionOwnerColour(factionName);
+
+      if (getVisiblePlayerColours().some((colour) => colour.value === savedColour) && savedColour !== ownerColour) {
+        checkbox.value = savedColour;
+        isChecked = true;
+
+        if (colourSelect) {
+          colourSelect.value = savedColour;
+        }
+      }
+    }
 
     if (!isChecked && checkbox.dataset.singleOwner === "true") {
       const legacyOwner = playerColours.find((colour) => {
@@ -1858,13 +2092,43 @@ function applyPageCheckboxState(pageState) {
     if (checkbox.checked) {
       const cardName = checkbox.dataset.cardName;
       const factionName = getLeaderInfo(cardName)?.faction || "";
-      const ownerColour = checkbox.dataset.singleOwner === "true"
+      const ownerColour = checkbox.dataset.singleOwner === "true" || checkbox.dataset.commanderOwner === "true"
         ? getFactionOwnerColour(factionName) || checkbox.value
         : checkbox.value;
       const selectedColours = selectedCards.get(cardName) || new Set();
       selectedColours.add(ownerColour);
       selectedCards.set(cardName, selectedColours);
     }
+  });
+
+  applyStartingTechDefaults();
+}
+
+function applyStartingTechDefaults() {
+  const selections = getPlayerFactionSelections();
+
+  Object.entries(selections).forEach(([colourValue, factionName]) => {
+    const startingTechs = fixedStartingTechByFaction[factionName] || [];
+
+    startingTechs.forEach((techName) => {
+      if (!isCardAvailable(techName)) {
+        return;
+      }
+
+      const checkbox = getChecklistCheckboxes().find((candidate) => {
+        return candidate.dataset.cardName === techName
+          && (candidate.value === colourValue || candidate.dataset.singleOwner === "true" || candidate.dataset.factionTechnology === "true");
+      });
+
+      if (!checkbox) {
+        return;
+      }
+
+      checkbox.checked = true;
+      const selectedColours = selectedCards.get(techName) || new Set();
+      selectedColours.add(colourValue);
+      selectedCards.set(techName, selectedColours);
+    });
   });
 }
 
@@ -2022,6 +2286,11 @@ function getColourLabel(value) {
   return playerColours.find((colour) => colour.value === value)?.label || value;
 }
 
+function getColourLabelWithPlayerMarker(value) {
+  const label = getColourLabel(value);
+  return value === (playerColourSelect?.value || "red") ? `${label} (Your colour)` : label;
+}
+
 function getGameSettings() {
   return {
     version: gameVersionSelect?.value || "base",
@@ -2119,11 +2388,20 @@ function getOwnerSummary(ownerColours, playerColour) {
 function isSingleOwnerCard(card) {
   return card.category === "Faction Cards"
     && card.type !== "Commander leader"
-    && card.type !== "Faction technology";
+    && card.type !== "Faction technology"
+    && card.type !== "Faction promissory note";
 }
 
 function isFactionTechnologyCard(card) {
   return card.category === "Faction Cards" && card.type === "Faction technology";
+}
+
+function isCommanderCard(card) {
+  return card.category === "Faction Cards" && card.type === "Commander leader";
+}
+
+function isFactionPromissoryNoteCard(card) {
+  return card.category === "Faction Cards" && card.type === "Faction promissory note";
 }
 
 function getModifierEntries() {
@@ -2254,7 +2532,7 @@ function renderFilteredViews() {
 }
 
 function renderChecklist() {
-  if (!cardChecklist || !heroChecklist) {
+  if (!cardChecklist || !actionCardChecklist || !heroChecklist) {
     return;
   }
 
@@ -2274,15 +2552,28 @@ function renderChecklist() {
           ${groupCards.map((card) => {
             const cardSlug = slugify(card.name);
             const selectedColours = selectedCards.get(card.name) || new Set();
+            const isCommander = isCommanderCard(card);
+            const isFactionPromissoryNote = isFactionPromissoryNoteCard(card);
             const isSingleOwner = isSingleOwnerCard(card);
             const isFactionTechnology = isFactionTechnologyCard(card);
-            const recommendedColour = getFactionOwnerColour(card.faction) || playerColour;
+            const factionOwnerColour = getFactionOwnerColour(card.faction) || "";
+            const recommendedColour = factionOwnerColour || playerColour;
             const nekroColour = getFactionOwnerColour("The Nekro Virus");
+            const commanderOtherColours = visiblePlayerColours.filter((colour) => colour.value !== recommendedColour);
+            const selectedCommanderOtherColour = [...selectedColours].find((colour) => colour !== recommendedColour);
+            const commanderOtherColour = selectedCommanderOtherColour || commanderOtherColours[0]?.value || "";
+            const promissoryHolderColours = factionOwnerColour
+              ? visiblePlayerColours.filter((colour) => colour.value !== factionOwnerColour)
+              : visiblePlayerColours;
+            const selectedPromissoryHolderColour = [...selectedColours].find((colour) => colour !== factionOwnerColour);
+            const promissoryHolderColour = selectedPromissoryHolderColour || promissoryHolderColours[0]?.value || "";
             const showNekroTechnologyChoice = isFactionTechnology
               && card.faction !== "The Nekro Virus"
               && nekroColour
               && nekroColour !== recommendedColour;
             const singleOwnerCheckboxId = `card-${cardSlug}-owner`;
+            const commanderOtherCheckboxId = `card-${cardSlug}-other`;
+            const promissoryHolderCheckboxId = `card-${cardSlug}-holder`;
             const nekroTechnologyCheckboxId = `card-${cardSlug}-nekro`;
 
             return `
@@ -2292,7 +2583,67 @@ function renderChecklist() {
                   <span>${card.type}</span>
                   ${card.category === "Faction Cards" ? `<p class="card-description">${card.text}</p>` : ""}
                 </span>
-                ${isSingleOwner ? `
+                ${isCommander ? `
+                  <div class="commander-choice-group" aria-label="${card.name} commander assignment">
+                    <label class="colour-choice single-owner-choice colour-${recommendedColour} recommended-colour-choice" for="${singleOwnerCheckboxId}">
+                      <input
+                        id="${singleOwnerCheckboxId}"
+                        type="checkbox"
+                        value="${recommendedColour}"
+                        data-card-name="${card.name}"
+                        data-card-slug="${cardSlug}"
+                        data-commander-owner="true"
+                        ${selectedColours.has(recommendedColour) ? "checked" : ""}
+                      >
+                      <span>Owner (${getColourLabelWithPlayerMarker(recommendedColour)})</span>
+                    </label>
+                    ${commanderOtherColours.length ? `
+                      <div class="commander-other-control">
+                        <label class="colour-choice colour-${commanderOtherColour}" for="${commanderOtherCheckboxId}">
+                          <input
+                            id="${commanderOtherCheckboxId}"
+                            type="checkbox"
+                            value="${commanderOtherColour}"
+                            data-card-name="${card.name}"
+                            data-card-slug="${cardSlug}"
+                            data-commander-other="true"
+                            ${selectedCommanderOtherColour ? "checked" : ""}
+                          >
+                          <span>Other</span>
+                        </label>
+                        <select id="${commanderOtherCheckboxId}-colour" data-commander-other-select="${commanderOtherCheckboxId}" aria-label="${card.name} other commander colour">
+                          ${commanderOtherColours.map((colour) => `
+                            <option value="${colour.value}" ${colour.value === commanderOtherColour ? "selected" : ""}>${getColourLabelWithPlayerMarker(colour.value)}</option>
+                          `).join("")}
+                        </select>
+                      </div>
+                    ` : ""}
+                  </div>
+                ` : isFactionPromissoryNote ? `
+                  ${promissoryHolderColours.length ? `
+                    <div class="promissory-choice-group" aria-label="${card.name} holder assignment">
+                      <div class="promissory-holder-control">
+                        <label class="colour-choice colour-${promissoryHolderColour}" for="${promissoryHolderCheckboxId}">
+                          <input
+                            id="${promissoryHolderCheckboxId}"
+                            type="checkbox"
+                            value="${promissoryHolderColour}"
+                            data-card-name="${card.name}"
+                            data-card-slug="${cardSlug}"
+                            data-promissory-holder="true"
+                            ${selectedPromissoryHolderColour ? "checked" : ""}
+                          >
+                          <span>Holder</span>
+                        </label>
+                        <select id="${promissoryHolderCheckboxId}-colour" data-promissory-holder-select="${promissoryHolderCheckboxId}" aria-label="${card.name} holder colour">
+                          ${promissoryHolderColours.map((colour) => `
+                            <option value="${colour.value}" ${colour.value === promissoryHolderColour ? "selected" : ""}>${getColourLabelWithPlayerMarker(colour.value)}</option>
+                          `).join("")}
+                        </select>
+                      </div>
+                    </div>
+                  ` : ""}
+                ` : isSingleOwner ? `
                   <div class="single-owner-control" aria-label="${card.name} owner colour">
                     <label class="colour-choice single-owner-choice colour-${recommendedColour} recommended-colour-choice" for="${singleOwnerCheckboxId}">
                       <input
@@ -2304,7 +2655,7 @@ function renderChecklist() {
                         data-single-owner="true"
                         ${selectedColours.size ? "checked" : ""}
                       >
-                      <span>In play (${getColourLabel(recommendedColour)})</span>
+                      <span>In play (${getColourLabelWithPlayerMarker(recommendedColour)})</span>
                     </label>
                   </div>
                 ` : isFactionTechnology ? `
@@ -2319,7 +2670,7 @@ function renderChecklist() {
                         data-faction-technology="true"
                         ${selectedColours.has(recommendedColour) ? "checked" : ""}
                       >
-                      <span>${getColourLabel(recommendedColour)}</span>
+                      <span>${getColourLabelWithPlayerMarker(recommendedColour)}</span>
                     </label>
                     ${showNekroTechnologyChoice ? `
                       <label class="colour-choice colour-${nekroColour} recommended-colour-choice" for="${nekroTechnologyCheckboxId}">
@@ -2333,7 +2684,7 @@ function renderChecklist() {
                           data-nekro-technology="true"
                           ${selectedColours.has(nekroColour) ? "checked" : ""}
                         >
-                        <span>Nekro Virus</span>
+                        <span>Nekro Virus (${getColourLabelWithPlayerMarker(nekroColour)})</span>
                       </label>
                     ` : ""}
                   </div>
@@ -2352,7 +2703,7 @@ function renderChecklist() {
                           data-card-slug="${cardSlug}"
                           ${selectedColours.has(colour.value) ? "checked" : ""}
                         >
-                          <span>${colour.label}</span>
+                          <span>${getColourLabelWithPlayerMarker(colour.value)}</span>
                         </label>
                       `;
                     }).join("")}
@@ -2399,7 +2750,13 @@ function renderChecklist() {
     heroChecklist.innerHTML = "";
   }
 
-  cardChecklist.innerHTML = cardGroups.filter((group) => group !== "Faction Cards").map((group) => {
+  actionCardChecklist.innerHTML = renderChecklistGroup(
+    "Action Cards",
+    cards.filter((card) => card.category === "Action Cards"),
+    true
+  );
+
+  cardChecklist.innerHTML = cardGroups.filter((group) => !["Faction Cards", "Action Cards"].includes(group)).map((group) => {
     const groupCards = cards.filter((card) => card.category === group);
 
     if (!groupCards.length) {
@@ -2416,7 +2773,28 @@ function renderChecklist() {
       const factionName = getLeaderInfo(cardName)?.faction || "";
 
       if (checkbox.checked) {
-        if (checkbox.dataset.singleOwner === "true") {
+        if (checkbox.dataset.commanderOwner === "true") {
+          selectedColours.add(getFactionOwnerColour(factionName) || checkbox.value);
+          selectedCards.set(cardName, selectedColours);
+        } else if (checkbox.dataset.commanderOther === "true") {
+          const ownerColour = getFactionOwnerColour(factionName) || "";
+          selectedColours.forEach((colour) => {
+            if (colour !== ownerColour) {
+              selectedColours.delete(colour);
+            }
+          });
+          selectedColours.add(checkbox.value);
+          selectedCards.set(cardName, selectedColours);
+        } else if (checkbox.dataset.promissoryHolder === "true") {
+          const ownerColour = getFactionOwnerColour(factionName) || "";
+
+          if (checkbox.value !== ownerColour) {
+            selectedCards.set(cardName, new Set([checkbox.value]));
+          } else {
+            checkbox.checked = false;
+            selectedCards.delete(cardName);
+          }
+        } else if (checkbox.dataset.singleOwner === "true") {
           selectedCards.set(cardName, new Set([getFactionOwnerColour(factionName) || checkbox.value]));
         } else if (checkbox.dataset.factionTechnology === "true") {
           selectedColours.add(checkbox.value);
@@ -2426,7 +2804,25 @@ function renderChecklist() {
           selectedCards.set(cardName, selectedColours);
         }
       } else {
-        if (checkbox.dataset.singleOwner === "true") {
+        if (checkbox.dataset.commanderOwner === "true") {
+          selectedColours.delete(getFactionOwnerColour(factionName) || checkbox.value);
+
+          if (selectedColours.size) {
+            selectedCards.set(cardName, selectedColours);
+          } else {
+            selectedCards.delete(cardName);
+          }
+        } else if (checkbox.dataset.commanderOther === "true") {
+          selectedColours.delete(checkbox.value);
+
+          if (selectedColours.size) {
+            selectedCards.set(cardName, selectedColours);
+          } else {
+            selectedCards.delete(cardName);
+          }
+        } else if (checkbox.dataset.promissoryHolder === "true") {
+          selectedCards.delete(cardName);
+        } else if (checkbox.dataset.singleOwner === "true") {
           selectedCards.delete(cardName);
         } else if (checkbox.dataset.factionTechnology === "true") {
           selectedColours.delete(checkbox.value);
@@ -2449,6 +2845,61 @@ function renderChecklist() {
 
       renderPhaseFlows();
       saveCurrentPageState();
+    });
+  });
+
+  document.querySelectorAll("select[data-commander-other-select]").forEach((select) => {
+    select.addEventListener("change", () => {
+      const checkbox = document.querySelector(`#${select.dataset.commanderOtherSelect}`);
+
+      if (!checkbox) {
+        return;
+      }
+
+      const cardName = checkbox.dataset.cardName;
+      const factionName = getLeaderInfo(cardName)?.faction || "";
+      const ownerColour = getFactionOwnerColour(factionName) || "";
+      const selectedColours = selectedCards.get(cardName) || new Set();
+
+      checkbox.value = select.value;
+      checkbox.closest(".colour-choice")?.classList.remove(...playerColours.map((colour) => `colour-${colour.value}`));
+      checkbox.closest(".colour-choice")?.classList.add(`colour-${select.value}`);
+
+      if (checkbox.checked) {
+        selectedColours.forEach((colour) => {
+          if (colour !== ownerColour) {
+            selectedColours.delete(colour);
+          }
+        });
+        selectedColours.add(select.value);
+        selectedCards.set(cardName, selectedColours);
+        renderPhaseFlows();
+        saveCurrentPageState();
+      }
+    });
+  });
+
+  document.querySelectorAll("select[data-promissory-holder-select]").forEach((select) => {
+    select.addEventListener("change", () => {
+      const checkbox = document.querySelector(`#${select.dataset.promissoryHolderSelect}`);
+
+      if (!checkbox) {
+        return;
+      }
+
+      const cardName = checkbox.dataset.cardName;
+      const factionName = getLeaderInfo(cardName)?.faction || "";
+      const ownerColour = getFactionOwnerColour(factionName) || "";
+
+      checkbox.value = select.value;
+      checkbox.closest(".colour-choice")?.classList.remove(...playerColours.map((colour) => `colour-${colour.value}`));
+      checkbox.closest(".colour-choice")?.classList.add(`colour-${select.value}`);
+
+      if (checkbox.checked && select.value !== ownerColour) {
+        selectedCards.set(cardName, new Set([select.value]));
+        renderPhaseFlows();
+        saveCurrentPageState();
+      }
     });
   });
 }
@@ -2587,7 +3038,9 @@ document.querySelectorAll(".filter-button").forEach((button) => {
 
 if (playerColourSelect) {
   playerColourSelect.addEventListener("change", () => {
+    renderFactionSelectors();
     renderChecklist();
+    restoreCurrentPageState();
     renderPhaseFlows();
   });
 }

@@ -455,6 +455,33 @@ h3 {
   gap: 6px;
 }
 
+.commander-choice-group,
+.promissory-choice-group {
+  display: grid;
+  gap: 6px;
+}
+
+.commander-other-control,
+.promissory-holder-control {
+  display: grid;
+  grid-template-columns: minmax(92px, 0.8fr) minmax(0, 1.2fr);
+  gap: 6px;
+}
+
+.commander-other-control select,
+.promissory-holder-control select {
+  min-width: 0;
+  min-height: 30px;
+  padding: 5px 28px 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel-solid);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
 .colour-choice {
   display: flex;
   align-items: center;
