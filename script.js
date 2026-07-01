@@ -2,7 +2,6 @@ const canvas = document.querySelector("#starfield");
 const context = canvas.getContext("2d");
 const stars = [];
 const starCount = 120;
-const flowList = document.querySelector("#flowList");
 const phaseFlowList = document.querySelector("#phaseFlowList");
 const cardChecklist = document.querySelector("#cardChecklist");
 const actionCardChecklist = document.querySelector("#actionCardChecklist");
@@ -2611,11 +2610,9 @@ function getUniqueCards() {
 }
 
 function renderFilteredViews() {
-  const activeFilter = document.querySelector(".filter-button.active")?.dataset.filter || "all";
   renderChecklist();
   restoreCurrentPageState();
   renderPhaseFlows();
-  renderFlows(activeFilter);
 }
 
 function renderChecklist() {
@@ -3094,65 +3091,6 @@ function renderPhaseFlows() {
   }).join("");
 }
 
-function renderFlows(filter = "all") {
-  if (!flowList) {
-    return;
-  }
-
-  const visibleFlows = (filter === "all"
-    ? flows
-    : flows.filter((flow) => flow.id === filter))
-    .map((flow) => {
-      return {
-        ...flow,
-        steps: flow.steps
-          .map((step) => {
-            return {
-              ...step,
-              cards: step.cards.filter((card) => isCardAvailable(card.name))
-            };
-          })
-          .filter((step) => step.cards.length)
-      };
-    })
-    .filter((flow) => flow.steps.length);
-
-  flowList.innerHTML = visibleFlows.map((flow) => `
-    <article class="flow-card">
-      <header>
-        <h3>${flow.title}</h3>
-        <p>${flow.summary}</p>
-      </header>
-      <div class="flow-steps">
-        ${flow.steps.map((step) => `
-          <div class="flow-step">
-            <div class="step-label">${step.step}</div>
-            <div class="card-stack">
-              ${step.cards.map((card) => `
-                <div class="timing-card">
-                  <span>${card.type}</span>
-                  <strong>${card.name}</strong>
-                  <p>${card.text}</p>
-                </div>
-              `).join("")}
-            </div>
-          </div>
-        `).join("")}
-      </div>
-    </article>
-  `).join("");
-}
-
-document.querySelectorAll(".filter-button").forEach((button) => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll(".filter-button").forEach((item) => {
-      item.classList.remove("active");
-    });
-    button.classList.add("active");
-    renderFlows(button.dataset.filter);
-  });
-});
-
 if (playerColourSelect) {
   playerColourSelect.addEventListener("change", () => {
     renderFactionSelectors();
@@ -3223,4 +3161,3 @@ restorePageSettings();
 renderChecklist();
 restoreCurrentPageState();
 renderPhaseFlows();
-renderFlows();

@@ -794,131 +794,6 @@ h3 {
   color: var(--muted);
 }
 
-.flow-section {
-  background: rgba(19, 20, 26, 0.9);
-  border-top: 1px solid var(--line);
-}
-
-.flow-tools {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 24px;
-}
-
-.filter-button {
-  min-height: 38px;
-  padding: 8px 13px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--muted);
-  cursor: pointer;
-  font: inherit;
-  font-weight: 700;
-}
-
-.filter-button:hover,
-.filter-button:focus-visible,
-.filter-button.active {
-  border-color: var(--gold);
-  color: var(--text);
-}
-
-.flow-list {
-  display: grid;
-  gap: 16px;
-}
-
-.flow-card {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--panel);
-  overflow: hidden;
-}
-
-.flow-card header {
-  display: grid;
-  gap: 8px;
-  padding: 20px 22px;
-  border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.flow-card h3 {
-  margin: 0;
-}
-
-.flow-card header p {
-  margin: 0;
-  color: var(--muted);
-}
-
-.flow-steps {
-  display: grid;
-  gap: 1px;
-  background: var(--line);
-}
-
-.flow-step {
-  display: grid;
-  grid-template-columns: minmax(150px, 230px) minmax(0, 1fr);
-  gap: 18px;
-  padding: 18px 22px;
-  background: rgba(16, 17, 22, 0.84);
-}
-
-.step-label {
-  color: var(--gold);
-  font-weight: 700;
-}
-
-.card-stack {
-  display: grid;
-  gap: 12px;
-}
-
-.timing-card {
-  display: grid;
-  gap: 8px;
-}
-
-.timing-card strong {
-  color: var(--text);
-}
-
-.timing-card span {
-  display: inline-flex;
-  width: fit-content;
-  padding: 2px 8px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--green);
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-
-.timing-card p {
-  margin: 0;
-  color: var(--muted);
-}
-
-.status-band {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(240px, 420px);
-  gap: 28px;
-  align-items: start;
-  padding: 56px clamp(18px, 5vw, 64px);
-  background: var(--panel-solid);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.status-band p:last-child {
-  margin: 0;
-  color: var(--muted);
-}
-
 .site-footer {
   padding: 28px clamp(18px, 5vw, 64px);
   color: var(--muted);
@@ -943,9 +818,7 @@ h3 {
   .feature-grid,
   .checklist-grid,
   .faction-selector-panel,
-  .status-band,
-  .phase-step,
-  .flow-step {
+  .phase-step {
     grid-template-columns: 1fr;
   }
 }
