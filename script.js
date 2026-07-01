@@ -2346,7 +2346,7 @@ function getColourLabel(value) {
 
 function getColourLabelWithPlayerMarker(value) {
   const label = getColourLabel(value);
-  return value === (playerColourSelect?.value || "red") ? `${label} (Your colour)` : label;
+  return value === (playerColourSelect?.value || "red") ? `${label} (You)` : label;
 }
 
 function getGameSettings() {

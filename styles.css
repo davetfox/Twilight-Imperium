@@ -177,6 +177,13 @@ h3 {
   color: var(--muted);
 }
 
+.section-heading a {
+  color: var(--gold);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -596,6 +603,17 @@ h3 {
   gap: 16px;
 }
 
+.tip-section {
+  background: var(--panel-solid);
+  border-top: 1px solid var(--line);
+}
+
+.tip-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .phase-card {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -795,9 +813,24 @@ h3 {
 }
 
 .site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   padding: 28px clamp(18px, 5vw, 64px);
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.build-label {
+  margin-left: auto;
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--green);
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 @media (max-width: 760px) {
@@ -820,6 +853,15 @@ h3 {
   .faction-selector-panel,
   .phase-step {
     grid-template-columns: 1fr;
+  }
+
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .build-label {
+    align-self: flex-end;
   }
 }
 
